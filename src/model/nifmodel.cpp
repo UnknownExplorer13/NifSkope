@@ -1293,6 +1293,9 @@ QVariant NifModel::data( const QModelIndex & idx, int role ) const
 
 						return QString( "%1" ).arg( optId );
 					}
+                    else if ( item->type() == "BSConnectPoint" && !item->isArray() ) {
+                        return item->child("Name")->value().toString();
+                    }
 
 					return value.toString().replace( "\n", " " ).replace( "\r", " " );
 				}
