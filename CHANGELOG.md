@@ -1,5 +1,9 @@
  == CHANGELOG ==
 
+See the following release logs for the changes post 2.0
+* https://github.com/hexabits/nifskope/releases (2 dev 8)
+* https://github.com/niftools/nifskope/releases (2 dev 0 -> 2 dev 7)
+
 **NOTE: This changelog is not maintained for prerelease versions**
 
 You may view the changes since 1.1.3 here: https://github.com/jonwd7/nifskope/releases

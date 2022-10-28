@@ -20,19 +20,15 @@ You can fork the latest source from [GitHub](https://github.com/C0bra5/nifskope)
 git clone --recursive git://github.com/<YOUR_USERNAME>/nifskope.git
 ```
 
-For information about development:
-- Refer to our [GitHub wiki](https://github.com/C0bra5/nifskope/wiki#wiki-development) for information on compilation.  
+
+### Compilation
+
+Refer to our [GitHub wiki](https://github.com/C0bra5/nifskope/wiki) for information on compilation.  
 
 
 ### Miscellaneous
 
 Refer to these other documents in your installation folder or at the links provided:
-
-## [TROUBLESHOOTING](https://github.com/C0bra5/nifskope/blob/develop/TROUBLESHOOTING.md)
-
-## [CHANGELOG](https://github.com/C0bra5/nifskope/blob/develop/CHANGELOG.md)
-
-## [CONTRIBUTORS](https://github.com/C0bra5/nifskope/blob/develop/CONTRIBUTORS.md)
- 
-## [LICENSE](https://github.com/C0bra5/nifskope/blob/develop/LICENSE.md)
+* [Changelog](https://github.com/C0bra5/nifskope/blob/develop/CHANGELOG.md)
+* [License](https://github.com/C0bra5/nifskope/blob/develop/LICENSE.md)
 
