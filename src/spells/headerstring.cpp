@@ -147,5 +147,5 @@ public:
 	}
 };
 
-REGISTER_SPELL( spEditStringIndex )
+REGISTER_SPELL( spEditStringIndex );
 

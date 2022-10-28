@@ -54,7 +54,7 @@ using QIconPtr = std::shared_ptr<QIcon>;
 //! \file spellbook.h Spell, SpellBook and Librarian
 
 //! Register a Spell using a Librarian
-#define REGISTER_SPELL( SPELL ) static Librarian __ ## SPELL ## __( new SPELL );
+#define REGISTER_SPELL( SPELL ) static Librarian __ ## SPELL ## __( new SPELL )
 
 //! Flexible context menu magic functions.
 class Spell

@@ -135,5 +135,5 @@ public:
 	}
 };
 
-REGISTER_SPELL( spMaterialEdit )
+REGISTER_SPELL( spMaterialEdit );
 

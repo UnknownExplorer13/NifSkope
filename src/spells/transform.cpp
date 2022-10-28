@@ -233,7 +233,7 @@ QModelIndex spApplyTransformation::cast( NifModel * nif, const QModelIndex & ind
 	return index;
 }
 
-REGISTER_SPELL( spApplyTransformation )
+REGISTER_SPELL( spApplyTransformation );
 
 class spClearTransformation final : public Spell
 {
@@ -254,7 +254,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spClearTransformation )
+REGISTER_SPELL( spClearTransformation );
 
 class spCopyTransformation final : public Spell
 {
@@ -285,7 +285,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spCopyTransformation )
+REGISTER_SPELL( spCopyTransformation );
 
 class spPasteTransformation final : public Spell
 {
@@ -332,7 +332,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spPasteTransformation )
+REGISTER_SPELL( spPasteTransformation );
 
 static QIconPtr transform_xpm_icon = nullptr;
 
@@ -385,7 +385,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spEditTransformation )
+REGISTER_SPELL( spEditTransformation );
 
 
 class spScaleVertices final : public Spell
@@ -466,6 +466,6 @@ public:
 	}
 };
 
-REGISTER_SPELL( spScaleVertices )
+REGISTER_SPELL( spScaleVertices );
 
 

@@ -265,7 +265,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spCreateCVS )
+REGISTER_SPELL( spCreateCVS );
 
 //! Transforms Havok constraints
 class spConstraintHelper final : public Spell
@@ -375,7 +375,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spConstraintHelper )
+REGISTER_SPELL( spConstraintHelper );
 
 //! Calculates Havok spring lengths
 class spStiffSpringHelper final : public Spell
@@ -418,7 +418,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spStiffSpringHelper )
+REGISTER_SPELL( spStiffSpringHelper );
 
 //! Packs Havok strips
 class spPackHavokStrips final : public Spell
@@ -526,7 +526,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spPackHavokStrips )
+REGISTER_SPELL( spPackHavokStrips );
 
 //! Converts bhkListShape to bhkConvexListShape for FO3
 class spConvertListShape final : public Spell
@@ -563,7 +563,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spConvertListShape )
+REGISTER_SPELL( spConvertListShape );
 
 //! Converts bhkConvexListShape to bhkListShape for FNV
 class spConvertConvexListShape final : public Spell
@@ -602,4 +602,4 @@ public:
 	}
 };
 
-REGISTER_SPELL( spConvertConvexListShape )
+REGISTER_SPELL( spConvertConvexListShape );

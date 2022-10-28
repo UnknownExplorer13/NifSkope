@@ -233,7 +233,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spMoppCode )
+REGISTER_SPELL( spMoppCode );
 
 //! Update MOPP code on all shapes in this model
 class spAllMoppCodes final : public Spell
@@ -278,7 +278,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAllMoppCodes )
+REGISTER_SPELL( spAllMoppCodes );
 
 #endif // Q_OS_WIN32
 

@@ -151,7 +151,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFaceNormals )
+REGISTER_SPELL( spFaceNormals );
 
 //! Flip normals of a mesh, without recalculating them.
 class spFlipNormals final : public Spell
@@ -181,7 +181,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFlipNormals )
+REGISTER_SPELL( spFlipNormals );
 
 //! Smooths the normals of a mesh
 class spSmoothNormals final : public Spell
@@ -319,7 +319,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spSmoothNormals )
+REGISTER_SPELL( spSmoothNormals );
 
 //! Normalises any single Vector3 or array.
 /**
@@ -355,5 +355,5 @@ public:
 	}
 };
 
-REGISTER_SPELL( spNormalize )
+REGISTER_SPELL( spNormalize );
 

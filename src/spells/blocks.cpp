@@ -700,7 +700,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spInsertBlock )
+REGISTER_SPELL( spInsertBlock );
 
 //! Attach a Property to a block
 class spAttachProperty final : public Spell
@@ -767,7 +767,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAttachProperty )
+REGISTER_SPELL( spAttachProperty );
 
 //! Attach a Node to a block
 class spAttachNode final : public Spell
@@ -804,7 +804,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAttachNode )
+REGISTER_SPELL( spAttachNode );
 
 
 //! Attach a new block to an empty Ref link
@@ -925,7 +925,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAddNewRef )
+REGISTER_SPELL( spAddNewRef );
 
 
 //! Attach a dynamic effect (4/5 are lights) to a block
@@ -978,7 +978,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAttachLight )
+REGISTER_SPELL( spAttachLight );
 
 //! Attach extra data to a block
 class spAttachExtraData final : public Spell
@@ -1019,7 +1019,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAttachExtraData )
+REGISTER_SPELL( spAttachExtraData );
 
 //! Remove a block
 class spRemoveBlock final : public Spell
@@ -1040,7 +1040,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spRemoveBlock )
+REGISTER_SPELL( spRemoveBlock );
 
 //! Copy a block to the clipboard
 class spCopyBlock final : public Spell
@@ -1080,7 +1080,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spCopyBlock )
+REGISTER_SPELL( spCopyBlock );
 
 //! Paste a block from the clipboard
 class spPasteBlock final : public Spell
@@ -1175,7 +1175,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spPasteBlock )
+REGISTER_SPELL( spPasteBlock );
 
 //! Paste a block from the clipboard over another
 class spPasteOverBlock final : public Spell
@@ -1267,7 +1267,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spPasteOverBlock )
+REGISTER_SPELL( spPasteOverBlock );
 
 //! Copy a branch (a block and its descendents) to the clipboard
 
@@ -1354,7 +1354,7 @@ QModelIndex spCopyBranch::cast( NifModel * nif, const QModelIndex & index )
 }
 
 
-REGISTER_SPELL( spCopyBranch )
+REGISTER_SPELL( spCopyBranch );
 
 //! Paste a branch from the clipboard
 
@@ -1491,7 +1491,7 @@ QModelIndex spPasteBranch::cast( NifModel * nif, const QModelIndex & index )
 }
 
 
-REGISTER_SPELL( spPasteBranch )
+REGISTER_SPELL( spPasteBranch );
 
 //! Paste branch without parenting; see spPasteBranch
 /*!
@@ -1542,7 +1542,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spPasteBranch2 )
+REGISTER_SPELL( spPasteBranch2 );
 
 // definitions for spRemoveBranch moved to blocks.h
 bool spRemoveBranch::isApplicable( const NifModel * nif, const QModelIndex & iBlock )
@@ -1559,7 +1559,7 @@ QModelIndex spRemoveBranch::cast( NifModel * nif, const QModelIndex & index )
 	return QModelIndex();
 }
 
-REGISTER_SPELL( spRemoveBranch )
+REGISTER_SPELL( spRemoveBranch );
 
 //! Convert descendents to siblings?
 class spFlattenBranch final : public Spell
@@ -1608,7 +1608,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFlattenBranch )
+REGISTER_SPELL( spFlattenBranch );
 
 //! Move a block up in the NIF
 class spMoveBlockUp final : public Spell
@@ -1631,7 +1631,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spMoveBlockUp )
+REGISTER_SPELL( spMoveBlockUp );
 
 //! Move a block down in the NIF
 class spMoveBlockDown final : public Spell
@@ -1654,7 +1654,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spMoveBlockDown )
+REGISTER_SPELL( spMoveBlockDown );
 
 //! Remove blocks by regex
 class spRemoveBlocksById final : public Spell
@@ -1700,7 +1700,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spRemoveBlocksById )
+REGISTER_SPELL( spRemoveBlocksById );
 
 //! Remove all blocks except a given branch
 class spCropToBranch final : public Spell
@@ -1755,7 +1755,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spCropToBranch )
+REGISTER_SPELL( spCropToBranch );
 
 //! Convert block types
 class spConvertBlock final : public Spell
@@ -1818,7 +1818,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spConvertBlock )
+REGISTER_SPELL( spConvertBlock );
 
 //! Duplicate a block in place
 class spDuplicateBlock final : public Spell
@@ -1854,7 +1854,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spDuplicateBlock )
+REGISTER_SPELL( spDuplicateBlock );
 
 //! Duplicate a branch in place
 
@@ -1987,7 +1987,7 @@ QModelIndex spDuplicateBranch::cast( NifModel * nif, const QModelIndex & index )
 	return QModelIndex();
 }
 
-REGISTER_SPELL( spDuplicateBranch )
+REGISTER_SPELL( spDuplicateBranch );
 
 //! Sort blocks by name
 class spSortBlockNames final : public Spell
@@ -2046,7 +2046,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spSortBlockNames )
+REGISTER_SPELL( spSortBlockNames );
 
 //! Attach a Node as a parent of the current block
 class spAttachParentNode final : public Spell
@@ -2104,7 +2104,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAttachParentNode )
+REGISTER_SPELL( spAttachParentNode );
 
 //! List all blocks that reference this block
 class spReferencedBy final : public Spell
@@ -2155,4 +2155,4 @@ public:
 	}
 };
 
-REGISTER_SPELL( spReferencedBy )
+REGISTER_SPELL( spReferencedBy );

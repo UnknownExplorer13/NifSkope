@@ -113,7 +113,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spCombiProps )
+REGISTER_SPELL( spCombiProps );
 
 //! Creates unique properties from shared ones
 /*!
@@ -183,7 +183,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spUniqueProps )
+REGISTER_SPELL( spUniqueProps );
 
 //! Removes nodes with no children and singular parents
 /*!
@@ -250,7 +250,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spRemoveBogusNodes )
+REGISTER_SPELL( spRemoveBogusNodes );
 
 //! Combines geometry data
 /*!
@@ -493,7 +493,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spCombiTris )
+REGISTER_SPELL( spCombiTris );
 
 
 void scan( const QModelIndex & idx, NifModel * nif, QMap<QString, qint32> & usedStrings, bool hasCED )
@@ -581,4 +581,4 @@ public:
 	}
 };
 
-REGISTER_SPELL( spRemoveUnusedStrings )
+REGISTER_SPELL( spRemoveUnusedStrings );

@@ -321,7 +321,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFlipTexCoords )
+REGISTER_SPELL( spFlipTexCoords );
 
 //! Flips triangle faces, individually or in the selected array
 class spFlipFace final : public Spell
@@ -354,7 +354,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFlipFace )
+REGISTER_SPELL( spFlipFace );
 
 //! Flips all faces of a triangle based mesh
 class spFlipAllFaces final : public Spell
@@ -383,7 +383,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFlipAllFaces )
+REGISTER_SPELL( spFlipAllFaces );
 
 //! Removes redundant triangles from a mesh
 class spPruneRedundantTriangles final : public Spell
@@ -453,7 +453,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spPruneRedundantTriangles )
+REGISTER_SPELL( spPruneRedundantTriangles );
 
 //! Removes duplicate vertices from a mesh
 class spRemoveDuplicateVertices final : public Spell
@@ -581,7 +581,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spRemoveDuplicateVertices )
+REGISTER_SPELL( spRemoveDuplicateVertices );
 
 //! Removes unused vertices
 class spRemoveWasteVertices final : public Spell
@@ -606,7 +606,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spRemoveWasteVertices )
+REGISTER_SPELL( spRemoveWasteVertices );
 
 /*
  * spUpdateCenterRadius
@@ -675,7 +675,7 @@ QModelIndex spUpdateCenterRadius::cast( NifModel * nif, const QModelIndex & inde
 	return index;
 }
 
-REGISTER_SPELL( spUpdateCenterRadius )
+REGISTER_SPELL( spUpdateCenterRadius );
 
 //! Updates Bounds of BSTriShape
 class spUpdateBounds final : public Spell
@@ -710,7 +710,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spUpdateBounds )
+REGISTER_SPELL( spUpdateBounds );
 
 
 class spUpdateAllBounds final : public Spell
@@ -751,7 +751,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spUpdateAllBounds )
+REGISTER_SPELL( spUpdateAllBounds );
 
 
 //! Update Triangles on Data from Skin
@@ -782,4 +782,4 @@ QModelIndex spUpdateTrianglesFromSkin::cast( NifModel * nif, const QModelIndex &
 	return index;
 }
 
-REGISTER_SPELL( spUpdateTrianglesFromSkin )
+REGISTER_SPELL( spUpdateTrianglesFromSkin );

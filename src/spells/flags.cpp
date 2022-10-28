@@ -959,7 +959,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spEditFlags )
+REGISTER_SPELL( spEditFlags );
 
 
 class spEditVertexDesc final : public spEditFlags
@@ -1044,4 +1044,4 @@ public:
 
 };
 
-REGISTER_SPELL( spEditVertexDesc )
+REGISTER_SPELL( spEditVertexDesc );

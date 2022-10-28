@@ -121,5 +121,5 @@ public:
 	}
 };
 
-REGISTER_SPELL( spMorphFrameSave )
+REGISTER_SPELL( spMorphFrameSave );
 

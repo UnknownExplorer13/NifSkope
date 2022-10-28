@@ -41,7 +41,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spChooseColor )
+REGISTER_SPELL( spChooseColor );
 
 //! Set an array of Colors
 class spSetAllColor final : public Spell
@@ -71,4 +71,4 @@ public:
 	}
 };
 
-REGISTER_SPELL( spSetAllColor )
+REGISTER_SPELL( spSetAllColor );

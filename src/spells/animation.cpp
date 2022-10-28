@@ -293,7 +293,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAttachKf )
+REGISTER_SPELL( spAttachKf );
 
 //! Convert quaternions to euler rotations.
 /*!
@@ -358,7 +358,7 @@ public:
 	}*/
 };
 
-//REGISTER_SPELL( spConvertQuatsToEulers )
+//REGISTER_SPELL( spConvertQuatsToEulers );
 
 
 class spFixAVObjectPalette final : public Spell
@@ -425,4 +425,4 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFixAVObjectPalette )
+REGISTER_SPELL( spFixAVObjectPalette );

@@ -188,7 +188,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFixSkeleton )
+REGISTER_SPELL( spFixSkeleton );
 
 //! Read skeleton data for use in Fix Skeleton
 class spScanSkeleton final : public Spell
@@ -233,7 +233,7 @@ public:
 	}
 };
 
-//REGISTER_SPELL( spScanSkeleton )
+//REGISTER_SPELL( spScanSkeleton );
 
 //! Unknown; unused?
 template <> inline bool qMapLessThanKey<Triangle>( const Triangle & s1, const Triangle & s2 )
@@ -1000,7 +1000,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spSkinPartition )
+REGISTER_SPELL( spSkinPartition );
 
 //! Make all skin partitions
 class spAllSkinPartitions final : public Spell
@@ -1041,7 +1041,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAllSkinPartitions )
+REGISTER_SPELL( spAllSkinPartitions );
 
 
 SkinPartitionDialog::SkinPartitionDialog( int ) : QDialog()
@@ -1222,7 +1222,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFixBoneBounds )
+REGISTER_SPELL( spFixBoneBounds );
 
 //! Mirror an armature branch.
 /*!
@@ -1459,5 +1459,5 @@ public:
 	}
 };
 
-REGISTER_SPELL( spMirrorSkeleton )
+REGISTER_SPELL( spMirrorSkeleton );
 

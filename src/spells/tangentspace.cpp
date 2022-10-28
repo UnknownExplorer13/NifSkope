@@ -304,7 +304,7 @@ QModelIndex spTangentSpace::cast( NifModel * nif, const QModelIndex & iBlock )
 	return iShape;
 }
 
-REGISTER_SPELL( spTangentSpace )
+REGISTER_SPELL( spTangentSpace );
 
 class spAllTangentSpaces final : public Spell
 {
@@ -349,7 +349,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAllTangentSpaces )
+REGISTER_SPELL( spAllTangentSpaces );
 
 
 class spAddAllTangentSpaces final : public Spell
@@ -397,5 +397,5 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAddAllTangentSpaces )
+REGISTER_SPELL( spAddAllTangentSpaces );
 

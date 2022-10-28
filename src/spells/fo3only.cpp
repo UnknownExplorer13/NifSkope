@@ -48,5 +48,5 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFO3FixShapeDataName )
+REGISTER_SPELL( spFO3FixShapeDataName );
 

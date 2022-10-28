@@ -56,7 +56,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spUpdateArray )
+REGISTER_SPELL( spUpdateArray );
 
 //! Updates the header of the NifModel
 class spUpdateHeader final : public Spell
@@ -77,7 +77,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spUpdateHeader )
+REGISTER_SPELL( spUpdateHeader );
 
 //! Updates the footer of the NifModel
 class spUpdateFooter final : public Spell
@@ -98,7 +98,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spUpdateFooter )
+REGISTER_SPELL( spUpdateFooter );
 
 //! Follows a link
 class spFollowLink final : public Spell
@@ -125,7 +125,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFollowLink )
+REGISTER_SPELL( spFollowLink );
 
 //! Estimates the file offset of an item in a model
 class spFileOffset final : public Spell
@@ -150,7 +150,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFileOffset )
+REGISTER_SPELL( spFileOffset );
 
 //! Exports the binary data of a binary row to a file
 class spExportBinary final : public Spell
@@ -199,7 +199,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spExportBinary )
+REGISTER_SPELL( spExportBinary );
 
 //! Imports the binary data of a file to a binary row
 class spImportBinary final : public Spell
@@ -247,7 +247,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spImportBinary )
+REGISTER_SPELL( spImportBinary );
 
 // definitions for spCollapseArray moved to misc.h
 bool spCollapseArray::isApplicable( const NifModel * nif, const QModelIndex & index )
@@ -294,5 +294,5 @@ QModelIndex spCollapseArray::numCollapser( NifModel * nif, QModelIndex & iNumEle
 	return iArray;
 }
 
-REGISTER_SPELL( spCollapseArray )
+REGISTER_SPELL( spCollapseArray );
 

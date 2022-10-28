@@ -62,4 +62,4 @@ public:
 	}
 };
 
-REGISTER_SPELL( spEditBounds )
+REGISTER_SPELL( spEditBounds );

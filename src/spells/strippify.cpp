@@ -195,7 +195,7 @@ class spStrippify final : public Spell
 	}
 };
 
-REGISTER_SPELL( spStrippify )
+REGISTER_SPELL( spStrippify );
 
 
 class spStrippifyAll final : public Spell
@@ -230,7 +230,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spStrippifyAll )
+REGISTER_SPELL( spStrippifyAll );
 
 
 class spTriangulate final : public Spell
@@ -327,7 +327,7 @@ class spTriangulate final : public Spell
 	}
 };
 
-REGISTER_SPELL( spTriangulate )
+REGISTER_SPELL( spTriangulate );
 
 
 class spTriangulateAll final : public Spell
@@ -359,7 +359,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spTriangulateAll )
+REGISTER_SPELL( spTriangulateAll );
 
 
 class spStichStrips final : public Spell
@@ -421,7 +421,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spStichStrips )
+REGISTER_SPELL( spStichStrips );
 
 
 class spUnstichStrips final : public Spell
@@ -496,5 +496,5 @@ public:
 	}
 };
 
-REGISTER_SPELL( spUnstichStrips )
+REGISTER_SPELL( spUnstichStrips );
 

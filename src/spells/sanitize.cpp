@@ -91,7 +91,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spReorderLinks )
+REGISTER_SPELL( spReorderLinks );
 
 //! Removes empty members from link arrays
 class spSanitizeLinkArrays final : public Spell
@@ -139,7 +139,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spSanitizeLinkArrays )
+REGISTER_SPELL( spSanitizeLinkArrays );
 
 //! Fixes texture path names and options
 class spAdjustTextureSources final : public Spell
@@ -180,7 +180,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAdjustTextureSources )
+REGISTER_SPELL( spAdjustTextureSources );
 
 //! Reorders blocks
 
@@ -275,7 +275,7 @@ QModelIndex spSanitizeBlockOrder::cast( NifModel * nif, const QModelIndex & )
 	return QModelIndex();
 }
 
-REGISTER_SPELL( spSanitizeBlockOrder )
+REGISTER_SPELL( spSanitizeBlockOrder );
 
 //! Checks that links are correct
 class spSanityCheckLinks final : public Spell
@@ -350,7 +350,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spSanityCheckLinks )
+REGISTER_SPELL( spSanityCheckLinks );
 
 //! Fixes invalid block names
 class spFixInvalidNames final : public Spell
@@ -519,7 +519,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFixInvalidNames )
+REGISTER_SPELL( spFixInvalidNames );
 
 //! Fills blank "Controller Type" refs in NiControllerSequence
 class spFillBlankControllerTypes final : public Spell
@@ -592,7 +592,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spFillBlankControllerTypes )
+REGISTER_SPELL( spFillBlankControllerTypes );
 
 
 /*
@@ -644,7 +644,7 @@ void spErrorNoneRefs::checkRef( NifModel * nif, const QModelIndex & idx, const Q
 	}
 }
 
-REGISTER_SPELL( spErrorNoneRefs )
+REGISTER_SPELL( spErrorNoneRefs );
 
 bool spErrorInvalidPaths::isApplicable( const NifModel *, const QModelIndex & index )
 {
@@ -711,7 +711,7 @@ void spErrorInvalidPaths::checkPath( NifModel * nif, const QModelIndex & idx, co
 	}
 }
 
-REGISTER_SPELL( spErrorInvalidPaths )
+REGISTER_SPELL( spErrorInvalidPaths );
 
 bool spWarningEnvironmentMapping::isApplicable(const NifModel * nif, const QModelIndex & index)
 {
@@ -738,4 +738,4 @@ QModelIndex spWarningEnvironmentMapping::cast(NifModel * nif, const QModelIndex 
 }
 
 
-REGISTER_SPELL(spWarningEnvironmentMapping)
+REGISTER_SPELL(spWarningEnvironmentMapping);

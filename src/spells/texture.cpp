@@ -252,7 +252,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spChooseTexture )
+REGISTER_SPELL( spChooseTexture );
 
 //! Opens a UVWidget to edit texture coordinates
 class spEditTexCoords final : public Spell
@@ -277,7 +277,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spEditTexCoords )
+REGISTER_SPELL( spEditTexCoords );
 
 //! Add a texture to the specified texture slot
 /*!
@@ -339,7 +339,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAddBaseMap )
+REGISTER_SPELL( spAddBaseMap );
 
 //! Adds a Dark texture
 class spAddDarkMap final : public Spell
@@ -360,7 +360,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAddDarkMap )
+REGISTER_SPELL( spAddDarkMap );
 
 //! Adds a Detail texture
 class spAddDetailMap final : public Spell
@@ -381,7 +381,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAddDetailMap )
+REGISTER_SPELL( spAddDetailMap );
 
 //! Adds a Glow texture
 class spAddGlowMap final : public Spell
@@ -402,7 +402,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAddGlowMap )
+REGISTER_SPELL( spAddGlowMap );
 
 //! Adds a Bump texture
 class spAddBumpMap final : public Spell
@@ -432,7 +432,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAddBumpMap )
+REGISTER_SPELL( spAddBumpMap );
 
 //! Adds a Decal 0 texture
 class spAddDecal0Map final : public Spell
@@ -453,7 +453,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAddDecal0Map )
+REGISTER_SPELL( spAddDecal0Map );
 
 //! Adds a Decal 1 texture
 class spAddDecal1Map final : public Spell
@@ -474,7 +474,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAddDecal1Map )
+REGISTER_SPELL( spAddDecal1Map );
 
 //! Adds a Decal 2 texture
 class spAddDecal2Map final : public Spell
@@ -495,7 +495,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAddDecal2Map )
+REGISTER_SPELL( spAddDecal2Map );
 
 //! Adds a Decal 3 texture
 class spAddDecal3Map final : public Spell
@@ -516,7 +516,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAddDecal3Map )
+REGISTER_SPELL( spAddDecal3Map );
 
 //! Wrap a value between 0 and 1
 #define wrap01f( X ) ( X > 1 ? X - floor( X ) : X < 0 ? X - floor( X ) : X )
@@ -739,7 +739,7 @@ class spTextureTemplate final : public Spell
 	}
 };
 
-REGISTER_SPELL( spTextureTemplate )
+REGISTER_SPELL( spTextureTemplate );
 
 //! Global search and replace of texturing apply modes
 class spMultiApplyMode final : public Spell
@@ -836,7 +836,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spMultiApplyMode )
+REGISTER_SPELL( spMultiApplyMode );
 
 //! Debug function - display information about a texture
 class spTexInfo final : public Spell
@@ -874,7 +874,7 @@ public:
 };
 
 #ifndef QT_NO_DEBUG
-REGISTER_SPELL( spTexInfo )
+REGISTER_SPELL( spTexInfo );
 #endif
 
 //! Export a packed NiPixelData texture
@@ -950,7 +950,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spExportTexture )
+REGISTER_SPELL( spExportTexture );
 
 //! Pack a texture to NiPixelData
 class spEmbedTexture final : public Spell
@@ -1023,7 +1023,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spEmbedTexture )
+REGISTER_SPELL( spEmbedTexture );
 
 TexFlipDialog::TexFlipDialog( NifModel * n, QModelIndex & index, QWidget * parent ) : QDialog( parent )
 {
@@ -1223,7 +1223,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spEditFlipper )
+REGISTER_SPELL( spEditFlipper );
 
 //! Insert and manage TexFlipController
 class spTextureFlipper final : public Spell
@@ -1251,4 +1251,4 @@ public:
 	}
 };
 
-REGISTER_SPELL( spTextureFlipper )
+REGISTER_SPELL( spTextureFlipper );

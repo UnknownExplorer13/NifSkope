@@ -203,7 +203,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spEditStringOffset )
+REGISTER_SPELL( spEditStringOffset );
 
 // documented in stringpalette.h
 StringPaletteRegexDialog::StringPaletteRegexDialog( NifModel * nif, QPersistentModelIndex & index, QWidget * parent ) : QDialog( parent )
@@ -441,7 +441,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spEditStringEntries )
+REGISTER_SPELL( spEditStringEntries );
 
 //! Batch helper for spEditStringEntries
 class spStringPaletteLister final : public Spell
@@ -511,4 +511,4 @@ public:
 	}
 };
 
-REGISTER_SPELL( spStringPaletteLister )
+REGISTER_SPELL( spStringPaletteLister );

@@ -104,5 +104,5 @@ public:
 	}
 };
 
-REGISTER_SPELL( spLightEdit )
+REGISTER_SPELL( spLightEdit );
 
