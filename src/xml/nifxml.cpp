@@ -82,7 +82,8 @@ public:
 		tagMember,
 		tagToken,
 		tagTokenTag,
-		tagModule
+        tagModule,
+        tagVerAttr
 	};
 
 	//! i18n wrapper for various strings
@@ -110,6 +111,7 @@ public:
 		tags.insert( "token", tagToken );
 		tags.insert( "bitfield", tagBitfield );
 		tags.insert( "member", tagMember );
+        tags.insert( "verattr", tagVerAttr );
 
 		tokens.clear();
 	}
@@ -307,8 +309,9 @@ public:
 					attrlist = list.value( "attrs" );
 				}
 				break;
-			case tagModule:
-				break;
+            case tagModule: // idk
+            case tagVerAttr: // don't care, it's just metadata
+                break;
 			default:
 				err( tr( "expected basic, enum, struct, niobject or version got %1 instead" ).arg( tagid ) );
 			}
@@ -507,6 +510,9 @@ public:
 				err( tr( "only token tags allowed in token declaration" ) );;
 			}
 			break;
+        case tagVerAttr:
+            // just metadata don't care about it
+            break;
 		default:
 			err( tr( "error unhandled tag %1" ).arg( tagid ) );
 			break;
