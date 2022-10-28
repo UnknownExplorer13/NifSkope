@@ -655,6 +655,7 @@ void Node::drawSelection() const
 			t.scale = normalScale * 16;
 
 			if ( i == sel ) {
+                t.scale *= 2;
 				glHighlightColor();
 			} else {
 				glNormalColor();
