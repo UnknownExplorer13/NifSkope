@@ -469,7 +469,7 @@ build_pass|!debug_and_release {
 	!isEmpty(SED) {
 		# Replace @VERSION@ with number from build/VERSION
 		# Copy build/README.md.in > README.md
-		QMAKE_PRE_LINK += $${SED} -e s/@VERSION@/$${VER}/ $${PWD}/build/README.md.in > $${PWD}/README.md $$nt
+		# QMAKE_PRE_LINK += $${SED} -e s/@VERSION@/$${VER}/ $${PWD}/build/README.md.in > $${PWD}/README.md $$nt
 	}
 
 
