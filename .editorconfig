@@ -2,11 +2,11 @@ root = true
 
 [*.{h,cpp}]
 indent_size = 4
-indent_style = space
+indent_style = tab
 
 [*.{pro,pri}]
 indent_size = 4
-indent_style = space
+indent_style = tab
 
 [*.ui]
 indent_size = 1
@@ -14,4 +14,4 @@ indent_style = space
 
 [*.{frag,prog,vert}]
 indent_size = 4
-indent_style = space
+indent_style = tab
