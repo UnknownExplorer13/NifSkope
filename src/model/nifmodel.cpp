@@ -1293,9 +1293,9 @@ QVariant NifModel::data( const QModelIndex & idx, int role ) const
 
 						return QString( "%1" ).arg( optId );
 					}
-                    else if ( item->type() == "BSConnectPoint" && !item->isArray() ) {
-                        return item->child("Name")->value().toString();
-                    }
+					else if ( item->type() == "BSConnectPoint" && !item->isArray() ) {
+						return item->child("Name")->value().toString();
+					}
 
 					return value.toString().replace( "\n", " " ).replace( "\r", " " );
 				}
@@ -1647,6 +1647,22 @@ bool NifModel::removeRows( int row, int count, const QModelIndex & parent )
 	}
 
 	return false;
+}
+
+void NifModel::ShiftRow( const QModelIndex & arrIndex, int pos, int delta ) {
+	NifItem * arrItem = static_cast<NifItem *>( arrIndex.internalPointer() );
+	beginRemoveRows( arrIndex, pos, pos );
+	auto temp = arrItem->takeChild( pos );
+	endRemoveRows();
+
+	beginInsertRows( arrIndex, pos+delta, pos+delta );
+	arrItem->insertChild( temp, pos+delta );
+	endInsertRows();
+
+	updateLinks();
+	updateHeader();
+	updateFooter();
+	emit linksChanged();
 }
 
 QModelIndex NifModel::buddy( const QModelIndex & index ) const

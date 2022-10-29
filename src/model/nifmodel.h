@@ -83,6 +83,14 @@ public:
 	bool setData( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole ) override final;
 	bool removeRows( int row, int count, const QModelIndex & parent ) override final;
 
+	/*!
+	 * @brief Shifts an entry in an array by a specific distance.
+	 * @param arrIndex A pointer to the array containing the entries you want to move.
+	 * @param pos      The position of the entryyou want to move.
+	 * @param delta    The movement delta to be applied to the entry.
+	 */
+	void ShiftRow( const QModelIndex & arrIndex, int pos, int delta );
+
 	QModelIndex buddy( const QModelIndex & index ) const override;
 
 	// end QAbstractItemModel
