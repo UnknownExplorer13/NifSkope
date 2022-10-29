@@ -10,7 +10,7 @@
     <height>800</height>
    </rect>
   </property>
-  <widget class="QWidget" name="centralwidget" />
+  <widget class="QWidget" name="centralwidget"/>
   <widget class="QToolBar" name="tFile">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -327,9 +327,7 @@
     </property>
     <addaction name="aToggleHelp"/>
     <addaction name="separator"/>
-    <addaction name="aDiscord"/>
     <addaction name="aHelpWebsite"/>
-    <addaction name="aHelpForum"/>
     <addaction name="separator"/>
     <addaction name="aNifToolsWebsite"/>
     <addaction name="aNifToolsDownloads"/>
@@ -1353,17 +1351,6 @@ background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0
     <string>http://www.niftools.org/documentation</string>
    </property>
   </action>
-  <action name="aHelpForum">
-   <property name="text">
-    <string>NifSkope Support &amp;Forum</string>
-   </property>
-   <property name="iconText">
-    <string>NifSkope Support Forum</string>
-   </property>
-   <property name="toolTip">
-    <string>https://forum.niftools.org/24-nifskope/</string>
-   </property>
-  </action>
   <action name="aNifToolsWebsite">
    <property name="text">
     <string>NifTools &amp;Wiki</string>
@@ -2068,17 +2055,6 @@ background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0
     <string>2.0 Light</string>
    </property>
   </action>
-  <action name="aDiscord">
-   <property name="text">
-    <string>NifTools &amp;Discord</string>
-   </property>
-   <property name="iconText">
-    <string>NifSkope Support Forum</string>
-   </property>
-   <property name="toolTip">
-    <string>https://discord.gg/ZFjdN4x</string>
-   </property>
-  </action>
   <action name="aErrorColor">
    <property name="checkable">
     <bool>true</bool>
@@ -2288,22 +2264,6 @@ background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0
   </connection>
   <connection>
    <sender>aNifToolsDownloads</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>openURL()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>511</x>
-     <y>383</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>aHelpForum</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>openURL()</slot>
@@ -2635,22 +2595,6 @@ background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0
     <hint type="destinationlabel">
      <x>-1</x>
      <y>-1</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>aDiscord</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>openURL()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>639</x>
-     <y>399</y>
     </hint>
    </hints>
   </connection>

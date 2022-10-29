@@ -28,3 +28,8 @@ It would be nice to group them up so I can more effectively tell what is what.
 ## Adding the ability to move/rotate/scale things in the 3d view.
 IDK how to do this, but I would love to be able to use the 3d view to move things
 instead of having to edit the values in the block details.
+
+## Visualisation of the Havock physics bounds
+It would be nice to be able to visualize the compiled physics data that Fallout 4 uses.
+This projects seems to have figured it out https://github.com/Dexesttp/hkxpack.
+It can transform the packed binary data into xml and therefore probably can parse it.
