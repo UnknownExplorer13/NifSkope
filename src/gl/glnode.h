@@ -114,6 +114,7 @@ public:
 	virtual void drawShapes( NodeList * secondPass = nullptr, bool presort = false );
 	virtual void drawHavok();
 	virtual void drawFurn();
+	virtual void drawConnectPoint( const NifModel * nif, const QModelIndex & index ) const;
 	virtual void drawSelection() const;
 
 	virtual float viewDepth() const;

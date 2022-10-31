@@ -579,6 +579,56 @@ void Node::draw()
 	}
 }
 
+void Node::drawConnectPoint( const NifModel * nif, const QModelIndex & cpArrayIndex ) const
+{
+	float sceneRadius = scene->bounds().radius;
+	float normalScale = ( sceneRadius > 150.0 ) ? 1.0 : sceneRadius / 150.0;
+
+	glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+	bool isChild = scene->currentIndex.parent().data( NifSkopeDisplayRole ).toString() == "Connect Points";
+
+	int sel = -1;
+	auto n = scene->currentIndex.data( NifSkopeDisplayRole ).toString();
+	if ( n == "Connect Points" && !nif->isArray( scene->currentIndex ) ) {
+		sel = scene->currentIndex.row();
+	} else if ( isChild ) {
+		sel = scene->currentIndex.parent().row();
+	}
+
+	int rowCount = nif->rowCount( cpArrayIndex );
+	for ( int i = 0; i < rowCount; i++ ) {
+		auto cpIndex = cpArrayIndex.child( i, 0 );
+		auto trans = nif->get<Vector3>( cpIndex, "Translation" );
+		auto rot = nif->get<Quat>( cpIndex, "Rotation" );
+
+		Transform t;
+		Matrix m;
+		m.fromQuat( rot );
+		t.rotation = m;
+		t.translation = trans;
+		t.scale = normalScale * 16;
+
+		if ( i == sel ) {
+			t.scale *= 2;
+			glHighlightColor();
+		} else {
+			glNormalColor();
+		}
+
+		glPushMatrix();
+		glMultMatrix( t );
+
+		auto pos = Vector3( 0, 0, 0 );
+
+		drawDashLine( pos, Vector3( 0, 1, 0 ), 15 );
+		drawDashLine( pos, Vector3( 1, 0, 0 ), 15 );
+		drawDashLine( pos, Vector3( 0, 0, 1 ), 15 );
+		drawCircle( pos, Vector3( 0, 1, 0 ), 1, 64 );
+
+		glPopMatrix();
+	}
+}
+
 void Node::drawSelection() const
 {
 	auto nif = static_cast<const NifModel *>(scene->currentIndex.model());
@@ -596,7 +646,7 @@ void Node::drawSelection() const
 	if ( scene->currentBlock != iBlock && !extraData )
 		return;
 
-	auto n = scene->currentIndex.data( NifSkopeDisplayRole ).toString();
+	
 
 	if ( Node::SELECTING ) {
 		int s_nodeId = ID2COLORKEY( nodeId );
@@ -623,80 +673,16 @@ void Node::drawSelection() const
 	glPushMatrix();
 	glMultMatrix( viewTrans() );
 
-	float sceneRadius = scene->bounds().radius;
-	float normalScale = (sceneRadius > 150.0) ? 1.0 : sceneRadius / 150.0;
+	
 
 	if ( currentBlock == "BSConnectPoint::Parents" ) {
-		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
-
-		auto cp = nif->getIndex( scene->currentBlock, "Connect Points" );
-		bool isChild = scene->currentIndex.parent().data( NifSkopeDisplayRole ).toString() == "Connect Points";
-
-		int sel = -1;
-		if ( n == "Connect Points" && !nif->isArray( scene->currentIndex ) ) {
-			sel = scene->currentIndex.row();
-		} else if ( isChild ) {
-			sel = scene->currentIndex.parent().row();
-		}
-
-		int ct = nif->rowCount( cp );
-		for ( int i = 0; i < ct; i++ ) {
-			auto p = cp.child( i, 0 );
-
-			auto trans = nif->get<Vector3>( p, "Translation" );
-			auto rot = nif->get<Quat>( p, "Rotation" );
-			//auto scale = nif->get<float>( p, "Scale" );
-
-			Transform t;
-			Matrix m;
-			m.fromQuat( rot );
-			t.rotation = m;
-			t.translation = trans;
-			t.scale = normalScale * 16;
-
-			if ( i == sel ) {
-				t.scale *= 2;
-				glHighlightColor();
-			} else {
-				glNormalColor();
-			}
-
-			glPushMatrix();
-			glMultMatrix( t );
-
-			auto pos = Vector3( 0, 0, 0 );
-
-			drawDashLine( pos, Vector3( 0, 1, 0 ), 15 );
-			drawDashLine( pos, Vector3( 1, 0, 0 ), 15 );
-			drawDashLine( pos, Vector3( 0, 0, 1 ), 15 );
-			drawCircle( pos, Vector3( 0, 1, 0 ), 1, 64 );
-
-			glPopMatrix();
-		}
-
+		auto cpArrayIndex = nif->getIndex( scene->currentBlock, "Connect Points" );
+		drawConnectPoint( nif, cpArrayIndex );
 	}
 
 	if ( currentBlock.endsWith( "Node" ) && scene->options & Scene::ShowNodes && scene->options & Scene::ShowAxes ) {
 		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
-
-		Transform t;
-		Matrix m;
-		m.fromQuat( nif->get<Quat>( scene->currentIndex, "Rotation" ) );
-		t.rotation = m;
-
-		glPushMatrix();
-		glMultMatrix( t );
-
-		auto pos = Vector3( 0, 0, 0 );
-
-		glColor( { 0, 1, 0 } );
-		drawDashLine( pos, Vector3( 0, 1, 0 ), 15 );
-		glColor( { 1, 0, 0 } );
-		drawDashLine( pos, Vector3( 1, 0, 0 ), 15 );
-		glColor( { 0, 0, 1 } );
-		drawDashLine( pos, Vector3( 0, 0, 1 ), 15 );
-
-		glPopMatrix();
+		drawAxes( Vector3( 0, 0, 0 ), 15 );
 	}
 
 	glPopMatrix();
@@ -763,7 +749,7 @@ void DrawTriangleSelection( QVector<Vector3> const & verts, Triangle const & tri
 void DrawTriangleIndex( QVector<Vector3> const & verts, Triangle const & tri, int index )
 {
 	Vector3 c = ( verts.value( tri.v1() ) + verts.value( tri.v2() ) + verts.value( tri.v3() ) ) /  3.0;
-	renderText( c, QString( "%1" ).arg( index ) );
+	drawText( c, QString( "%1" ).arg( index ) );
 }
 
 void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QModelIndex> & stack, const Scene * scene, const float origin_color3fv[3] )
