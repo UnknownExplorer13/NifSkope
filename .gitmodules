@@ -7,10 +7,9 @@
 [submodule "lib/gli"]
 	path = lib/gli
 	url = https://github.com/g-truc/gli.git
-[submodule "build/kfmxml"]
-	path = build/kfmxml
-	url = https://github.com/niftools/kfmxml.git
-	branch = develop
-[submodule "build/nifxml"]
-	path = build/kfmxml
+[submodule "nifxml"]
+	path = nifxml
 	url = https://github.com/C0bra5/nifxml.git
+[submodule "kfmxml"]
+	path = kfmxml
+	url = https://github.com/C0bra5/kfmxml.git
