@@ -30,6 +30,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ***** END LICENCE BLOCK *****/
 
+#include "BSCRC32.h"
 #include "spellbook.h"
 #include "model/kfmmodel.h"
 #include "model/nifmodel.h"
@@ -310,8 +311,13 @@ public:
 			bool ok;
 			quint32 x = NifValue::enumOptionValue( t, cedit->currentText(), &ok );
 
-			if ( !ok )
-				x = cedit->currentText().toUInt();
+			if ( !ok ) {
+				bool ok2;
+				x = cedit->currentText().toUInt(&ok2);
+				if ( !ok2 && ( t == "Fallout4HavokMaterial" || t == "SkyrimHavokMaterial" ) ) {
+					x = BSCRC32::Encode( cedit->currentText() );
+				}
+			}
 
 			if ( v.canConvert<NifValue>() ) {
 				NifValue nv = v.value<NifValue>();

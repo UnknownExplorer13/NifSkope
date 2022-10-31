@@ -138,6 +138,7 @@ include(NifSkope_targets.pri)
 INCLUDEPATH += src lib
 
 HEADERS += \
+	lib/BSCRC32.h \
 	src/data/nifitem.h \
 	src/data/niftypes.h \
 	src/data/nifvalue.h \
