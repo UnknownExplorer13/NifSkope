@@ -390,7 +390,7 @@ void import3ds( NifModel * nif, const QModelIndex & index )
 
 					Vector3 n1 = newMesh.vertices[newFace.v2] - newMesh.vertices[newFace.v1];
 					Vector3 n2 = newMesh.vertices[newFace.v3] - newMesh.vertices[newFace.v1];
-					Vector3 FaceNormal = Vector3::crossproduct( n1, n2 );
+					Vector3 FaceNormal = Vector3::crossProduct( n1, n2 );
 					FaceNormal.normalize();
 					newMesh.normals[newFace.v1] += FaceNormal;
 					newMesh.normals[newFace.v2] += FaceNormal;

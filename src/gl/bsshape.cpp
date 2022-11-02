@@ -616,7 +616,7 @@ void BSShape::drawSelection() const
 		auto sph = BoundSphere( nif, idx );
 		if ( sph.radius > 0.0 ) {
 			glColor4f( 1, 1, 1, 0.33 );
-			drawSphereSimple( sph.center, sph.radius, 72 );
+			GLUtils::drawSphereSimple( sph.center, sph.radius, 72 );
 		}
 	}
 	
@@ -653,7 +653,7 @@ void BSShape::drawSelection() const
 
 		if ( pbvR > 0.0 ) {
 			glColor4f( 0, 1, 0, 0.33 );
-			drawSphereSimple( pbvC, pbvR, 72 );
+			GLUtils::drawSphereSimple( pbvC, pbvR, 72 );
 		}
 
 		glPopMatrix();
@@ -678,7 +678,7 @@ void BSShape::drawSelection() const
 
 			if ( bvR > 0.0 ) {
 				glColor4f( 1, 1, 1, 0.33 );
-				drawSphereSimple( Vector3( 0, 0, 0 ), bvR, 72 );
+				GLUtils::drawSphereSimple( Vector3( 0, 0, 0 ), bvR, 72 );
 			}
 
 			glPopMatrix();

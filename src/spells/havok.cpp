@@ -302,16 +302,16 @@ public:
 			}
 		}
 
-		QModelIndex iBodyA = nif->getBlock( nif->getLink( bhkGetEntity( nif, iConstraint, "Entity A" ) ), "bhkRigidBody" );
-		QModelIndex iBodyB = nif->getBlock( nif->getLink( bhkGetEntity( nif, iConstraint, "Entity B" ) ), "bhkRigidBody" );
+		QModelIndex iBodyA = nif->getBlock( nif->getLink( BKHUtils::bhkGetEntity( nif, iConstraint, "Entity A" ) ), "bhkRigidBody" );
+		QModelIndex iBodyB = nif->getBlock( nif->getLink( BKHUtils::bhkGetEntity( nif, iConstraint, "Entity B" ) ), "bhkRigidBody" );
 
 		if ( !iBodyA.isValid() || !iBodyB.isValid() ) {
 			Message::warning( nullptr, Spell::tr( "Couldn't find the bodies for this constraint." ) );
 			return index;
 		}
 
-		Transform transA = bhkBodyTrans( nif, iBodyA );
-		Transform transB = bhkBodyTrans( nif, iBodyB );
+		Transform transA = BKHUtils::bhkBodyTrans( nif, iBodyA );
+		Transform transB = BKHUtils::bhkBodyTrans( nif, iBodyB );
 
 		QModelIndex iConstraintData;
 		if ( name == "bhkLimitedHingeConstraint" ) {
@@ -396,16 +396,16 @@ public:
 		if ( !iSpring.isValid() )
 			iSpring = iConstraint;
 
-		QModelIndex iBodyA = nif->getBlock( nif->getLink( bhkGetEntity( nif, iConstraint, "Entity A" ) ), "bhkRigidBody" );
-		QModelIndex iBodyB = nif->getBlock( nif->getLink( bhkGetEntity( nif, iConstraint, "Entity B" ) ), "bhkRigidBody" );
+		QModelIndex iBodyA = nif->getBlock( nif->getLink( BKHUtils::bhkGetEntity( nif, iConstraint, "Entity A" ) ), "bhkRigidBody" );
+		QModelIndex iBodyB = nif->getBlock( nif->getLink( BKHUtils::bhkGetEntity( nif, iConstraint, "Entity B" ) ), "bhkRigidBody" );
 
 		if ( !iBodyA.isValid() || !iBodyB.isValid() ) {
 			Message::warning( nullptr, Spell::tr( "Couldn't find the bodies for this constraint" ) );
 			return idx;
 		}
 
-		Transform transA = bhkBodyTrans( nif, iBodyA );
-		Transform transB = bhkBodyTrans( nif, iBodyB );
+		Transform transA = BKHUtils::bhkBodyTrans( nif, iBodyA );
+		Transform transB = BKHUtils::bhkBodyTrans( nif, iBodyB );
 
 		Vector3 pivotA( nif->get<Vector4>( iSpring, "Pivot A" ) );
 		Vector3 pivotB( nif->get<Vector4>( iSpring, "Pivot B" ) );
@@ -463,7 +463,7 @@ public:
 					Vector3 b = vrts.value( tri[1] );
 					Vector3 c = vrts.value( tri[2] );
 
-					nrms << Vector3::crossproduct( b - a, c - a ).normalize();
+					nrms << Vector3::crossProduct( b - a, c - a ).normalize();
 
 					tri[0] += vertices.count();
 					tri[1] += vertices.count();

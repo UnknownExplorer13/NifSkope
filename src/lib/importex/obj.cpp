@@ -345,10 +345,10 @@ static void writeParent( const NifModel * nif, const QModelIndex & iNode, QTextS
 								Vector3 b = verts.value( tri[1] );
 								Vector3 c = verts.value( tri[2] );
 
-								Vector3 fn = Vector3::crossproduct( b - a, c - a );
+								Vector3 fn = Vector3::crossProduct( b - a, c - a );
 								fn.normalize();
 
-								bool flip = Vector3::dotproduct( n, fn ) < 0;
+								bool flip = Vector3::dotProduct( n, fn ) < 0;
 
 								obj << "f"
 								    << " " << tri[0] + ofs[0]

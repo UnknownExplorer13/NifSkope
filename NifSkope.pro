@@ -138,10 +138,13 @@ include(NifSkope_targets.pri)
 INCLUDEPATH += src lib
 
 HEADERS += \
-	lib/BSCRC32.h \
 	src/data/nifitem.h \
 	src/data/niftypes.h \
 	src/data/nifvalue.h \
+	src/gl/gltools/boneweights.h \
+	src/gl/gltools/boundsphere.h \
+	src/gl/gltools/skinpartition.h \
+	src/gl/gltools/vertexweight.h \
 	src/gl/marker/constraints.h \
 	src/gl/marker/furniture.h \
 	src/gl/bsshape.h \
@@ -160,6 +163,7 @@ HEADERS += \
 	src/gl/renderer.h \
 	src/io/material.h \
 	src/io/nifstream.h \
+	src/lib/BSCRC32.h \
 	src/lib/importex/3ds.h \
 	src/lib/nvtristripwrapper.h \
 	src/lib/qhull.h \
@@ -222,9 +226,13 @@ SOURCES += \
 	src/gl/gltex.cpp \
 	src/gl/gltexloaders.cpp \
 	src/gl/gltools.cpp \
+	src/gl/gltools/boneweights.cpp \
+	src/gl/gltools/boundsphere.cpp \
+	src/gl/gltools/skinpartition.cpp \
 	src/gl/renderer.cpp \
 	src/io/material.cpp \
 	src/io/nifstream.cpp \
+	src/lib/BSCRC32.cpp \
 	src/lib/importex/3ds.cpp \
 	src/lib/importex/importex.cpp \
 	src/lib/importex/obj.cpp \

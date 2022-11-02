@@ -226,7 +226,7 @@ public:
 	//! Default constructor
 	Vector3()
 	{
-		xyz[ 0 ] = xyz[ 1 ] = xyz[ 2 ] = 0.0;
+		xyz[ 0 ] = xyz[ 1 ] = xyz[ 2 ] = 0.0f;
 	}
 	//! Constructor
 	Vector3( float x, float y, float z )
@@ -368,12 +368,12 @@ public:
 	}
 
 	//! Find the dot product of two vectors
-	static float dotproduct( const Vector3 & v1, const Vector3 & v2 )
+	static float dotProduct( const Vector3 & v1, const Vector3 & v2 )
 	{
 		return v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
 	}
 	//! Find the cross product of two vectors
-	static Vector3 crossproduct( const Vector3 & a, const Vector3 & b )
+	static Vector3 crossProduct( const Vector3 & a, const Vector3 & b )
 	{
 		return { a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0] };
 	}
@@ -381,7 +381,7 @@ public:
 	//! Find the angle between two vectors
 	static float angle( const Vector3 & v1, const Vector3 & v2 )
 	{
-		float dot = dotproduct( v1, v2 );
+		float dot = dotProduct( v1, v2 );
 
 		if ( dot > 1.0 )
 			return 0.0;

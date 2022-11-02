@@ -493,7 +493,7 @@ void GLView::paintGL()
 
 		// TODO: Configurable grid in Settings
 		// 1024 game units, major lines every 128, minor lines every 64
-		drawGrid( 1024, 128, 2 );
+		GLUtils::drawGrid(1024, 128, 2);
 
 		glPopMatrix();
 	}
@@ -508,7 +508,7 @@ void GLView::paintGL()
 	if ( debugMode == DbgBounds ) {
 		BoundSphere bs = scene->bounds();
 		bs |= BoundSphere( Vector3(), axis );
-		drawSphere( bs.center, bs.radius );
+		GLUtils::drawSphere( bs.center, bs.radius );
 	}
 	glPopMatrix();
 #endif
@@ -545,8 +545,8 @@ void GLView::paintGL()
 				l = (l > 2048) ? axis * 0.66 : l;
 				l = (l > 1024) ? axis * 0.75 : l;
 
-				drawDashLine( Vector3( 0, 0, 0 ), v * l, 30 );
-				drawSphere( v * l, axis / 10 );
+				GLUtils::drawDashLine( Vector3( 0, 0, 0 ), v * l, 30 );
+				GLUtils::drawSphere( v * l, axis / 10 );
 				glPopMatrix();
 				glDisable( GL_BLEND );
 			}
@@ -668,7 +668,7 @@ void GLView::paintGL()
 		auto vtr = viewTrans.rotation;
 		QVector<float> axesDots = { vtr( 2, 0 ), vtr( 2, 1 ), vtr( 2, 2 ) };
 
-		drawAxesOverlay( { 0, 0, 0 }, 50.0, sortAxes( axesDots ) );
+		GLUtils::drawAxesOverlay( { 0, 0, 0 }, 50.0, GLUtils::sortAxes( axesDots ) );
 
 		glPopMatrix();
 

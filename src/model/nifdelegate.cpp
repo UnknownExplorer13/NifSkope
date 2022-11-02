@@ -30,7 +30,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ***** END LICENCE BLOCK *****/
 
-#include "BSCRC32.h"
+#include "lib/BSCRC32.h"
 #include "spellbook.h"
 #include "model/kfmmodel.h"
 #include "model/nifmodel.h"

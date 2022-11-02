@@ -498,12 +498,12 @@ void Node::transform()
 
 			if ( iBody.isValid() ) {
 				Transform t;
-				t.scale = bhkScale( nif );
+				t.scale = BKHUtils::bhkScale( nif );
 
 				if ( nif->isNiBlock( iBody, "bhkRigidBodyT" ) ) {
 					auto cinfo = nif->getIndex( iBody, "Rigid Body Info" );
 					t.rotation.fromQuat( nif->get<Quat>( cinfo, "Rotation" ) );
-					t.translation = Vector3( nif->get<Vector4>( cinfo, "Translation" ) * bhkScale( nif ) );
+					t.translation = Vector3( nif->get<Vector4>( cinfo, "Translation" ) * BKHUtils::bhkScale( nif ) );
 				}
 
 				scene->bhkBodyTrans.insert( nif->getBlockNumber( iBody ), worldTrans() * t );
@@ -571,7 +571,7 @@ void Node::draw()
 	} else {
 		auto c = cfg.wireframe;
 		glColor4f( c.redF(), c.greenF(), c.blueF(), c.alphaF() / 3.0 );
-		drawDashLine( a, b, 144 );
+		GLUtils::drawDashLine( a, b, 144 );
 	}
 
 	for ( Node * node : children.list() ) {
@@ -618,12 +618,8 @@ void Node::drawConnectPoint( const NifModel * nif, const QModelIndex & cpArrayIn
 		glPushMatrix();
 		glMultMatrix( t );
 
-		auto pos = Vector3( 0, 0, 0 );
 
-		drawDashLine( pos, Vector3( 0, 1, 0 ), 15 );
-		drawDashLine( pos, Vector3( 1, 0, 0 ), 15 );
-		drawDashLine( pos, Vector3( 0, 0, 1 ), 15 );
-		drawCircle( pos, Vector3( 0, 1, 0 ), 1, 64 );
+		GLUtils::drawConnectPoint( Vector3( 0, 0, 0 ) );
 
 		glPopMatrix();
 	}
@@ -682,7 +678,9 @@ void Node::drawSelection() const
 
 	if ( currentBlock.endsWith( "Node" ) && scene->options & Scene::ShowNodes && scene->options & Scene::ShowAxes ) {
 		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
-		drawAxes( Vector3( 0, 0, 0 ), 15 );
+		float sceneRadius = scene->bounds().radius;
+		float normalScale = ( sceneRadius > 150.0 ) ? 1.0 : sceneRadius / 150.0;
+		GLUtils::drawAxes( Vector3( 0, 0, 0 ), normalScale * 16 );
 	}
 
 	glPopMatrix();
@@ -749,7 +747,7 @@ void DrawTriangleSelection( QVector<Vector3> const & verts, Triangle const & tri
 void DrawTriangleIndex( QVector<Vector3> const & verts, Triangle const & tri, int index )
 {
 	Vector3 c = ( verts.value( tri.v1() ) + verts.value( tri.v2() ) + verts.value( tri.v3() ) ) /  3.0;
-	drawText( c, QString( "%1" ).arg( index ) );
+	GLUtils::drawText( c, QString( "%1" ).arg( index ) );
 }
 
 void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QModelIndex> & stack, const Scene * scene, const float origin_color3fv[3] )
@@ -797,7 +795,7 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 		Transform t;
 		Vector3 s;
 		tm.decompose( t.translation, t.rotation, s );
-		t.scale = (s[0] + s[1] + s[2]) / 3.0; // assume uniform
+		t.scale = (s[0] + s[1] + s[2]) / 3.0f; // assume uniform
 		glMultMatrix( t );
 		drawHvkShape( nif, nif->getBlock( nif->getLink( iShape, "Shape" ) ), stack, scene, origin_color3fv );
 		glPopMatrix();
@@ -807,7 +805,7 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 			glColor4ubv( (GLubyte *)&s_nodeId );
 		}
 
-		drawSphere( Vector3(), nif->get<float>( iShape, "Radius" ) );
+		GLUtils::drawSphere( Vector3(), nif->get<float>( iShape, "Radius" ) );
 	} else if ( name == "bhkMultiSphereShape" ) {
 		if ( Node::SELECTING ) {
 			int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iShape ) );
@@ -817,7 +815,7 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 		QModelIndex iSpheres = nif->getIndex( iShape, "Spheres" );
 
 		for ( int r = 0; r < nif->rowCount( iSpheres ); r++ ) {
-			drawSphere( nif->get<Vector3>( iSpheres.child( r, 0 ), "Center" ), nif->get<float>( iSpheres.child( r, 0 ), "Radius" ) );
+			GLUtils::drawSphere( nif->get<Vector3>( iSpheres.child( r, 0 ), "Center" ), nif->get<float>( iSpheres.child( r, 0 ), "Radius" ) );
 		}
 	} else if ( name == "bhkBoxShape" ) {
 		if ( Node::SELECTING ) {
@@ -826,17 +824,17 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 		}
 
 		Vector3 v = nif->get<Vector3>( iShape, "Dimensions" );
-		drawBox( v, -v );
+		GLUtils::drawBox( v, -v );
 	} else if ( name == "bhkCapsuleShape" ) {
 		if ( Node::SELECTING ) {
 			int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iShape ) );
 			glColor4ubv( (GLubyte *)&s_nodeId );
 		}
 
-		drawCapsule( nif->get<Vector3>( iShape, "First Point" ), nif->get<Vector3>( iShape, "Second Point" ), nif->get<float>( iShape, "Radius" ) );
+		GLUtils::drawCapsule( nif->get<Vector3>( iShape, "First Point" ), nif->get<Vector3>( iShape, "Second Point" ), nif->get<float>( iShape, "Radius" ) );
 	} else if ( name == "bhkNiTriStripsShape" ) {
 		glPushMatrix();
-		float s = bhkInvScale( nif );
+		float s = BKHUtils::bhkInvScale( nif );
 		glScalef( s, s, s );
 
 		if ( Node::SELECTING ) {
@@ -844,7 +842,7 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 			glColor4ubv( (GLubyte *)&s_nodeId );
 		}
 
-		drawNiTSS( nif, iShape );
+		GLUtils::drawNiTSS( nif, iShape );
 
 		//if ( Options::getHavokState() == HAVOK_SOLID ) {
 		//	QColor c = Options::hlColor();
@@ -861,7 +859,7 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 			glColor4ubv( (GLubyte *)&s_nodeId );
 		}
 
-		drawConvexHull( nif, iShape, 1.0 );
+		GLUtils::drawConvexHull( nif, iShape, 1.0 );
 
 		//if ( Options::getHavokState() == HAVOK_SOLID ) {
 		//	QColor c = Options::hlColor();
@@ -1034,7 +1032,7 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 			glColor4ubv( (GLubyte *)&s_nodeId );
 		}
 
-		drawCMS( nif, iShape );
+		GLUtils::drawCMS( nif, iShape );
 
 		//if ( Options::getHavokState() == HAVOK_SOLID ) {
 		//	QColor c = Options::hlColor();
@@ -1059,8 +1057,8 @@ void drawHvkConstraint( const NifModel * nif, const QModelIndex & iConstraint, c
 	Transform tBodyA;
 	Transform tBodyB;
 
-	auto iEntityA = bhkGetEntity( nif, iConstraint, "Entity A" );
-	auto iEntityB = bhkGetEntity( nif, iConstraint, "Entity B" );
+	auto iEntityA = BKHUtils::bhkGetEntity( nif, iConstraint, "Entity A" );
+	auto iEntityB = BKHUtils::bhkGetEntity( nif, iConstraint, "Entity B" );
 	if ( !iEntityA.isValid() || !iEntityB.isValid() )
 		return;
 
@@ -1072,7 +1070,7 @@ void drawHvkConstraint( const NifModel * nif, const QModelIndex & iConstraint, c
 	tBodyA = scene->bhkBodyTrans.value( linkA );
 	tBodyB = scene->bhkBodyTrans.value( linkB );
 
-	auto hkFactor = bhkScaleMult( nif );
+	auto hkFactor = BKHUtils::bhkScaleMult( nif );
 	auto hkFactorInv = 1.0 / hkFactor;
 
 	tBodyA.scale = tBodyA.scale * hkFactorInv;
@@ -1146,10 +1144,10 @@ void drawHvkConstraint( const NifModel * nif, const QModelIndex & iConstraint, c
 
 		glBegin( GL_POINTS ); glVertex( pivotA ); glEnd();
 		glBegin( GL_LINES ); glVertex( pivotA ); glVertex( pivotA + axisA ); glEnd();
-		drawDashLine( pivotA, pivotA + axisA1, 14 );
-		drawDashLine( pivotA, pivotA + axisA2, 14 );
-		drawCircle( pivotA, axisA, 1.0 );
-		drawSolidArc( pivotA, axisA / 5, axisA2, axisA1, minAngle, maxAngle, 1.0f );
+		GLUtils::drawDashLine( pivotA, pivotA + axisA1, 14 );
+		GLUtils::drawDashLine( pivotA, pivotA + axisA2, 14 );
+		GLUtils::drawCircle( pivotA, axisA, 1.0 );
+		GLUtils::drawSolidArc( pivotA, axisA / 5, axisA2, axisA1, minAngle, maxAngle, 1.0f );
 		glPopMatrix();
 
 		glPushMatrix();
@@ -1160,10 +1158,10 @@ void drawHvkConstraint( const NifModel * nif, const QModelIndex & iConstraint, c
 
 		glBegin( GL_POINTS ); glVertex( pivotB ); glEnd();
 		glBegin( GL_LINES ); glVertex( pivotB ); glVertex( pivotB + axisB ); glEnd();
-		drawDashLine( pivotB + axisB2, pivotB, 14 );
-		drawDashLine( pivotB + Vector3::crossproduct( axisB2, axisB ), pivotB, 14 );
-		drawCircle( pivotB, axisB, 1.01f );
-		drawSolidArc( pivotB, axisB / 7, axisB2, Vector3::crossproduct( axisB2, axisB ), minAngle, maxAngle, 1.01f );
+		GLUtils::drawDashLine( pivotB + axisB2, pivotB, 14 );
+		GLUtils::drawDashLine( pivotB + Vector3::crossProduct( axisB2, axisB ), pivotB, 14 );
+		GLUtils::drawCircle( pivotB, axisB, 1.01f );
+		GLUtils::drawSolidArc( pivotB, axisB / 7, axisB2, Vector3::crossProduct( axisB2, axisB ), minAngle, maxAngle, 1.01f );
 		glPopMatrix();
 
 		glMultMatrix( tBodyA );
@@ -1179,12 +1177,12 @@ void drawHvkConstraint( const NifModel * nif, const QModelIndex & iConstraint, c
 	} else if ( name == "bhkHingeConstraint" ) {
 		const Vector3 axisA1( nif->get<Vector4>( iConstraintInfo, "Perp Axis In A1" ) );
 		const Vector3 axisA2( nif->get<Vector4>( iConstraintInfo, "Perp Axis In A2" ) );
-		const Vector3 axisA( Vector3::crossproduct( axisA1, axisA2 ) );
+		const Vector3 axisA( Vector3::crossProduct( axisA1, axisA2 ) );
 
 		const Vector3 axisB( nif->get<Vector4>( iConstraintInfo, "Axis B" ) );
 
 		const Vector3 axisB1( axisB[1], axisB[2], axisB[0] );
-		const Vector3 axisB2( Vector3::crossproduct( axisB, axisB1 ) );
+		const Vector3 axisB2( Vector3::crossProduct( axisB, axisB1 ) );
 
 		/*
 		 * This should be correct but is visually strange...
@@ -1217,9 +1215,9 @@ void drawHvkConstraint( const NifModel * nif, const QModelIndex & iConstraint, c
 			glColor( color_a );
 
 		glBegin( GL_POINTS ); glVertex( pivotA ); glEnd();
-		drawDashLine( pivotA, pivotA + axisA1 );
-		drawDashLine( pivotA, pivotA + axisA2 );
-		drawSolidArc( pivotA, axisA / 5, axisA2, axisA1, minAngle, maxAngle, 1.0f, 16 );
+		GLUtils::drawDashLine( pivotA, pivotA + axisA1 );
+		GLUtils::drawDashLine( pivotA, pivotA + axisA2 );
+		GLUtils::drawSolidArc( pivotA, axisA / 5, axisA2, axisA1, minAngle, maxAngle, 1.0f, 16 );
 		glPopMatrix();
 
 		glMultMatrix( tBodyB );
@@ -1229,14 +1227,14 @@ void drawHvkConstraint( const NifModel * nif, const QModelIndex & iConstraint, c
 
 		glBegin( GL_POINTS ); glVertex( pivotB ); glEnd();
 		glBegin( GL_LINES ); glVertex( pivotB ); glVertex( pivotB + axisB ); glEnd();
-		drawSolidArc( pivotB, axisB / 7, axisB2, axisB1, minAngle, maxAngle, 1.01f, 16 );
+		GLUtils::drawSolidArc( pivotB, axisB / 7, axisB2, axisB1, minAngle, maxAngle, 1.01f, 16 );
 	} else if ( name == "bhkStiffSpringConstraint" ) {
 		const float length = nif->get<float>( iConstraintInfo, "Length" );
 
 		if ( !Node::SELECTING )
 			glColor( color_b );
 
-		drawSpring( pivotA, pivotB, length );
+		GLUtils::drawSpring( pivotA, pivotB, length );
 	} else if ( name == "bhkRagdollConstraint" ) {
 		const Vector3 planeA( nif->get<Vector4>( iConstraintInfo, "Plane A" ) );
 		const Vector3 planeB( nif->get<Vector4>( iConstraintInfo, "Plane B" ) );
@@ -1271,8 +1269,8 @@ void drawHvkConstraint( const NifModel * nif, const QModelIndex & iConstraint, c
 
 		glBegin( GL_POINTS ); glVertex( pivotA ); glEnd();
 		glBegin( GL_LINES ); glVertex( pivotA ); glVertex( pivotA + twistA ); glEnd();
-		drawDashLine( pivotA, pivotA + planeA, 14 );
-		drawRagdollCone( pivotA, twistA, planeA, coneAngle, minPlaneAngle, maxPlaneAngle );
+		GLUtils::drawDashLine( pivotA, pivotA + planeA, 14 );
+		GLUtils::drawRagdollCone( pivotA, twistA, planeA, coneAngle, minPlaneAngle, maxPlaneAngle );
 		glPopMatrix();
 
 		glPushMatrix();
@@ -1283,8 +1281,8 @@ void drawHvkConstraint( const NifModel * nif, const QModelIndex & iConstraint, c
 
 		glBegin( GL_POINTS ); glVertex( pivotB ); glEnd();
 		glBegin( GL_LINES ); glVertex( pivotB ); glVertex( pivotB + twistB ); glEnd();
-		drawDashLine( pivotB + planeB, pivotB, 14 );
-		drawRagdollCone( pivotB, twistB, planeB, coneAngle, minPlaneAngle, maxPlaneAngle );
+		GLUtils::drawDashLine( pivotB + planeB, pivotB, 14 );
+		GLUtils::drawRagdollCone( pivotB, twistB, planeB, coneAngle, minPlaneAngle, maxPlaneAngle );
 		glPopMatrix();
 	} else if ( name == "bhkPrismaticConstraint" ) {
 		const Vector3 planeNormal( nif->get<Vector4>( iConstraintInfo, "Plane A" ) );
@@ -1305,11 +1303,11 @@ void drawHvkConstraint( const NifModel * nif, const QModelIndex & iConstraint, c
 
 		glBegin( GL_POINTS ); glVertex( pivotA ); glEnd();
 		glBegin( GL_LINES ); glVertex( pivotA ); glVertex( pivotA + planeNormal ); glEnd();
-		drawDashLine( pivotA, d1, 14 );
+		GLUtils::drawDashLine( pivotA, d1, 14 );
 
 		/* draw rail */
 		if ( minDistance < maxDistance ) {
-			drawRail( d1, d2 );
+			GLUtils::drawRail( d1, d2 );
 		}
 
 		/*draw first marker*/
@@ -1397,7 +1395,7 @@ void Node::drawHavok()
 		}
 
 		glLineWidth( 1.0f );
-		drawBox( rad, -rad );
+		GLUtils::drawBox( rad, -rad );
 
 		glPopMatrix();
 	}
@@ -1453,7 +1451,7 @@ void Node::drawHavok()
 				glLineWidth( 1.0f );
 			}
 
-			drawBox( a, b );
+			GLUtils::drawBox( a, b );
 			glPopMatrix();
 		}
 	}
@@ -1485,7 +1483,7 @@ void Node::drawHavok()
 			}
 
 			glLineWidth( 1.0f );
-			drawBox( dim + center, -dim + center );
+			GLUtils::drawBox( dim + center, -dim + center );
 
 			glPopMatrix();
 		}
@@ -1556,10 +1554,10 @@ void Node::drawHavok()
 		int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iBody ) );
 		glColor4ubv( (GLubyte *)&s_nodeId );
 		glDepthFunc( GL_ALWAYS );
-		drawAxes( Vector3( nif->get<Vector4>( iBody, "Center" ) ), 1.0f / bhkScaleMult( nif ), false );
+		GLUtils::drawAxes( Vector3( nif->get<Vector4>( iBody, "Center" ) ), 1.0f / BKHUtils::bhkScaleMult( nif ), false );
 		glDepthFunc( GL_LEQUAL );
 	} else if ( scene->options & Scene::ShowAxes ) {
-		drawAxes( Vector3( nif->get<Vector4>( iBody, "Center" ) ), 1.0f / bhkScaleMult( nif ) );
+		GLUtils::drawAxes( Vector3( nif->get<Vector4>( iBody, "Center" ) ), 1.0f / BKHUtils::bhkScaleMult( nif ) );
 	}
 
 	glPopMatrix();

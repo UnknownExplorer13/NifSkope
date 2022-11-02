@@ -195,7 +195,7 @@ void Shape::boneSphere( const NifModel * nif, const QModelIndex & index ) const
 	if ( bSphere.radius > 0.0 ) {
 		glColor4f( 1, 1, 1, 0.33 );
 		auto pos = boneT.rotation.inverted() * (bSphere.center - boneT.translation);
-		drawSphereSimple( t * pos, bSphere.radius, 36 );
+		GLUtils::drawSphereSimple( t * pos, bSphere.radius, 36 );
 	}
 }
 

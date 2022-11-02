@@ -217,19 +217,19 @@ QModelIndex spTangentSpace::cast( NifModel * nif, const QModelIndex & iBlock )
 
 		if ( t == Vector3() || b == Vector3() ) {
 			t[0] = n[1]; t[1] = n[2]; t[2] = n[0];
-			b = Vector3::crossproduct( n, t );
+			b = Vector3::crossProduct( n, t );
 			//if ( cnt++ < 3 )
 			//	qDebug() << i;
 		} else {
 			t.normalize();
-			t = ( t - n * Vector3::dotproduct( n, t ) );
+			t = ( t - n * Vector3::dotProduct( n, t ) );
 			t.normalize();
 
 			//b = Vector3::crossproduct( n, t );
 
 			b.normalize();
-			b = ( b - n * Vector3::dotproduct( n, b ) );
-			b = ( b - t * Vector3::dotproduct( t, b ) );
+			b = ( b - n * Vector3::dotProduct( n, b ) );
+			b = ( b - t * Vector3::dotProduct( t, b ) );
 			b.normalize();
 		}
 

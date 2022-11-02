@@ -65,7 +65,7 @@ public:
 				Vector3 b = verts[tri[1]];
 				Vector3 c = verts[tri[2]];
 
-				Vector3 fn = Vector3::crossproduct( b - a, c - a );
+				Vector3 fn = Vector3::crossProduct( b - a, c - a );
 				norms[tri[0]] += fn;
 				norms[tri[1]] += fn;
 				norms[tri[2]] += fn;
