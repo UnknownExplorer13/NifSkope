@@ -334,14 +334,14 @@ void Scene::transform( const Transform & trans, float time )
 
 void Scene::draw()
 {
-	drawShapes();
+	//drawShapes();
 
 	if ( options & ShowNodes )
 		drawNodes();
 	if ( options & ShowCollision )
 		drawHavok();
 	if ( options & ShowMarkers )
-		drawFurn();
+		drawMarkers();
 
 	drawSelection();
 }
@@ -384,10 +384,10 @@ void Scene::drawHavok()
 	}
 }
 
-void Scene::drawFurn()
+void Scene::drawMarkers()
 {
 	for ( Node * node : roots.list() ) {
-		node->drawFurn();
+		node->drawMarkers();
 	}
 }
 

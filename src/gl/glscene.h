@@ -79,7 +79,7 @@ public:
 	void drawShapes();
 	void drawNodes();
 	void drawHavok();
-	void drawFurn();
+	void drawMarkers();
 	void drawSelection() const;
 
 	void setSequence( const QString & seqname );

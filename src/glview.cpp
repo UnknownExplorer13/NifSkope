@@ -876,7 +876,7 @@ QModelIndex GLView::indexAt( const QPoint & pos, int cycle )
 		df << &Scene::drawNodes;
 
 	if ( scene->options & Scene::ShowMarkers )
-		df << &Scene::drawFurn;
+		df << &Scene::drawMarkers;
 
 	df << &Scene::drawShapes;
 

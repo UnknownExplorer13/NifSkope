@@ -1361,7 +1361,7 @@ void Node::drawHavok()
 	if ( !(scene->selMode & Scene::SelObject) )
 		return;
 
-	// TODO: Why are all these here - "drawNodes", "drawFurn", "drawHavok"?
+	// TODO: Why are all these here - "drawNodes", "drawMarker", "drawHavok"?
 	// Idea: Make them go to their own classes in different cpp files
 	for ( Node * node : children.list() ) {
 		node->drawHavok();
@@ -1756,10 +1756,10 @@ void drawFurnitureMarker( const NifModel * nif, const QModelIndex & iPosition )
 	}
 }
 
-void Node::drawFurn()
+void Node::drawMarkers()
 {
 	for ( Node * node : children.list() ) {
-		node->drawFurn();
+		node->drawMarkers();
 	}
 
 	const NifModel * nif = static_cast<const NifModel *>( iBlock.model() );
