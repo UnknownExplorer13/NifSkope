@@ -334,7 +334,7 @@ void Scene::transform( const Transform & trans, float time )
 
 void Scene::draw()
 {
-	//drawShapes();
+	drawShapes();
 
 	if ( options & ShowNodes )
 		drawNodes();
