@@ -194,7 +194,7 @@ void NodeList::alphaSort()
 
 Node::Node( Scene * s, const QModelIndex & index ) : IControllable( s, index ), parent( 0 ), ref( 0 )
 {
-	nodeId = 0;
+	blockNumber = 0;
 	flags.bits = 0;
 
 	updateSettings();
@@ -244,7 +244,7 @@ void Node::clear()
 {
 	IControllable::clear();
 
-	nodeId = 0;
+	blockNumber = 0;
 	flags.bits = 0;
 	local = Transform();
 
@@ -291,7 +291,7 @@ void Node::update( const NifModel * nif, const QModelIndex & index )
 		return;
 	}
 
-	nodeId = nif->getBlockNumber( iBlock );
+	blockNumber = nif->getBlockNumber( iBlock );
 
 	if ( iBlock == index ) {
 		flags.bits = nif->get<int>( iBlock, "Flags" );
@@ -382,8 +382,8 @@ void Node::activeProperties( PropertyList & list ) const
 
 const Transform & Node::viewTrans() const
 {
-	if ( scene->viewTrans.contains( nodeId ) )
-		return scene->viewTrans[ nodeId ];
+	if ( scene->viewTrans.contains( blockNumber ) )
+		return scene->viewTrans[ blockNumber ];
 
 	Transform t;
 
@@ -392,22 +392,22 @@ const Transform & Node::viewTrans() const
 	else
 		t = scene->view * worldTrans();
 
-	scene->viewTrans.insert( nodeId, t );
-	return scene->viewTrans[ nodeId ];
+	scene->viewTrans.insert( blockNumber, t );
+	return scene->viewTrans[ blockNumber ];
 }
 
 const Transform & Node::worldTrans() const
 {
-	if ( scene->worldTrans.contains( nodeId ) )
-		return scene->worldTrans[ nodeId ];
+	if ( scene->worldTrans.contains( blockNumber ) )
+		return scene->worldTrans[ blockNumber ];
 
 	Transform t = local;
 
 	if ( parent )
 		t = parent->worldTrans() * t;
 
-	scene->worldTrans.insert( nodeId, t );
-	return scene->worldTrans[ nodeId ];
+	scene->worldTrans.insert( blockNumber, t );
+	return scene->worldTrans[ blockNumber ];
 }
 
 Transform Node::localTrans( int root ) const
@@ -415,7 +415,7 @@ Transform Node::localTrans( int root ) const
 	Transform trans;
 	const Node * node = this;
 
-	while ( node && node->nodeId != root ) {
+	while ( node && node->blockNumber != root ) {
 		trans = node->local * trans;
 		node  = node->parent;
 	}
@@ -437,7 +437,7 @@ Node * Node::findParent( int id ) const
 {
 	Node * node = parent;
 
-	while ( node && node->nodeId != id )
+	while ( node && node->blockNumber != id )
 		node = node->parent;
 
 	return node;
@@ -447,7 +447,7 @@ Node * Node::findChild( int id ) const
 {
 	for ( Node * child : children.list() ) {
 		if ( child ) {
-			if ( child->nodeId == id )
+			if ( child->blockNumber == id )
 				return child;
 
 			child = child->findChild( id );
@@ -532,8 +532,8 @@ void Node::draw()
 		return;
 
 	if ( Node::SELECTING ) {
-		int s_nodeId = ID2COLORKEY( nodeId );
-		glColor4ubv( (GLubyte *)&s_nodeId );
+		int colorKey = GLUtils::CompoundId::serialize( blockNumber );
+		glColor4ubv( ( GLubyte * )&colorKey );
 		glLineWidth( 5 ); // make hitting a line a litlle bit more easy
 	} else {
 		glEnable( GL_DEPTH_TEST );
@@ -608,6 +608,10 @@ void Node::drawConnectPoint( const NifModel * nif, const QModelIndex & cpArrayIn
 		t.translation = trans;
 		t.scale = normalScale * 16;
 
+		if ( Node::SELECTING ) {
+			qDebug( "haha funny" );
+		}
+
 		if ( i == sel ) {
 			t.scale *= 2;
 			glHighlightColor();
@@ -645,8 +649,8 @@ void Node::drawSelection() const
 	
 
 	if ( Node::SELECTING ) {
-		int s_nodeId = ID2COLORKEY( nodeId );
-		glColor4ubv( (GLubyte *)&s_nodeId );
+		int colorKey = GLUtils::CompoundId::serialize( blockNumber );
+		glColor4ubv( ( GLubyte * )&colorKey );
 		glLineWidth( 5 );
 	} else {
 		glEnable( GL_DEPTH_TEST );
@@ -801,15 +805,15 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 		glPopMatrix();
 	} else if ( name == "bhkSphereShape" ) {
 		if ( Node::SELECTING ) {
-			int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iShape ) );
-			glColor4ubv( (GLubyte *)&s_nodeId );
+			int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iShape ) );
+			glColor4ubv( ( GLubyte * )&colorKey );
 		}
 
 		GLUtils::drawSphere( Vector3(), nif->get<float>( iShape, "Radius" ) );
 	} else if ( name == "bhkMultiSphereShape" ) {
 		if ( Node::SELECTING ) {
-			int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iShape ) );
-			glColor4ubv( (GLubyte *)&s_nodeId );
+			int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iShape ) );
+			glColor4ubv( ( GLubyte * )&colorKey );
 		}
 
 		QModelIndex iSpheres = nif->getIndex( iShape, "Spheres" );
@@ -819,16 +823,16 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 		}
 	} else if ( name == "bhkBoxShape" ) {
 		if ( Node::SELECTING ) {
-			int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iShape ) );
-			glColor4ubv( (GLubyte *)&s_nodeId );
+			int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iShape ) );
+			glColor4ubv( ( GLubyte * )&colorKey );
 		}
 
 		Vector3 v = nif->get<Vector3>( iShape, "Dimensions" );
 		GLUtils::drawBox( v, -v );
 	} else if ( name == "bhkCapsuleShape" ) {
 		if ( Node::SELECTING ) {
-			int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iShape ) );
-			glColor4ubv( (GLubyte *)&s_nodeId );
+			int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iShape ) );
+			glColor4ubv( ( GLubyte * )&colorKey );
 		}
 
 		GLUtils::drawCapsule( nif->get<Vector3>( iShape, "First Point" ), nif->get<Vector3>( iShape, "Second Point" ), nif->get<float>( iShape, "Radius" ) );
@@ -838,8 +842,8 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 		glScalef( s, s, s );
 
 		if ( Node::SELECTING ) {
-			int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iShape ) );
-			glColor4ubv( (GLubyte *)&s_nodeId );
+			int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iShape ) );
+			glColor4ubv( ( GLubyte * )&colorKey );
 		}
 
 		GLUtils::drawNiTSS( nif, iShape );
@@ -855,8 +859,8 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 		glPopMatrix();
 	} else if ( name == "bhkConvexVerticesShape" ) {
 		if ( Node::SELECTING ) {
-			int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iShape ) );
-			glColor4ubv( (GLubyte *)&s_nodeId );
+			int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iShape ) );
+			glColor4ubv( ( GLubyte * )&colorKey );
 		}
 
 		GLUtils::drawConvexHull( nif, iShape, 1.0 );
@@ -884,8 +888,8 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 		drawHvkShape( nif, nif->getBlock( nif->getLink( iShape, "Shape" ) ), stack, scene, origin_color3fv );
 	} else if ( name == "bhkPackedNiTriStripsShape" || name == "hkPackedNiTriStripsData" ) {
 		if ( Node::SELECTING ) {
-			int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iShape ) );
-			glColor4ubv( (GLubyte *)&s_nodeId );
+			int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iShape ) );
+			glColor4ubv( ( GLubyte * )&colorKey );
 		}
 
 		QModelIndex iData = nif->getBlock( nif->getLink( iShape, "Data" ) );
@@ -1028,8 +1032,8 @@ void drawHvkShape( const NifModel * nif, const QModelIndex & iShape, QStack<QMod
 		}
 	} else if ( name == "bhkCompressedMeshShape" ) {
 		if ( Node::SELECTING ) {
-			int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iShape ) );
-			glColor4ubv( (GLubyte *)&s_nodeId );
+			int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iShape ) );
+			glColor4ubv( ( GLubyte * )&colorKey );
 		}
 
 		GLUtils::drawCMS( nif, iShape );
@@ -1080,8 +1084,8 @@ void drawHvkConstraint( const NifModel * nif, const QModelIndex & iConstraint, c
 	Color3 color_b( 0.6f, 0.8f, 0.0f );
 
 	if ( Node::SELECTING ) {
-		int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iConstraint ) );
-		glColor4ubv( (GLubyte *)&s_nodeId );
+		int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iConstraint ) );
+		glColor4ubv( ( GLubyte * )&colorKey );
 		glLineWidth( 5 ); // make hitting a line a litlle bit more easy
 	} else {
 		if ( scene->currentBlock == nif->getBlock( iConstraint ) ) {
@@ -1387,8 +1391,8 @@ void Node::drawHavok()
 		glMultMatrix( bt );
 
 		if ( Node::SELECTING ) {
-			int s_nodeId = ID2COLORKEY( nodeId );
-			glColor4ubv( (GLubyte *)&s_nodeId );
+			int colorKey = GLUtils::CompoundId::serialize( blockNumber );
+			glColor4ubv( ( GLubyte * )&colorKey );
 		} else {
 			glColor( Color3( 1.0f, 0.0f, 0.0f ) );
 			glDisable( GL_LIGHTING );
@@ -1442,8 +1446,8 @@ void Node::drawHavok()
 			}
 			
 			if ( Node::SELECTING ) {
-				int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iBSMultiBoundData ) );
-				glColor4ubv( (GLubyte *)&s_nodeId );
+				int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iBSMultiBoundData ) );
+				glColor4ubv( ( GLubyte * )&colorKey );
 				glLineWidth( 5 );
 			} else {
 				glColor( Color4( 1.0f, 1.0f, 1.0f, 0.6f ) );
@@ -1475,8 +1479,8 @@ void Node::drawHavok()
 			glMultMatrix( worldTrans() );
 
 			if ( Node::SELECTING ) {
-				int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iBound ) );
-				glColor4ubv( (GLubyte *)&s_nodeId );
+				int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iBound ) );
+				glColor4ubv( ( GLubyte * )&colorKey );
 			} else {
 				glColor( Color3( 1.0f, 0.0f, 0.0f ) );
 				glDisable( GL_LIGHTING );
@@ -1551,8 +1555,8 @@ void Node::drawHavok()
 	drawHvkShape( nif, nif->getBlock( nif->getLink( iBody, "Shape" ) ), shapeStack, scene, colors[ color_index ] );
 
 	if ( Node::SELECTING && scene->options & Scene::ShowAxes ) {
-		int s_nodeId = ID2COLORKEY( nif->getBlockNumber( iBody ) );
-		glColor4ubv( (GLubyte *)&s_nodeId );
+		int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iBody ) );
+		glColor4ubv( ( GLubyte * )&colorKey );
 		glDepthFunc( GL_ALWAYS );
 		GLUtils::drawAxes( Vector3( nif->get<Vector4>( iBody, "Center" ) ), 1.0f / BKHUtils::bhkScaleMult( nif ), false );
 		glDepthFunc( GL_LEQUAL );
@@ -1728,9 +1732,8 @@ void drawFurnitureMarker( const NifModel * nif, const QModelIndex & iPosition )
 	}
 
 	if ( Node::SELECTING ) {
-		GLint id = ( nif->getBlockNumber( iPosition ) & 0xffff ) | ( ( iPosition.row() & 0xffff ) << 16 );
-		int s_nodeId = ID2COLORKEY( id );
-		glColor4ubv( (GLubyte *)&s_nodeId );
+		int colorKey = GLUtils::CompoundId::serialize( nif->getBlockNumber( iPosition ), iPosition.row(), GLUtils::CompoundId::Type::FurnitureMarker );
+		glColor4ubv( (GLubyte *)&colorKey );
 	}
 
 	for ( int n = 0; n < i; n++ ) {
@@ -1795,25 +1798,40 @@ void Node::drawFurn()
 
 	for ( int p = 0; p < nif->rowCount( iExtraDataList ); p++ ) {
 		// DONE: never seen Furn in nifs, so there may be a need of a fix here later - saw one, fixed a bug
-		QModelIndex iFurnMark = nif->getBlock( nif->getLink( iExtraDataList.child( p, 0 ) ), "BSFurnitureMarker" );
+		QModelIndex iExtraDataIndex = nif->getBlock( nif->getLink( iExtraDataList.child( p, 0 ) ) );
+		if ( nif->getBlockName( iExtraDataIndex ) == "BSFurnitureMarkerNode" ) {
+			QModelIndex iPositions = nif->getIndex( iExtraDataIndex, "Positions" );
 
-		if ( !iFurnMark.isValid() )
-			continue;
+			if ( !iPositions.isValid() )
+				break;
 
-		QModelIndex iPositions = nif->getIndex( iFurnMark, "Positions" );
+			for ( int j = 0; j < nif->rowCount( iPositions ); j++ ) {
+				QModelIndex iPosition = nif->index( j, 0, iPositions );
 
-		if ( !iPositions.isValid() )
-			break;
+				if ( scene->currentIndex == iPosition )
+					glHighlightColor();
+				else
+					glNormalColor();
 
-		for ( int j = 0; j < nif->rowCount( iPositions ); j++ ) {
-			QModelIndex iPosition = iPositions.child( j, 0 );
+				drawFurnitureMarker( nif, iPosition );
+			}
+		} else if ( nif->getBlockName( iExtraDataIndex ) == "BSConnectPoint::Parents" ) {
+			QModelIndex iConnectPoints = nif->getIndex( iExtraDataIndex, "Connect Points" );
+			
+			if ( !iConnectPoints.isValid() )
+				break;
 
-			if ( scene->currentIndex == iPosition )
-				glHighlightColor();
-			else
-				glNormalColor();
+			for ( int j = 0; j < nif->rowCount( iConnectPoints ); j++ ) {
+				QModelIndex iConnectPoint = nif->index( j, 0, iConnectPoints );
+				
+				if ( scene->currentIndex == iConnectPoint )
+					glHighlightColor();
+				else
+					glNormalColor();
 
-			drawFurnitureMarker( nif, iPosition );
+				//drawConnection( nif, iConnectPoint );
+
+			}
 		}
 	}
 
@@ -1982,8 +2000,8 @@ BillboardNode::BillboardNode( Scene * scene, const QModelIndex & iBlock )
 
 const Transform & BillboardNode::viewTrans() const
 {
-	if ( scene->viewTrans.contains( nodeId ) )
-		return scene->viewTrans[ nodeId ];
+	if ( scene->viewTrans.contains( blockNumber ) )
+		return scene->viewTrans[ blockNumber ];
 
 	Transform t;
 
@@ -1994,6 +2012,6 @@ const Transform & BillboardNode::viewTrans() const
 
 	t.rotation = Matrix();
 
-	scene->viewTrans.insert( nodeId, t );
-	return scene->viewTrans[ nodeId ];
+	scene->viewTrans.insert( blockNumber, t );
+	return scene->viewTrans[ blockNumber ];
 }

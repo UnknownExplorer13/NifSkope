@@ -778,9 +778,8 @@ void GLView::setVisMode( Scene::VisMode mode, bool checked )
 
 typedef void (Scene::* DrawFunc)( void );
 
-int indexAt( /*GLuint *buffer,*/ NifModel * model, Scene * scene, QList<DrawFunc> drawFunc, int cycle, const QPoint & pos, int & furn )
+GLUtils::CompoundId indexAt( Scene * scene, QList<DrawFunc> drawFunc, const QPoint & pos )
 {
-	Q_UNUSED( model ); Q_UNUSED( cycle );
 	// Color Key O(1) selection
 	//	Open GL 3.0 says glRenderMode is deprecated
 	//	ATI OpenGL API implementation of GL_SELECT corrupts NifSkope memory
@@ -795,7 +794,7 @@ int indexAt( /*GLuint *buffer,*/ NifModel * model, Scene * scene, QList<DrawFunc
 	// Create new FBO with multisampling disabled
 	QOpenGLFramebufferObjectFormat fboFmt;
 	fboFmt.setTextureTarget( GL_TEXTURE_2D );
-	fboFmt.setInternalTextureFormat( GL_RGB32F_ARB );
+	fboFmt.setInternalTextureFormat( GL_RGBA32F_ARB );
 	fboFmt.setAttachment( QOpenGLFramebufferObject::Attachment::CombinedDepthStencil );
 
 	QOpenGLFramebufferObject fbo( viewport[2], viewport[3], fboFmt );
@@ -832,34 +831,21 @@ int indexAt( /*GLuint *buffer,*/ NifModel * model, Scene * scene, QList<DrawFunc
 	QImage img( fbo.toImage() );
 	QColor pixel = img.pixel( pos );
 
+
+	// Encode RGBA to int
+	const uchar * qchar = img.constScanLine(pos.y()) + (int) (pos.x() * 4);
+	int a = 0;
+	a |= *qchar++ << 16;
+	a |= *qchar++ << 8;
+	a |= *qchar++ << 0;
+	a |= *qchar++ << 24;
+	GLUtils::CompoundId choose = GLUtils::CompoundId(a);
+
 #ifndef QT_NO_DEBUG
 	img.save( "fbo.png" );
+	qDebug( "[glview.cpp:indexAt] pix: 0x%08x | block number: %4i | array pos: %5i | type: %2i", a, choose.blockNumber, choose.pos, (int) choose.type);
 #endif
 
-	// Encode RGB to Int
-	int a = 0;
-	a |= pixel.red()   << 0;
-	a |= pixel.green() << 8;
-	a |= pixel.blue()  << 16;
-
-	// Decode:
-	// R = (id & 0x000000FF) >> 0
-	// G = (id & 0x0000FF00) >> 8
-	// B = (id & 0x00FF0000) >> 16
-
-	int choose = COLORKEY2ID( a );
-
-	// Pick BSFurnitureMarker
-	if ( choose > 0 ) {
-		auto furnBlock = model->getBlock( model->index( 3, 0, model->getBlock( choose & 0x0ffff ) ), "BSFurnitureMarker" );
-
-		if ( furnBlock.isValid() ) {
-			furn = choose >> 16;
-			choose &= 0x0ffff;
-		}
-	}
-
-	//qDebug() << "Key:" << a << " R" << pixel.red() << " G" << pixel.green() << " B" << pixel.blue();
 	return choose;
 }
 
@@ -894,8 +880,7 @@ QModelIndex GLView::indexAt( const QPoint & pos, int cycle )
 
 	df << &Scene::drawShapes;
 
-	int choose = -1, furn = -1;
-	choose = ::indexAt( model, scene, df, cycle, pos, /*out*/ furn );
+	auto choose = ::indexAt( scene, df, pos);
 
 	glPopAttrib();
 	glMatrixMode( GL_MODELVIEW );
@@ -905,22 +890,36 @@ QModelIndex GLView::indexAt( const QPoint & pos, int cycle )
 
 	QModelIndex chooseIndex;
 
-	if ( scene->selMode & Scene::SelVertex ) {
-		// Vertex
-		int block = choose >> 16;
-		int vert = choose - (block << 16);
-
-		auto shape = scene->shapes.value( block );
-		if ( shape )
-			chooseIndex = shape->vertexAt( vert );
-	} else if ( choose != -1 ) {
-		// Block Index
-		chooseIndex = model->getBlock( choose );
-
-		if ( furn != -1 ) {
-			// Furniture Row @ Block Index
-			chooseIndex = model->index( furn, 0, model->index( 3, 0, chooseIndex ) );
-		}			
+	switch ( choose.type ) {
+		case GLUtils::CompoundId::Type::Object:
+		{
+			chooseIndex = model->getBlock( choose.blockNumber );
+			break;
+		}
+		case GLUtils::CompoundId::Type::Vertex:
+		{
+			auto shape = scene->shapes.value( choose.blockNumber );
+			if ( shape ) {
+				chooseIndex = shape->vertexAt( choose.pos );
+			}
+			break;
+		}
+		case GLUtils::CompoundId::Type::FurnitureMarker:
+		{
+			QModelIndex markerBIndex = model->getBlock( choose.blockNumber );
+			if ( markerBIndex.isValid() ) {
+				QModelIndex positionArrIndex = model->getIndex( markerBIndex, "Positions" );
+				if ( positionArrIndex.isValid() && model->isArray( positionArrIndex ) ) {
+					chooseIndex = model->index( choose.pos, 0, positionArrIndex );
+				}
+			}
+			break;
+		}
+		default:
+		{
+			chooseIndex = QModelIndex();
+			break;
+		}
 	}
 
 	return chooseIndex;

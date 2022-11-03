@@ -41,8 +41,6 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <QOpenGLContext>
 
 
-#define ID2COLORKEY( id ) (id + 1)
-#define COLORKEY2ID( id ) (id - 1)
 
 //! @file gltools.h BoundSphere, VertexWeight, BoneWeights, SkinPartition
 
@@ -84,6 +82,56 @@ namespace BKHUtils
 
 namespace GLUtils
 {
+	struct CompoundId
+	{
+		enum class Type
+		{
+			//! When referencing a blocks without selecting one of it's children.
+			Object = 0x0,
+			//! When referencing vertices in a block.
+			Vertex = 0x1,
+			//! When referencing a furniture marker in a block.
+			FurnitureMarker = 0x2,
+			//! When you are referencing a connect point in a block.
+			ConnectPoint = 0x3,
+			//! Nothing will be selected 
+			None = 0xF
+		};
+
+		//! The block number of the selected item
+		int blockNumber;
+		//! The type of selection
+		int pos;
+		//! The type of thing to select
+		CompoundId::Type type;
+
+		CompoundId( const int compoundId )
+		{
+			int actual = compoundId - 1;
+			blockNumber = actual & 0xFFF;
+			pos = ( actual >> 12 ) & 0xFFFF;
+			type = ( CompoundId::Type ) (( actual >> 28 ) & 0xF);
+		}
+
+		/*!
+		 * @brief Creates a compound id used to select blocks or items withing a block.
+		 * @param blockNumber The block number of the index.
+		 * @param pos         The position of the item.
+		 * @param type        The type of storage location where we can find the selected object.
+		 * @return
+		 */
+		static int serialize( const int blockNumber, const int pos = 0, const Type type = Type::Object )
+		{
+			return (
+				// caps at 4096, (i haven't seen a file that goes over that so I'm assuming it's safe)
+				blockNumber & 0xFFF |
+				// caps at 65536, vertex arrays can be pretty large. Though if your mesh has that many verticies, i would recommend you simplify your mesh.
+				( ( pos & 0xFFFF ) << 12 ) |
+				// caps at 16 (may need to expand but it's good enough for now)
+				( ( ( int ) type & 0xF ) << 28 )
+			) + 1;
+		}
+	};
 
 	QVector<int> sortAxes( QVector<float> axesDots );
 

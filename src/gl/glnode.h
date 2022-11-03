@@ -98,7 +98,7 @@ public:
 
 	static int SELECTING;
 
-	int id() const { return nodeId; }
+	int id() const { return blockNumber; }
 
 	// IControllable
 
@@ -173,7 +173,7 @@ protected:
 
 	bool presorted = false;
 
-	int nodeId;
+	int blockNumber;
 	int ref;
 };
 
