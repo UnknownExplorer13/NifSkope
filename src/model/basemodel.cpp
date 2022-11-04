@@ -477,6 +477,8 @@ QVariant BaseModel::data( const QModelIndex & index, int role ) const
 						return item->value().get<Vector3>().toHtml();
 					case NifValue::tHalfVector3:
 						return item->value().get<HalfVector3>().toHtml();
+					case NifValue::tUshortVector3:
+						return item->value().get<UshortVector3>().toHtml();
 					case NifValue::tByteVector3:
 						return item->value().get<ByteVector3>().toHtml();
 					case NifValue::tMatrix:

@@ -125,6 +125,7 @@ public:
 		tHfloat,
 		tHalfVector3,
 		tByteVector3,
+		tUshortVector3,
 		tHalfVector2,
 		tByteColor4,
 		tBSVertexDesc,
@@ -565,6 +566,10 @@ template <> inline HalfVector3 NifValue::get() const
 {
 	return getType<HalfVector3>( tHalfVector3 );
 }
+template <> inline UshortVector3 NifValue::get() const
+{
+	return getType<UshortVector3>( tUshortVector3 );
+}
 template <> inline ByteVector3 NifValue::get() const
 {
 	return getType<ByteVector3>( tByteVector3 );
@@ -696,6 +701,11 @@ template <> inline bool NifValue::set( const HalfVector3 & x )
 {
 	return setType( tHalfVector3, x );
 }
+//! Set the data from a UshortVector3. Return true if successful.
+template <> inline bool NifValue::set( const UshortVector3 & x )
+{
+	return setType( tUshortVector3, x );
+}
 //! Set the data from a ByteVector3. Return true if successful.
 template <> inline bool NifValue::set( const ByteVector3 & x )
 {
@@ -821,6 +831,11 @@ template <> inline bool NifValue::ask( Vector3 * ) const
 template <> inline bool NifValue::ask( HalfVector3 * ) const
 {
 	return type() == tHalfVector3;
+}
+//! Check whether the data is a UshortVector3.
+template <> inline bool NifValue::ask( UshortVector3 * ) const
+{
+	return type() == tUshortVector3;
 }
 //! Check whether the data is a ByteVector3.
 template <> inline bool NifValue::ask( ByteVector3 * ) const

@@ -72,30 +72,30 @@ void NifValue::initialize()
 	typeMap.clear();
 	typeTxt.clear();
 
-	typeMap.insert( "bool",   NifValue::tBool );
-	typeMap.insert( "byte",   NifValue::tByte );
-	typeMap.insert( "char",   NifValue::tByte );
-	typeMap.insert( "word",   NifValue::tWord );
-	typeMap.insert( "short",  NifValue::tShort );
-	typeMap.insert( "int",    NifValue::tInt );
-	typeMap.insert( "Flags",  NifValue::tFlags );
-	typeMap.insert( "ushort", NifValue::tWord );
-	typeMap.insert( "uint",   NifValue::tUInt );
-	typeMap.insert( "ulittle32", NifValue::tULittle32 );
-	typeMap.insert( "int64",  NifValue::tInt64 );
-	typeMap.insert( "uint64", NifValue::tUInt64 );
-	typeMap.insert( "Ref",    NifValue::tLink );
-	typeMap.insert( "Ptr",    NifValue::tUpLink );
-	typeMap.insert( "float",  NifValue::tFloat );
-	typeMap.insert( "SizedString", NifValue::tSizedString );
-	typeMap.insert( "Text",        NifValue::tText );
-	typeMap.insert( "ExportString", NifValue::tShortString );
-	typeMap.insert( "Color3",      NifValue::tColor3 );
-	typeMap.insert( "Color4",      NifValue::tColor4 );
-	typeMap.insert( "Vector4",     NifValue::tVector4 );
-	typeMap.insert( "Vector3",     NifValue::tVector3 );
-	typeMap.insert( "TBC",         NifValue::tVector3 );
-	typeMap.insert( "Quaternion",  NifValue::tQuat );
+	typeMap.insert( "bool",           NifValue::tBool );
+	typeMap.insert( "byte",           NifValue::tByte );
+	typeMap.insert( "char",           NifValue::tByte );
+	typeMap.insert( "word",           NifValue::tWord );
+	typeMap.insert( "short",          NifValue::tShort );
+	typeMap.insert( "int",            NifValue::tInt );
+	typeMap.insert( "Flags",          NifValue::tFlags );
+	typeMap.insert( "ushort",         NifValue::tWord );
+	typeMap.insert( "uint",           NifValue::tUInt );
+	typeMap.insert( "ulittle32",      NifValue::tULittle32 );
+	typeMap.insert( "int64",          NifValue::tInt64 );
+	typeMap.insert( "uint64",         NifValue::tUInt64 );
+	typeMap.insert( "Ref",            NifValue::tLink );
+	typeMap.insert( "Ptr",            NifValue::tUpLink );
+	typeMap.insert( "float",          NifValue::tFloat );
+	typeMap.insert( "SizedString",    NifValue::tSizedString );
+	typeMap.insert( "Text",           NifValue::tText );
+	typeMap.insert( "ExportString",   NifValue::tShortString );
+	typeMap.insert( "Color3",         NifValue::tColor3 );
+	typeMap.insert( "Color4",         NifValue::tColor4 );
+	typeMap.insert( "Vector4",        NifValue::tVector4 );
+	typeMap.insert( "Vector3",        NifValue::tVector3 );
+	typeMap.insert( "TBC",            NifValue::tVector3 );
+	typeMap.insert( "Quaternion",     NifValue::tQuat );
 	typeMap.insert( "QuaternionWXYZ", NifValue::tQuat );
 	typeMap.insert( "QuaternionXYZW", NifValue::tQuatXYZW );
 	typeMap.insert( "hkQuaternion",   NifValue::tQuatXYZW );
@@ -114,15 +114,16 @@ void NifValue::initialize()
 	typeMap.insert( "NiFixedString",  NifValue::tStringIndex );
 	typeMap.insert( "BlockTypeIndex", NifValue::tBlockTypeIndex );
 	typeMap.insert( "char8string",    NifValue::tChar8String );
-	typeMap.insert( "string",   NifValue::tString );
-	typeMap.insert( "FilePath", NifValue::tFilePath );
-	typeMap.insert( "blob",     NifValue::tBlob );
-	typeMap.insert( "hfloat",   NifValue::tHfloat );
-	typeMap.insert( "HalfVector3", NifValue::tHalfVector3 );
-	typeMap.insert( "ByteVector3", NifValue::tByteVector3 );
-	typeMap.insert( "HalfVector2", NifValue::tHalfVector2 );
-	typeMap.insert( "HalfTexCoord", NifValue::tHalfVector2 );
-	typeMap.insert( "ByteColor4", NifValue::tByteColor4 );
+	typeMap.insert( "string",         NifValue::tString );
+	typeMap.insert( "FilePath",       NifValue::tFilePath );
+	typeMap.insert( "blob",           NifValue::tBlob );
+	typeMap.insert( "hfloat",         NifValue::tHfloat );
+	typeMap.insert( "HalfVector3",    NifValue::tHalfVector3 );
+	typeMap.insert( "UshortVector3",  NifValue::tUshortVector3 );
+	typeMap.insert( "ByteVector3",    NifValue::tByteVector3 );
+	typeMap.insert( "HalfVector2",    NifValue::tHalfVector2 );
+	typeMap.insert( "HalfTexCoord",   NifValue::tHalfVector2 );
+	typeMap.insert( "ByteColor4",     NifValue::tByteColor4 );
 	//typeMap.insert( "BSVertexDesc", NifValue::tBSVertexDesc );
 
 	enumMap.clear();
@@ -361,6 +362,7 @@ void NifValue::clear()
 		break;
 	case tVector3:
 	case tHalfVector3:
+	case tUshortVector3:
 	case tByteVector3:
 		delete static_cast<Vector3 *>( val.data );
 		break;
@@ -433,6 +435,7 @@ void NifValue::changeType( Type t )
 		return;
 	case tVector3:
 	case tHalfVector3:
+	case tUshortVector3:
 	case tByteVector3:
 		val.data = new Vector3();
 		break;
@@ -502,6 +505,7 @@ void NifValue::operator=( const NifValue & other )
 
 	switch ( typ ) {
 	case tVector3:
+	case tUshortVector3:
 	case tHalfVector3:
 	case tByteVector3:
 		*static_cast<Vector3 *>( val.data ) = *static_cast<Vector3 *>( other.val.data );
@@ -649,6 +653,7 @@ bool NifValue::operator==( const NifValue & other ) const
 
 	case tVector3:
 	case tHalfVector3:
+	case tUshortVector3:
 	case tByteVector3:
 	{
 		Vector3 * vec1 = static_cast<Vector3 *>(val.data);
@@ -967,6 +972,7 @@ QString NifValue::toString() const
 		}
 	case tVector3:
 	case tHalfVector3:
+	case tUshortVector3:
 	case tByteVector3:
 		{
 			Vector3 * v = static_cast<Vector3 *>( val.data );

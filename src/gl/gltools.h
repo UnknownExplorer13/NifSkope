@@ -124,7 +124,7 @@ namespace GLUtils
 		{
 			return (
 				// caps at 4096, (i haven't seen a file that goes over that so I'm assuming it's safe)
-				blockNumber & 0xFFF |
+				( blockNumber & 0xFFF ) |
 				// caps at 65536, vertex arrays can be pretty large. Though if your mesh has that many verticies, i would recommend you simplify your mesh.
 				( ( pos & 0xFFFF ) << 12 ) |
 				// caps at 16 (may need to expand but it's good enough for now)

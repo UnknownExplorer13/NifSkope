@@ -138,9 +138,27 @@ bool NifIStream::read( NifValue & val )
 	case NifValue::tHfloat:
 		{
 			val.val.u64 = 0;
-			uint16_t half;
+			quint16 half;
 			*dataStream >> half;
 			val.val.u32 = half_to_float( half );
+			return (dataStream->status() == QDataStream::Ok);
+		}
+	case NifValue::tUshortVector3:
+		{
+			quint16 x, y, z;
+			float xf, yf, zf;
+
+			*dataStream >> x;
+			*dataStream >> y;
+			*dataStream >> z;
+
+			xf = (float) x;
+			yf = (float) y;
+			zf = (float) z;
+
+			Vector3 * v = static_cast<Vector3 *>(val.val.data);
+			v->xyz[0] = xf; v->xyz[1] = yf; v->xyz[2] = zf;
+
 			return (dataStream->status() == QDataStream::Ok);
 		}
 	case NifValue::tByteVector3:
@@ -163,8 +181,8 @@ bool NifIStream::read( NifValue & val )
 		}
 	case NifValue::tHalfVector3:
 		{
-			uint16_t x, y, z;
-			union { float f; uint32_t i; } xu, yu, zu;
+			quint16 x, y, z;
+			union { float f; quint32 i; } xu, yu, zu;
 
 			*dataStream >> x;
 			*dataStream >> y;
@@ -181,8 +199,8 @@ bool NifIStream::read( NifValue & val )
 		}
 	case NifValue::tHalfVector2:
 		{
-			uint16_t x, y;
-			union { float f; uint32_t i; } xu, yu;
+			quint16 x, y;
+			union { float f; quint32 i; } xu, yu;
 
 			*dataStream >> x;
 			*dataStream >> y;
@@ -575,8 +593,21 @@ bool NifOStream::write( const NifValue & val )
 		return device->write( (char *)&val.val.f32, 4 ) == 4;
 	case NifValue::tHfloat:
 		{
-			uint16_t half = half_from_float( val.val.u32 );
+			quint16 half = half_from_float( val.val.u32 );
 			return device->write( (char *)&half, 2 ) == 2;
+		}
+	case NifValue::tUshortVector3:
+		{
+			Vector3 * vec = static_cast<Vector3 *>(val.val.data);
+			if ( !vec )
+				return false;
+
+			quint16 v[3];
+			v[0] = (quint16) round(vec->xyz[0]);
+			v[1] = (quint16) round(vec->xyz[1]);
+			v[2] = (quint16) round(vec->xyz[2]);
+
+			return device->write( (char*)v, 6 ) == 3;
 		}
 	case NifValue::tByteVector3:
 		{
@@ -584,7 +615,7 @@ bool NifOStream::write( const NifValue & val )
 			if ( !vec )
 				return false;
 
-			uint8_t v[3];
+			quint8 v[3];
 			v[0] = round( ((vec->xyz[0] + 1.0) / 2.0) * 255.0 );
 			v[1] = round( ((vec->xyz[1] + 1.0) / 2.0) * 255.0 );
 			v[2] = round( ((vec->xyz[2] + 1.0) / 2.0) * 255.0 );
@@ -597,13 +628,13 @@ bool NifOStream::write( const NifValue & val )
 			if ( !vec )
 				return false;
 
-			union { float f; uint32_t i; } xu, yu, zu;
+			union { float f; quint32 i; } xu, yu, zu;
 
 			xu.f = vec->xyz[0];
 			yu.f = vec->xyz[1];
 			zu.f = vec->xyz[2];
 
-			uint16_t v[3];
+			quint16 v[3];
 			v[0] = half_from_float( xu.i );
 			v[1] = half_from_float( yu.i );
 			v[2] = half_from_float( zu.i );
@@ -616,12 +647,12 @@ bool NifOStream::write( const NifValue & val )
 			if ( !vec )
 				return false;
 
-			union { float f; uint32_t i; } xu, yu;
+			union { float f; quint32 i; } xu, yu;
 
 			xu.f = vec->xy[0];
 			yu.f = vec->xy[1];
 
-			uint16_t v[2];
+			quint16 v[2];
 			v[0] = half_from_float( xu.i );
 			v[1] = half_from_float( yu.i );
 
