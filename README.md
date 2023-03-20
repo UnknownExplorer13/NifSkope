@@ -29,5 +29,5 @@ Refer to our [GitHub wiki](https://github.com/UnknownExplorer13/nifskope/wiki) f
 ### Miscellaneous
 
 Refer to these other documents in your installation folder or at the links provided:
-* [Changelog](https://github.com/UnknownExplorer13/nifskope/blob/develop/CHANGELOG.md)
-* [License](https://github.com/UnknownExplorer13/nifskope/blob/develop/LICENSE.md)
+* [Changelog](https://github.com/UnknownExplorer13/nifskope/blob/dev9/CHANGELOG.md)
+* [License](https://github.com/UnknownExplorer13/nifskope/blob/dev9/LICENSE.md)
