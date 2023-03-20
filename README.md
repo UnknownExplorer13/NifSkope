@@ -4,9 +4,9 @@ NifSkope is a tool for opening and editing the NetImmerse file format (NIF). NIF
 
 ### Download
 
-You can download the latest release from [GitHub](https://github.com/niftools/UnknownExplorer13/releases).  
+You can download the latest release from [here](https://github.com/niftools/UnknownExplorer13/releases).  
 You can download the latest official release from the [NifTools GitHub](https://github.com/niftools/nifskope/releases).  
-You can download the latest development release from the [Hexabit's GitHub](https://github.com/hexabits/nifskope/releases).
+You can download the latest development release from [Hexabit's GitHub](https://github.com/hexabits/nifskope/releases).
 
 ### Discussion, Help, & Issues
 
