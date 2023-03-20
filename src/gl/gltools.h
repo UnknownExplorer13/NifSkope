@@ -170,13 +170,22 @@ namespace GLUtils
 	void drawBox( const Vector3 & p1, const Vector3 & p2 );
 	
 	/*!
-	 * @brief Draws a of a specific radius between p1 and p2.
+	 * @brief Draws a capsule of a specific radius between p1 and p2.
 	 * @param p1          The first point.
 	 * @param p2          The second point.
 	 * @param radius      The radius of the capsule.
 	 * @param numSegments The number of segments to use.
 	*/
 	void drawCapsule( const Vector3 & p1, const Vector3 & p2, float radius, int numSegments = 5 );
+	
+	/*!
+	 * @brief Draws a cylinder of a specific radius between p1 and p2.
+	 * @param p1          The front side of the cylinder.
+	 * @param p2          The rear side of the cylinder.
+	 * @param radius      The radius of the cylinder.
+	 * @param numSegments The number of segments to use.
+	*/
+    void drawCylinder( const Vector3 & p1, const Vector3 & p2, float radius, int numSegments = 5 );
 	
 	/*!
 	 * @brief Draws a circle
