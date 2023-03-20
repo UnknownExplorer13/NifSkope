@@ -47,9 +47,7 @@ varying vec4 A;
 varying vec4 C;
 varying vec4 D;
 
-varying vec3 N;
-varying vec3 t;
-varying vec3 b;
+varying mat3 tbnMatrix;
 
 
 vec3 tonemap(vec3 x)
@@ -84,7 +82,7 @@ void main( void )
 	vec4 normalMap = texture2D( NormalMap, offset );
 	vec4 glowMap = texture2D( GlowMap, offset );
 	
-	vec3 normal = normalize(normalMap.rgb * 2.0 - 1.0);
+	vec3 normal = normalize(tbnMatrix * (normalMap.rgb * 2.0 - 1.0));
 	
 	vec3 L = normalize(LightDir);
 	vec3 R = reflect(-L, normal);
@@ -96,7 +94,7 @@ void main( void )
 	float NdotNegL = max( dot(normal, -L), 0.0 );
 
 	vec3 reflected = reflect( -E, normal );
-	vec3 reflectedVS = b * reflected.x + t * reflected.y + N * reflected.z;
+	vec3 reflectedVS = reflected;
 	vec3 reflectedWS = vec3( worldMatrix * (gl_ModelViewMatrixInverse * vec4( reflectedVS, 0.0 )) );
 
 
