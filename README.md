@@ -4,27 +4,26 @@ NifSkope is a tool for opening and editing the NetImmerse file format (NIF). NIF
 
 ### Download
 
-You can download the latest official release from [GitHub](https://github.com/niftools/UnknownExplorer13/releases).
-
+You can download the latest release from [GitHub](https://github.com/niftools/UnknownExplorer13/releases).
+You can download the latest official release from the [NifTools GitHub](https://github.com/niftools/nifskope/releases).
+You can download the latest development release from the [Hexabit's GitHub](https://github.com/hexabits/nifskope/releases).
 
 ### Discussion, Help & Issues
 
-The discord invite is down and the forums are dead, just use the [issues tab](https://github.com/UnknownExplorer13/nifskope/issues).
-
+For support using NifSkope please join the [NifMania Discord](https://discord.gg/JjHKVNc).
+The official Discord invite is down and the official forums are dead, use the [issues tab](https://github.com/UnknownExplorer13/nifskope/issues) to report issues.
 
 ### Contribute
 
-You can fork the latest source from [GitHub](https://github.com/UnknownExplorer13/nifskope). See "[Fork a Repo](https://help.github.com/articles/fork-a-repo)" on how to send your contributions upstream. To grab all submodules, make sure to use `--recursive` like so:
+You can fork the latest source from [GitHub](https://github.com/UnknownExplorer13/nifskope). See "[Fork a repo](https://help.github.com/articles/fork-a-repo)" on how to send your contributions upstream. To grab all submodules, make sure to use `--recursive` like so:
 
 ```
 git clone --recursive git://github.com/<YOUR_USERNAME>/nifskope.git
 ```
 
-
 ### Compilation
 
 Refer to our [GitHub wiki](https://github.com/UnknownExplorer13/nifskope/wiki) for information on compilation.  
-
 
 ### Miscellaneous
 
