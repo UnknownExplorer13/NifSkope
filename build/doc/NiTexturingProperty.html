@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiTexturingProperty</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiTexturingProperty</h2></center>
+Describes how a fragment shader should be configured for a given piece of geometry.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObjectNET.html">NiObjectNET</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Skyrim Shader Type</td>
+    <td class="atype"><a href="BSLightingShaderPropertyShaderType.html"><b>BSLightingShaderPropertyShaderType</b></a></td>
+    <td class="adesc">Configures the main shader path</td>
+</tr>
+
+<tr>
+    <td class="aname">Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">Name of this controllable object, used to refer to the object in .kf files.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Extra Data List</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of Extra Data objects referenced through the list.</td>
+</tr>
+
+<tr>
+    <td class="aname">Extra Data List</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiExtraData.html">NiExtraData</a>&gt;</td>
+    <td class="adesc">List of extra data indices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Controller</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTimeController.html">NiTimeController</a>&gt;</td>
+    <td class="adesc">Controller object index. (The first in a chain)</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiProperty.html">NiProperty</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiTexturingProperty.html">NiTexturingProperty</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="Flags.html"><b>Flags</b></a></td>
+    <td class="adesc">Property flags.</td>
+</tr>
+
+<tr>
+    <td class="aname">Texture Count</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Number of textures.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Base Texture</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have a base texture?</td>
+</tr>
+
+<tr>
+    <td class="aname">Base Texture</td>
+    <td class="atype"><a href="TexDesc.html"><b>TexDesc</b></a></td>
+    <td class="adesc">The base texture.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Dark Texture</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have a dark texture?</td>
+</tr>
+
+<tr>
+    <td class="aname">Dark Texture</td>
+    <td class="atype"><a href="TexDesc.html"><b>TexDesc</b></a></td>
+    <td class="adesc">The dark texture.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Detail Texture</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have a detail texture?</td>
+</tr>
+
+<tr>
+    <td class="aname">Detail Texture</td>
+    <td class="atype"><a href="TexDesc.html"><b>TexDesc</b></a></td>
+    <td class="adesc">The detail texture.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Gloss Texture</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have a gloss texture?</td>
+</tr>
+
+<tr>
+    <td class="aname">Gloss Texture</td>
+    <td class="atype"><a href="TexDesc.html"><b>TexDesc</b></a></td>
+    <td class="adesc">The gloss texture.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Glow Texture</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have a glow texture?</td>
+</tr>
+
+<tr>
+    <td class="aname">Glow Texture</td>
+    <td class="atype"><a href="TexDesc.html"><b>TexDesc</b></a></td>
+    <td class="adesc">The glowing texture.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Bump Map Texture</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have a bump map texture?</td>
+</tr>
+
+<tr>
+    <td class="aname">Bump Map Texture</td>
+    <td class="atype"><a href="TexDesc.html"><b>TexDesc</b></a></td>
+    <td class="adesc">The bump map texture.</td>
+</tr>
+
+<tr>
+    <td class="aname">Bump Map Luma Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Bump Map Luma Offset</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Bump Map Matrix</td>
+    <td class="atype"><a href="Matrix22.html"><b>Matrix22</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Has Normal Texture</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have a normal texture?</td>
+</tr>
+
+<tr>
+    <td class="aname">Normal Texture</td>
+    <td class="atype"><a href="TexDesc.html"><b>TexDesc</b></a></td>
+    <td class="adesc">Normal texture.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Parallax Texture</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Parallax Texture</td>
+    <td class="atype"><a href="TexDesc.html"><b>TexDesc</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Parallax Offset</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Has Decal 0 Texture</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have a decal 0 texture?</td>
+</tr>
+
+<tr>
+    <td class="aname">Decal 0 Texture</td>
+    <td class="atype"><a href="TexDesc.html"><b>TexDesc</b></a></td>
+    <td class="adesc">The decal texture.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Decal 1 Texture</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have a decal 1 texture?</td>
+</tr>
+
+<tr>
+    <td class="aname">Decal 1 Texture</td>
+    <td class="atype"><a href="TexDesc.html"><b>TexDesc</b></a></td>
+    <td class="adesc">Another decal texture.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Decal 2 Texture</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have a decal 2 texture?</td>
+</tr>
+
+<tr>
+    <td class="aname">Decal 2 Texture</td>
+    <td class="atype"><a href="TexDesc.html"><b>TexDesc</b></a></td>
+    <td class="adesc">Another decal texture.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Decal 3 Texture</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have a decal 3 texture?</td>
+</tr>
+
+<tr>
+    <td class="aname">Decal 3 Texture</td>
+    <td class="atype"><a href="TexDesc.html"><b>TexDesc</b></a></td>
+    <td class="adesc">Another decal texture. Who knows the limit.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Shader Textures</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Number of Shader textures that follow.</td>
+</tr>
+
+<tr>
+    <td class="aname">Shader Textures</td>
+    <td class="atype"><a href="ShaderTexDesc.html"><b>ShaderTexDesc</b></a></td>
+    <td class="adesc">Shader textures.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+	<li><a href="NiMultiTextureProperty.html">NiMultiTextureProperty</a></li>
+
+</ul>
+</body>
+</html>

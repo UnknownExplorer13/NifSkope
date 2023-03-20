@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - MalleableDescriptor</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>MalleableDescriptor</h2></center>
+
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Type</td>
+    <td class="atype"><a href="hkConstraintType.html"><b>hkConstraintType</b></a></td>
+    <td class="adesc">Type of constraint.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Entities</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Always 2 (Hardcoded). Number of bodies affected by this constraint.</td>
+</tr>
+
+<tr>
+    <td class="aname">Entity A</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="bhkEntity.html">bhkEntity</a>&gt;</td>
+    <td class="adesc">Usually NONE. The entity affected by this constraint.</td>
+</tr>
+
+<tr>
+    <td class="aname">Entity B</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="bhkEntity.html">bhkEntity</a>&gt;</td>
+    <td class="adesc">Usually NONE. The entity affected by this constraint.</td>
+</tr>
+
+<tr>
+    <td class="aname">Priority</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Usually 1. Higher values indicate higher priority of this constraint?</td>
+</tr>
+
+<tr>
+    <td class="aname">Ball and Socket</td>
+    <td class="atype"><a href="BallAndSocketDescriptor.html"><b>BallAndSocketDescriptor</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Hinge</td>
+    <td class="atype"><a href="HingeDescriptor.html"><b>HingeDescriptor</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Limited Hinge</td>
+    <td class="atype"><a href="LimitedHingeDescriptor.html"><b>LimitedHingeDescriptor</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Prismatic</td>
+    <td class="atype"><a href="PrismaticDescriptor.html"><b>PrismaticDescriptor</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Ragdoll</td>
+    <td class="atype"><a href="RagdollDescriptor.html"><b>RagdollDescriptor</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Stiff Spring</td>
+    <td class="atype"><a href="StiffSpringDescriptor.html"><b>StiffSpringDescriptor</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Strength</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="bhkMalleableConstraint.html">bhkMalleableConstraint</a></li>
+	<li><a href="ConstraintData.html">ConstraintData</a></li>
+
+</ul>
+
+</body>
+</html>

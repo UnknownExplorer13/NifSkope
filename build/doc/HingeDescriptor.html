@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - HingeDescriptor</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>HingeDescriptor</h2></center>
+This constraint allows rotation about a specified axis.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Axle A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Axis of rotation.</td>
+</tr>
+
+<tr>
+    <td class="aname">Perp2 Axle In A1</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Vector in the rotation plane which defines the zero angle.</td>
+</tr>
+
+<tr>
+    <td class="aname">Perp2 Axle In A2</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</td>
+</tr>
+
+<tr>
+    <td class="aname">Pivot A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Pivot point around which the object will rotate.</td>
+</tr>
+
+<tr>
+    <td class="aname">Axle B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Axle A in second entity coordinate system.</td>
+</tr>
+
+<tr>
+    <td class="aname">Perp2 Axle In B1</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Perp2 Axle In A1 in second entity coordinate system.</td>
+</tr>
+
+<tr>
+    <td class="aname">Perp2 Axle In B2</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Perp2 Axle In A2 in second entity coordinate system.</td>
+</tr>
+
+<tr>
+    <td class="aname">Pivot B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Pivot A in second entity coordinate system.</td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="bhkHingeConstraint.html">bhkHingeConstraint</a></li>
+	<li><a href="ConstraintData.html">ConstraintData</a></li>
+	<li><a href="MalleableDescriptor.html">MalleableDescriptor</a></li>
+
+</ul>
+
+</body>
+</html>

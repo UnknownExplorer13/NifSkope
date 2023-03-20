@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiControllerSequence</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiControllerSequence</h2></center>
+Root node in Gamebryo .kf files (version 10.0.1.0 and up).
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiSequence.html">NiSequence</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">The sequence name by which the animation system finds and manages this sequence.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Int 4</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Divinity 2</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Int 5</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Divinity 2</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Controlled Blocks</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Array Grow By</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Controlled Blocks</td>
+    <td class="atype"><a href="ControlledBlock.html"><b>ControlledBlock</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiControllerSequence.html">NiControllerSequence</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Weight</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The weight of a sequence describes how it blends with other sequences at the same priority.</td>
+</tr>
+
+<tr>
+    <td class="aname">Text Keys</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTextKeyExtraData.html">NiTextKeyExtraData</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Cycle Type</td>
+    <td class="atype"><a href="CycleType.html"><b>CycleType</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Frequency</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Start Time</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Stop Time</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Manager</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiControllerManager.html">NiControllerManager</a>&gt;</td>
+    <td class="adesc">The owner of this sequence.</td>
+</tr>
+
+<tr>
+    <td class="aname">Accum Root Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</td>
+</tr>
+
+<tr>
+    <td class="aname">Accum Flags</td>
+    <td class="atype"><a href="AccumFlags.html"><b>AccumFlags</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Anim Notes</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="BSAnimNotes.html">BSAnimNotes</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Anim Note Arrays</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Anim Note Arrays</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="BSAnimNotes.html">BSAnimNotes</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

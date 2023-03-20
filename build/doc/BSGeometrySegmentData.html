@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - BSGeometrySegmentData</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>BSGeometrySegmentData</h2></center>
+Bethesda-specific. Describes groups of triangles either segmented in a grid (for LOD) or by body part for skinned FO4 meshes.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Index</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Index = previous Index + previous Num Tris in Segment * 3</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Tris in Segment</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of triangles belonging to this segment</td>
+</tr>
+
+<tr>
+    <td class="aname">Start Index</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Primitives</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Parent Array Index</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Sub Segments</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Sub Segment</td>
+    <td class="atype"><a href="BSGeometrySubSegment.html"><b>BSGeometrySubSegment</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="BSSegmentedTriShape.html">BSSegmentedTriShape</a></li>
+	<li><a href="BSSubIndexTriShape.html">BSSubIndexTriShape</a></li>
+
+</ul>
+
+</body>
+</html>

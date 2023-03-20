@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiBSPArrayController</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiBSPArrayController</h2></center>
+A particle system controller, used by BS in conjunction with NiBSParticleNode.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiTimeController.html">NiTimeController</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Next Controller</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTimeController.html">NiTimeController</a>&gt;</td>
+    <td class="adesc">Index of the next controller.</td>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="Flags.html"><b>Flags</b></a></td>
+    <td class="adesc">Controller flags.<br/>            Bit 0 : Anim type, 0=APP_TIME 1=APP_INIT<br/>            Bit 1-2 : Cycle type, 00=Loop 01=Reverse 10=Clamp<br/>            Bit 3 : Active<br/>            Bit 4 : Play backwards<br/>            Bit 5 : Is manager controlled<br/>            Bit 6 : Always seems to be set in Skyrim and Fallout NIFs, unknown function</td>
+</tr>
+
+<tr>
+    <td class="aname">Frequency</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Frequency (is usually 1.0).</td>
+</tr>
+
+<tr>
+    <td class="aname">Phase</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Phase (usually 0.0).</td>
+</tr>
+
+<tr>
+    <td class="aname">Start Time</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Controller start time.</td>
+</tr>
+
+<tr>
+    <td class="aname">Stop Time</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Controller stop time.</td>
+</tr>
+
+<tr>
+    <td class="aname">Target</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiObjectNET.html">NiObjectNET</a>&gt;</td>
+    <td class="adesc">Controller target (object index of the first controllable ancestor of this object).</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiParticleSystemController.html">NiParticleSystemController</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Speed</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Particle speed</td>
+</tr>
+
+<tr>
+    <td class="aname">Speed Random</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Particle random speed modifier</td>
+</tr>
+
+<tr>
+    <td class="aname">Vertical Direction</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">vertical emit direction [radians]<br/>            0.0 : up<br/>            1.6 : horizontal<br/>            3.1416 : down</td>
+</tr>
+
+<tr>
+    <td class="aname">Vertical Angle</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">emitter's vertical opening angle [radians]</td>
+</tr>
+
+<tr>
+    <td class="aname">Horizontal Direction</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">horizontal emit direction</td>
+</tr>
+
+<tr>
+    <td class="aname">Horizontal Angle</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">emitter's horizontal opening angle</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Normal?</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Color?</td>
+    <td class="atype"><a href="Color4.html"><b>Color4</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Size</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Particle size</td>
+</tr>
+
+<tr>
+    <td class="aname">Emit Start Time</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Particle emit start time</td>
+</tr>
+
+<tr>
+    <td class="aname">Emit Stop Time</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Particle emit stop time</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Byte</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Unknown byte, (=0)</td>
+</tr>
+
+<tr>
+    <td class="aname">Emit Rate</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Particle emission rate (particles per second)</td>
+</tr>
+
+<tr>
+    <td class="aname">Lifetime</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Particle lifetime</td>
+</tr>
+
+<tr>
+    <td class="aname">Lifetime Random</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Particle lifetime random modifier</td>
+</tr>
+
+<tr>
+    <td class="aname">Emit Flags</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Bit 0: Emit Rate toggle bit (0 = auto adjust, 1 = use Emit Rate value)</td>
+</tr>
+
+<tr>
+    <td class="aname">Start Random</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Particle random start translation vector</td>
+</tr>
+
+<tr>
+    <td class="aname">Emitter</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiObject.html">NiObject</a>&gt;</td>
+    <td class="adesc">This index targets the particle emitter object (TODO: find out what type of object this refers to).</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Short 2?</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">? short=0 ?</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Float 13?</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">? float=1.0 ?</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Int 1?</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">? int=1 ?</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Int 2?</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">? int=0 ?</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Short 3?</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">? short=0 ?</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Particles</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Size of the following array. (Maximum number of simultaneous active particles)</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Valid</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of valid entries in the following array. (Number of active particles at the time the system was saved)</td>
+</tr>
+
+<tr>
+    <td class="aname">Particles</td>
+    <td class="atype"><a href="Particle.html"><b>Particle</b></a></td>
+    <td class="adesc">Individual particle modifiers?</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Link</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiObject.html">NiObject</a>&gt;</td>
+    <td class="adesc">unknown int (=0xffffffff)</td>
+</tr>
+
+<tr>
+    <td class="aname">Particle Extra</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiParticleModifier.html">NiParticleModifier</a>&gt;</td>
+    <td class="adesc">Link to some optional particle modifiers (NiGravity, NiParticleGrowFade, NiParticleBomb, ...)</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Link 2</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiObject.html">NiObject</a>&gt;</td>
+    <td class="adesc">Unknown int (=0xffffffff)</td>
+</tr>
+
+<tr>
+    <td class="aname">Trailer</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Trailing null byte</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiBSPArrayController.html">NiBSPArrayController</a></th>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiSortAdjustNode</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiSortAdjustNode</h2></center>
+Used to turn sorting off for individual subtrees in a scene. Useful if objects must be drawn in a fixed order.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObjectNET.html">NiObjectNET</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Skyrim Shader Type</td>
+    <td class="atype"><a href="BSLightingShaderPropertyShaderType.html"><b>BSLightingShaderPropertyShaderType</b></a></td>
+    <td class="adesc">Configures the main shader path</td>
+</tr>
+
+<tr>
+    <td class="aname">Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">Name of this controllable object, used to refer to the object in .kf files.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Extra Data List</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of Extra Data objects referenced through the list.</td>
+</tr>
+
+<tr>
+    <td class="aname">Extra Data List</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiExtraData.html">NiExtraData</a>&gt;</td>
+    <td class="adesc">List of extra data indices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Controller</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTimeController.html">NiTimeController</a>&gt;</td>
+    <td class="adesc">Controller object index. (The first in a chain)</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiAVObject.html">NiAVObject</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Basic flags for AV objects. For Bethesda streams above 26 only.</td>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="Flags.html"><b>Flags</b></a></td>
+    <td class="adesc">Basic flags for AV objects; commonly 0x000C or 0x000A.</td>
+</tr>
+
+<tr>
+    <td class="aname">Translation</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">The translation vector.</td>
+</tr>
+
+<tr>
+    <td class="aname">Rotation</td>
+    <td class="atype"><a href="Matrix33.html"><b>Matrix33</b></a></td>
+    <td class="adesc">The rotation part of the transformation matrix.</td>
+</tr>
+
+<tr>
+    <td class="aname">Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Scaling part (only uniform scaling is supported).</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Properties</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Properties</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiProperty.html">NiProperty</a>&gt;</td>
+    <td class="adesc">All rendering properties attached to this object.</td>
+</tr>
+
+<tr>
+    <td class="aname">Collision Object</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiCollisionObject.html">NiCollisionObject</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiNode.html">NiNode</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Num Children</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of child objects.</td>
+</tr>
+
+<tr>
+    <td class="aname">Children</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiAVObject.html">NiAVObject</a>&gt;</td>
+    <td class="adesc">List of child node object indices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Effects</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of references to effect objects that follow.</td>
+</tr>
+
+<tr>
+    <td class="aname">Effects</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiDynamicEffect.html">NiDynamicEffect</a>&gt;</td>
+    <td class="adesc">List of node effects. ADynamicEffect?</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiSortAdjustNode.html">NiSortAdjustNode</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Sorting Mode</td>
+    <td class="atype"><a href="SortingMode.html"><b>SortingMode</b></a></td>
+    <td class="adesc">Sorting</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

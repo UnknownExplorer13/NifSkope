@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiColorEvaluator</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiColorEvaluator</h2></center>
+
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiEvaluator.html">NiEvaluator</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Node Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">The name of the animated NiAVObject.</td>
+</tr>
+
+<tr>
+    <td class="aname">Property Type</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">The RTTI type of the NiProperty the controller is attached to, if applicable.</td>
+</tr>
+
+<tr>
+    <td class="aname">Controller Type</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">The RTTI type of the NiTimeController.</td>
+</tr>
+
+<tr>
+    <td class="aname">Controller ID</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">An ID that can uniquely identify the controller among others of the same type on the same NiObjectNET.</td>
+</tr>
+
+<tr>
+    <td class="aname">Interpolator ID</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">An ID that can uniquely identify the interpolator among others of the same type on the same NiObjectNET.</td>
+</tr>
+
+<tr>
+    <td class="aname">Channel Types</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Channel Indices are BASE/POS = 0, ROT = 1, SCALE = 2, FLAG = 3<br/>            Channel Types are:<br/>             INVALID = 0, COLOR, BOOL, FLOAT, POINT3, ROT = 5<br/>            Any channel may be | 0x40 which means POSED<br/>            The FLAG (3) channel flags affects the whole evaluator:<br/>             REFERENCED = 0x1, TRANSFORM = 0x2, ALWAYSUPDATE = 0x4, SHUTDOWN = 0x8</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiKeyBasedEvaluator.html">NiKeyBasedEvaluator</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiColorEvaluator.html">NiColorEvaluator</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Data</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiColorData.html">NiColorData</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

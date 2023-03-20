@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiPSysVolumeEmitter</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiPSysVolumeEmitter</h2></center>
+Abstract base class for particle emitters that emit particles from a volume.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiPSysModifier.html">NiPSysModifier</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">Used to locate the modifier.</td>
+</tr>
+
+<tr>
+    <td class="aname">Order</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Modifier ID in the particle modifier chain (always a multiple of 1000)?</td>
+</tr>
+
+<tr>
+    <td class="aname">Target</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiParticleSystem.html">NiParticleSystem</a>&gt;</td>
+    <td class="adesc">NiParticleSystem parent of this modifier.</td>
+</tr>
+
+<tr>
+    <td class="aname">Active</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Whether or not the modifier is active.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiPSysEmitter.html">NiPSysEmitter</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Speed</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Speed / Inertia of particle movement.</td>
+</tr>
+
+<tr>
+    <td class="aname">Speed Variation</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Adds an amount of randomness to Speed.</td>
+</tr>
+
+<tr>
+    <td class="aname">Declination</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Declination / First axis.</td>
+</tr>
+
+<tr>
+    <td class="aname">Declination Variation</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Declination randomness / First axis.</td>
+</tr>
+
+<tr>
+    <td class="aname">Planar Angle</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Planar Angle / Second axis.</td>
+</tr>
+
+<tr>
+    <td class="aname">Planar Angle Variation</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Planar Angle randomness / Second axis .</td>
+</tr>
+
+<tr>
+    <td class="aname">Initial Color</td>
+    <td class="atype"><a href="Color4.html"><b>Color4</b></a></td>
+    <td class="adesc">Defines color of a birthed particle.</td>
+</tr>
+
+<tr>
+    <td class="aname">Initial Radius</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Size of a birthed particle.</td>
+</tr>
+
+<tr>
+    <td class="aname">Radius Variation</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Particle Radius randomness.</td>
+</tr>
+
+<tr>
+    <td class="aname">Life Span</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Duration until a particle dies.</td>
+</tr>
+
+<tr>
+    <td class="aname">Life Span Variation</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Adds randomness to Life Span.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiPSysVolumeEmitter.html">NiPSysVolumeEmitter</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Emitter Object</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiNode.html">NiNode</a>&gt;</td>
+    <td class="adesc">Node parent of this modifier?</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+	<li><a href="BSPSysArrayEmitter.html">BSPSysArrayEmitter</a></li>
+	<li><a href="NiPSysBoxEmitter.html">NiPSysBoxEmitter</a></li>
+	<li><a href="NiPSysCylinderEmitter.html">NiPSysCylinderEmitter</a></li>
+	<li><a href="NiPSysSphereEmitter.html">NiPSysSphereEmitter</a></li>
+
+</ul>
+</body>
+</html>

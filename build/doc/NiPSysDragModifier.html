@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiPSysDragModifier</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiPSysDragModifier</h2></center>
+Particle modifier that applies a linear drag force to particles.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiPSysModifier.html">NiPSysModifier</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">Used to locate the modifier.</td>
+</tr>
+
+<tr>
+    <td class="aname">Order</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Modifier ID in the particle modifier chain (always a multiple of 1000)?</td>
+</tr>
+
+<tr>
+    <td class="aname">Target</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiParticleSystem.html">NiParticleSystem</a>&gt;</td>
+    <td class="adesc">NiParticleSystem parent of this modifier.</td>
+</tr>
+
+<tr>
+    <td class="aname">Active</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Whether or not the modifier is active.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiPSysDragModifier.html">NiPSysDragModifier</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Drag Object</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiAVObject.html">NiAVObject</a>&gt;</td>
+    <td class="adesc">The object whose position and orientation are the basis of the force.</td>
+</tr>
+
+<tr>
+    <td class="aname">Drag Axis</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">The local direction of the force.</td>
+</tr>
+
+<tr>
+    <td class="aname">Percentage</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The amount of drag to apply to particles.</td>
+</tr>
+
+<tr>
+    <td class="aname">Range</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The distance up to which particles are fully affected.</td>
+</tr>
+
+<tr>
+    <td class="aname">Range Falloff</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The distance at which particles cease to be affected.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

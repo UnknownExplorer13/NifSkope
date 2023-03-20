@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - BoneData</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>BoneData</h2></center>
+NiSkinData::BoneData. Skinning data component.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Skin Transform</td>
+    <td class="atype"><a href="NiTransform.html"><b>NiTransform</b></a></td>
+    <td class="adesc">Offset of the skin from this bone in bind position.</td>
+</tr>
+
+<tr>
+    <td class="aname">Bounding Sphere Offset</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Translation offset of a bounding sphere holding all vertices. (Note that its a Sphere Containing Axis Aligned Box not a minimum volume Sphere)</td>
+</tr>
+
+<tr>
+    <td class="aname">Bounding Sphere Radius</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Radius for bounding sphere holding all vertices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 13 Shorts</td>
+    <td class="atype"><a href="short.html"><b>short</b></a></td>
+    <td class="adesc">Unknown, always 0?</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Vertices</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of weighted vertices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Vertex Weights</td>
+    <td class="atype"><a href="BoneVertData.html"><b>BoneVertData</b></a></td>
+    <td class="adesc">The vertex weights.</td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="NiSkinData.html">NiSkinData</a></li>
+
+</ul>
+
+</body>
+</html>

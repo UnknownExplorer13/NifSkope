@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiScreenElementsData</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiScreenElementsData</h2></center>
+DEPRECATED (20.5), functionality included in NiMeshScreenElements.<br/>        Two dimensional screen elements.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiGeometryData.html">NiGeometryData</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Group ID</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Always zero.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Vertices</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of vertices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Vertices</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of vertices.</td>
+</tr>
+
+<tr>
+    <td class="aname">BS Max Vertices</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Bethesda uses this for max number of particles in NiPSysData.</td>
+</tr>
+
+<tr>
+    <td class="aname">Keep Flags</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Used with NiCollision objects when OBB or TRI is set.</td>
+</tr>
+
+<tr>
+    <td class="aname">Compress Flags</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Vertices</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Is the vertex array present? (Always non-zero.)</td>
+</tr>
+
+<tr>
+    <td class="aname">Vertices</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">The mesh vertices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Vector Flags</td>
+    <td class="atype"><a href="VectorFlags.html"><b>VectorFlags</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">BS Vector Flags</td>
+    <td class="atype"><a href="BSVectorFlags.html"><b>BSVectorFlags</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Material CRC</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Has Normals</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</td>
+</tr>
+
+<tr>
+    <td class="aname">Normals</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">The lighting normals.</td>
+</tr>
+
+<tr>
+    <td class="aname">Tangents</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Tangent vectors.</td>
+</tr>
+
+<tr>
+    <td class="aname">Bitangents</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Bitangent vectors.</td>
+</tr>
+
+<tr>
+    <td class="aname">Center</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Center of the bounding box (smallest box that contains all vertices) of the mesh.</td>
+</tr>
+
+<tr>
+    <td class="aname">Radius</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 13 shorts</td>
+    <td class="atype"><a href="short.html"><b>short</b></a></td>
+    <td class="adesc">Unknown, always 0?</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Vertex Colors</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have vertex colors? These are usually used to fine-tune the lighting of the model.<br/><br/>            Note: how vertex colors influence the model can be controlled by having a NiVertexColorProperty object as a property child of the root node. If this property object is not present, the vertex colors fine-tune lighting.<br/><br/>            Note 2: set to either 0 or 0xFFFFFFFF for NifTexture compatibility.</td>
+</tr>
+
+<tr>
+    <td class="aname">Vertex Colors</td>
+    <td class="atype"><a href="Color4.html"><b>Color4</b></a></td>
+    <td class="adesc">The vertex colors.</td>
+</tr>
+
+<tr>
+    <td class="aname">UV Sets</td>
+    <td class="atype"><a href="TexCoord.html"><b>TexCoord</b></a></td>
+    <td class="adesc">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</td>
+</tr>
+
+<tr>
+    <td class="aname">Consistency Flags</td>
+    <td class="atype"><a href="ConsistencyType.html"><b>ConsistencyType</b></a></td>
+    <td class="adesc">Consistency Flags</td>
+</tr>
+
+<tr>
+    <td class="aname">Additional Data</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="AbstractAdditionalGeometryData.html">AbstractAdditionalGeometryData</a>&gt;</td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiTriBasedGeomData.html">NiTriBasedGeomData</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Num Triangles</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of triangles.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiTriShapeData.html">NiTriShapeData</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Num Triangle Points</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Num Triangles times 3.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Triangles</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have triangle data?</td>
+</tr>
+
+<tr>
+    <td class="aname">Triangles</td>
+    <td class="atype"><a href="Triangle.html"><b>Triangle</b></a></td>
+    <td class="adesc">Triangle face data.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Match Groups</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of shared normals groups.</td>
+</tr>
+
+<tr>
+    <td class="aname">Match Groups</td>
+    <td class="atype"><a href="MatchGroup.html"><b>MatchGroup</b></a></td>
+    <td class="adesc">The shared normals.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiScreenElementsData.html">NiScreenElementsData</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Max Polygons</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Polygons</td>
+    <td class="atype"><a href="Polygon.html"><b>Polygon</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Polygon Indices</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Polygon Grow By</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Polygons</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Max Vertices</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Vertices Grow By</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Max Indices</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Indices Grow By</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

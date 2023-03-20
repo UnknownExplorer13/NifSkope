@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - PrismaticDescriptor</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>PrismaticDescriptor</h2></center>
+
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Sliding A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Describes the axis the object is able to travel along. Unit vector.</td>
+</tr>
+
+<tr>
+    <td class="aname">Rotation A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Rotation axis.</td>
+</tr>
+
+<tr>
+    <td class="aname">Plane A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Plane normal. Describes the plane the object is able to move on.</td>
+</tr>
+
+<tr>
+    <td class="aname">Pivot A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Pivot.</td>
+</tr>
+
+<tr>
+    <td class="aname">Sliding B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Describes the axis the object is able to travel along in B coordinates. Unit vector.</td>
+</tr>
+
+<tr>
+    <td class="aname">Rotation B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Rotation axis.</td>
+</tr>
+
+<tr>
+    <td class="aname">Plane B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Plane normal. Describes the plane the object is able to move on in B coordinates.</td>
+</tr>
+
+<tr>
+    <td class="aname">Pivot B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Pivot in B coordinates.</td>
+</tr>
+
+<tr>
+    <td class="aname">Min Distance</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Describe the min distance the object is able to travel.</td>
+</tr>
+
+<tr>
+    <td class="aname">Max Distance</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Describe the max distance the object is able to travel.</td>
+</tr>
+
+<tr>
+    <td class="aname">Friction</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Friction.</td>
+</tr>
+
+<tr>
+    <td class="aname">Motor</td>
+    <td class="atype"><a href="MotorDescriptor.html"><b>MotorDescriptor</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="bhkPrismaticConstraint.html">bhkPrismaticConstraint</a></li>
+	<li><a href="ConstraintData.html">ConstraintData</a></li>
+	<li><a href="MalleableDescriptor.html">MalleableDescriptor</a></li>
+
+</ul>
+
+</body>
+</html>

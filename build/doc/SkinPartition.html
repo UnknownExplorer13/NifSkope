@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - SkinPartition</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>SkinPartition</h2></center>
+Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Num Vertices</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of vertices in this submesh.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Triangles</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of triangles in this submesh.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Bones</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of bones influencing this submesh.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Strips</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of strips in this submesh (zero if not stripped).</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Weights Per Vertex</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of weight coefficients per vertex. The Gamebryo engine seems to work well only if this number is equal to 4, even if there are less than 4 influences per vertex.</td>
+</tr>
+
+<tr>
+    <td class="aname">Bones</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">List of bones.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Vertex Map</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have a vertex map?</td>
+</tr>
+
+<tr>
+    <td class="aname">Vertex Map</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Vertex Weights</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have vertex weights?</td>
+</tr>
+
+<tr>
+    <td class="aname">Vertex Weights</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The vertex weights.</td>
+</tr>
+
+<tr>
+    <td class="aname">Strip Lengths</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">The strip lengths.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Faces</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have triangle or strip data?</td>
+</tr>
+
+<tr>
+    <td class="aname">Strips</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">The strips.</td>
+</tr>
+
+<tr>
+    <td class="aname">Triangles</td>
+    <td class="atype"><a href="Triangle.html"><b>Triangle</b></a></td>
+    <td class="adesc">The triangles.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Bone Indices</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have bone indices?</td>
+</tr>
+
+<tr>
+    <td class="aname">Bone Indices</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Bone indices, they index into 'Bones'.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Short</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Unknown</td>
+</tr>
+
+<tr>
+    <td class="aname">Vertex Desc</td>
+    <td class="atype"><a href="BSVertexDesc.html"><b>BSVertexDesc</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Triangles Copy</td>
+    <td class="atype"><a href="Triangle.html"><b>Triangle</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="NiSkinPartition.html">NiSkinPartition</a></li>
+
+</ul>
+
+</body>
+</html>

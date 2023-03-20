@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiSequenceData</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiSequenceData</h2></center>
+Root node in Gamebryo .kf files (20.5.0.1 and up).<br/>        For 20.5.0.0, "NiSequenceData" is an alias for "NiControllerSequence" and this is not handled in nifxml.<br/>        This was not found in any 20.5.0.0 KFs available and they instead use NiControllerSequence directly.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiSequenceData.html">NiSequenceData</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Controlled Blocks</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Array Grow By</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Controlled Blocks</td>
+    <td class="atype"><a href="ControlledBlock.html"><b>ControlledBlock</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Evaluators</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Evaluators</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiEvaluator.html">NiEvaluator</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Text Keys</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTextKeyExtraData.html">NiTextKeyExtraData</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Duration</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Cycle Type</td>
+    <td class="atype"><a href="CycleType.html"><b>CycleType</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Frequency</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Accum Root Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</td>
+</tr>
+
+<tr>
+    <td class="aname">Accum Flags</td>
+    <td class="atype"><a href="AccumFlags.html"><b>AccumFlags</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

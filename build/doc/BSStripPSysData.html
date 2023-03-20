@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - BSStripPSysData</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>BSStripPSysData</h2></center>
+Bethesda-Specific (mesh?) Particle System Data.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiGeometryData.html">NiGeometryData</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Group ID</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Always zero.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Vertices</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of vertices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Vertices</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of vertices.</td>
+</tr>
+
+<tr>
+    <td class="aname">BS Max Vertices</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Bethesda uses this for max number of particles in NiPSysData.</td>
+</tr>
+
+<tr>
+    <td class="aname">Keep Flags</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Used with NiCollision objects when OBB or TRI is set.</td>
+</tr>
+
+<tr>
+    <td class="aname">Compress Flags</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Vertices</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Is the vertex array present? (Always non-zero.)</td>
+</tr>
+
+<tr>
+    <td class="aname">Vertices</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">The mesh vertices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Vector Flags</td>
+    <td class="atype"><a href="VectorFlags.html"><b>VectorFlags</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">BS Vector Flags</td>
+    <td class="atype"><a href="BSVectorFlags.html"><b>BSVectorFlags</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Material CRC</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Has Normals</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</td>
+</tr>
+
+<tr>
+    <td class="aname">Normals</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">The lighting normals.</td>
+</tr>
+
+<tr>
+    <td class="aname">Tangents</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Tangent vectors.</td>
+</tr>
+
+<tr>
+    <td class="aname">Bitangents</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Bitangent vectors.</td>
+</tr>
+
+<tr>
+    <td class="aname">Center</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Center of the bounding box (smallest box that contains all vertices) of the mesh.</td>
+</tr>
+
+<tr>
+    <td class="aname">Radius</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 13 shorts</td>
+    <td class="atype"><a href="short.html"><b>short</b></a></td>
+    <td class="adesc">Unknown, always 0?</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Vertex Colors</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Do we have vertex colors? These are usually used to fine-tune the lighting of the model.<br/><br/>            Note: how vertex colors influence the model can be controlled by having a NiVertexColorProperty object as a property child of the root node. If this property object is not present, the vertex colors fine-tune lighting.<br/><br/>            Note 2: set to either 0 or 0xFFFFFFFF for NifTexture compatibility.</td>
+</tr>
+
+<tr>
+    <td class="aname">Vertex Colors</td>
+    <td class="atype"><a href="Color4.html"><b>Color4</b></a></td>
+    <td class="adesc">The vertex colors.</td>
+</tr>
+
+<tr>
+    <td class="aname">UV Sets</td>
+    <td class="atype"><a href="TexCoord.html"><b>TexCoord</b></a></td>
+    <td class="adesc">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</td>
+</tr>
+
+<tr>
+    <td class="aname">Consistency Flags</td>
+    <td class="atype"><a href="ConsistencyType.html"><b>ConsistencyType</b></a></td>
+    <td class="adesc">Consistency Flags</td>
+</tr>
+
+<tr>
+    <td class="aname">Additional Data</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="AbstractAdditionalGeometryData.html">AbstractAdditionalGeometryData</a>&gt;</td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiParticlesData.html">NiParticlesData</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Has Radii</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Is the particle size array present?</td>
+</tr>
+
+<tr>
+    <td class="aname">Radii</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The individual particle sizes.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Active</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">The number of active particles at the time the system was saved. This is also the number of valid entries in the following arrays.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Sizes</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Is the particle size array present?</td>
+</tr>
+
+<tr>
+    <td class="aname">Sizes</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The individual particle sizes.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Rotations</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Is the particle rotation array present?</td>
+</tr>
+
+<tr>
+    <td class="aname">Rotations</td>
+    <td class="atype"><a href="Quaternion.html"><b>Quaternion</b></a></td>
+    <td class="adesc">The individual particle rotations.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Rotation Angles</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Are the angles of rotation present?</td>
+</tr>
+
+<tr>
+    <td class="aname">Rotation Angles</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Angles of rotation</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Rotation Axes</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Are axes of rotation present?</td>
+</tr>
+
+<tr>
+    <td class="aname">Rotation Axes</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Axes of rotation.</td>
+</tr>
+
+<tr>
+    <td class="aname">Has Texture Indices</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Subtexture Offsets</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">How many quads to use in BSPSysSubTexModifier for texture atlasing</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Subtexture Offsets</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">2,4,8,16,32,64 are potential values. If "Has" was no then this should be 256, which represents a 16x16 framed image, which is invalid</td>
+</tr>
+
+<tr>
+    <td class="aname">Subtexture Offsets</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Defines UV offsets</td>
+</tr>
+
+<tr>
+    <td class="aname">Aspect Ratio</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Sets aspect ratio for Subtexture Offset UV quads</td>
+</tr>
+
+<tr>
+    <td class="aname">Aspect Flags</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Speed to Aspect Aspect 2</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Speed to Aspect Speed 1</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Speed to Aspect Speed 2</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiPSysData.html">NiPSysData</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Particle Descriptions</td>
+    <td class="atype"><a href="ParticleDesc.html"><b>ParticleDesc</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Has Rotation Speeds</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Rotation Speeds</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Added Particles</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Added Particles Base</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="BSStripPSysData.html">BSStripPSysData</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Max Point Count</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Start Cap Size</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">End Cap Size</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Do Z Prepass</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

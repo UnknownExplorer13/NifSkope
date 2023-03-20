@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - BSPackedAdditionalDataBlock</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>BSPackedAdditionalDataBlock</h2></center>
+
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Has Data</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Has data</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Total Bytes</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Total number of bytes (over all channels and all elements, equals num total bytes per element times num vertices).</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Blocks</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Number of blocks? Usually equal to one.</td>
+</tr>
+
+<tr>
+    <td class="aname">Block Offsets</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Block offsets in the data? Usually equal to zero.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Atoms</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Number of atoms?</td>
+</tr>
+
+<tr>
+    <td class="aname">Atom Sizes</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">The sum of all of these equal num total bytes per element, so this probably describes how each data element breaks down into smaller chunks (i.e. atoms).</td>
+</tr>
+
+<tr>
+    <td class="aname">Data</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Int 1</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Total Bytes Per Element</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unsure, but this seems to correspond again to the number of total bytes per element.</td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="BSPackedAdditionalGeometryData.html">BSPackedAdditionalGeometryData</a></li>
+
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiMesh</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiMesh</h2></center>
+
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObjectNET.html">NiObjectNET</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Skyrim Shader Type</td>
+    <td class="atype"><a href="BSLightingShaderPropertyShaderType.html"><b>BSLightingShaderPropertyShaderType</b></a></td>
+    <td class="adesc">Configures the main shader path</td>
+</tr>
+
+<tr>
+    <td class="aname">Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">Name of this controllable object, used to refer to the object in .kf files.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Extra Data List</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of Extra Data objects referenced through the list.</td>
+</tr>
+
+<tr>
+    <td class="aname">Extra Data List</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiExtraData.html">NiExtraData</a>&gt;</td>
+    <td class="adesc">List of extra data indices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Controller</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTimeController.html">NiTimeController</a>&gt;</td>
+    <td class="adesc">Controller object index. (The first in a chain)</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiAVObject.html">NiAVObject</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Basic flags for AV objects. For Bethesda streams above 26 only.</td>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="Flags.html"><b>Flags</b></a></td>
+    <td class="adesc">Basic flags for AV objects; commonly 0x000C or 0x000A.</td>
+</tr>
+
+<tr>
+    <td class="aname">Translation</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">The translation vector.</td>
+</tr>
+
+<tr>
+    <td class="aname">Rotation</td>
+    <td class="atype"><a href="Matrix33.html"><b>Matrix33</b></a></td>
+    <td class="adesc">The rotation part of the transformation matrix.</td>
+</tr>
+
+<tr>
+    <td class="aname">Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Scaling part (only uniform scaling is supported).</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Properties</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Properties</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiProperty.html">NiProperty</a>&gt;</td>
+    <td class="adesc">All rendering properties attached to this object.</td>
+</tr>
+
+<tr>
+    <td class="aname">Collision Object</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiCollisionObject.html">NiCollisionObject</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiRenderObject.html">NiRenderObject</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Material Data</td>
+    <td class="atype"><a href="MaterialData.html"><b>MaterialData</b></a></td>
+    <td class="adesc">Per-material data.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiMesh.html">NiMesh</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Primitive Type</td>
+    <td class="atype"><a href="MeshPrimitiveType.html"><b>MeshPrimitiveType</b></a></td>
+    <td class="adesc">The primitive type of the mesh, such as triangles or lines.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 51</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 52</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 53</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 54</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 55</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 56</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Submeshes</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">The number of submeshes contained in this mesh.</td>
+</tr>
+
+<tr>
+    <td class="aname">Instancing Enabled</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Sets whether hardware instancing is being used.</td>
+</tr>
+
+<tr>
+    <td class="aname">Bound</td>
+    <td class="atype"><a href="NiBound.html"><b>NiBound</b></a></td>
+    <td class="adesc">The combined bounding volume of all submeshes.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Datastreams</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Datastreams</td>
+    <td class="atype"><a href="DataStreamRef.html"><b>DataStreamRef</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Modifiers</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Modifiers</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiMeshModifier.html">NiMeshModifier</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 100</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 101</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 102</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Size of additional data.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 103</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 200</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 201</td>
+    <td class="atype"><a href="ExtraMeshDataEpicMickey.html"><b>ExtraMeshDataEpicMickey</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 250</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 251</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 300</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 301</td>
+    <td class="atype"><a href="short.html"><b>short</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 302</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 303</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 350</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 351</td>
+    <td class="atype"><a href="ExtraMeshDataEpicMickey2.html"><b>ExtraMeshDataEpicMickey2</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown 400</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+	<li><a href="NiPSParticleSystem.html">NiPSParticleSystem</a></li>
+
+</ul>
+</body>
+</html>

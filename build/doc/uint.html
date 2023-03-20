@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - uint</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>uint</h2></center>
+An unsigned 32-bit integer.
+
+<h3>Can Be Used As Array Size</h3>
+<p>True</p>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="BSAnimNote.html">BSAnimNote</a></li>
+	<li><a href="BSBoneLODExtraData.html">BSBoneLODExtraData</a></li>
+	<li><a href="BSConnectPointParents.html">BSConnectPoint::Parents</a></li>
+	<li><a href="BSDynamicTriShape.html">BSDynamicTriShape</a></li>
+	<li><a href="BSFurnitureMarker.html">BSFurnitureMarker</a></li>
+	<li><a href="BSLODTriShape.html">BSLODTriShape</a></li>
+	<li><a href="BSLightingShaderProperty.html">BSLightingShaderProperty</a></li>
+	<li><a href="BSMeshLODTriShape.html">BSMeshLODTriShape</a></li>
+	<li><a href="BSPSysHavokUpdateModifier.html">BSPSysHavokUpdateModifier</a></li>
+	<li><a href="BSPSysScaleModifier.html">BSPSysScaleModifier</a></li>
+	<li><a href="BSPSysSubTexModifier.html">BSPSysSubTexModifier</a></li>
+	<li><a href="BSPackedAdditionalGeometryData.html">BSPackedAdditionalGeometryData</a></li>
+	<li><a href="BSPackedCombinedGeomDataExtra.html">BSPackedCombinedGeomDataExtra</a></li>
+	<li><a href="BSPositionData.html">BSPositionData</a></li>
+	<li><a href="BSSkinBoneData.html">BSSkin::BoneData</a></li>
+	<li><a href="BSSkinInstance.html">BSSkin::Instance</a></li>
+	<li><a href="BSSubIndexTriShape.html">BSSubIndexTriShape</a></li>
+	<li><a href="BSTreeNode.html">BSTreeNode</a></li>
+	<li><a href="BSTriShape.html">BSTriShape</a></li>
+	<li><a href="BSValueNode.html">BSValueNode</a></li>
+	<li><a href="FxRadioButton.html">FxRadioButton</a></li>
+	<li><a href="Ni3dsAlphaAnimator.html">Ni3dsAlphaAnimator</a></li>
+	<li><a href="Ni3dsAnimationNode.html">Ni3dsAnimationNode</a></li>
+	<li><a href="NiAVObject.html">NiAVObject</a></li>
+	<li><a href="NiAdditionalGeometryData.html">NiAdditionalGeometryData</a></li>
+	<li><a href="NiAlphaProperty.html">NiAlphaProperty</a></li>
+	<li><a href="NiBSplineBasisData.html">NiBSplineBasisData</a></li>
+	<li><a href="NiBSplineColorEvaluator.html">NiBSplineColorEvaluator</a></li>
+	<li><a href="NiBSplineData.html">NiBSplineData</a></li>
+	<li><a href="NiBSplineFloatEvaluator.html">NiBSplineFloatEvaluator</a></li>
+	<li><a href="NiBSplineFloatInterpolator.html">NiBSplineFloatInterpolator</a></li>
+	<li><a href="NiBSplinePoint3Evaluator.html">NiBSplinePoint3Evaluator</a></li>
+	<li><a href="NiBSplinePoint3Interpolator.html">NiBSplinePoint3Interpolator</a></li>
+	<li><a href="NiBSplineTransformEvaluator.html">NiBSplineTransformEvaluator</a></li>
+	<li><a href="NiBSplineTransformInterpolator.html">NiBSplineTransformInterpolator</a></li>
+	<li><a href="NiBezierMesh.html">NiBezierMesh</a></li>
+	<li><a href="NiBezierTriangle4.html">NiBezierTriangle4</a></li>
+	<li><a href="NiBinaryVoxelData.html">NiBinaryVoxelData</a></li>
+	<li><a href="NiBinaryVoxelExtraData.html">NiBinaryVoxelExtraData</a></li>
+	<li><a href="NiBoneLODController.html">NiBoneLODController</a></li>
+	<li><a href="NiCamera.html">NiCamera</a></li>
+	<li><a href="NiControllerManager.html">NiControllerManager</a></li>
+	<li><a href="NiDataStream.html">NiDataStream</a></li>
+	<li><a href="NiDefaultAVObjectPalette.html">NiDefaultAVObjectPalette</a></li>
+	<li><a href="NiDynamicEffect.html">NiDynamicEffect</a></li>
+	<li><a href="NiEnvMappedTriShape.html">NiEnvMappedTriShape</a></li>
+	<li><a href="NiFlipController.html">NiFlipController</a></li>
+	<li><a href="NiFloatsExtraData.html">NiFloatsExtraData</a></li>
+	<li><a href="NiFurSpringController.html">NiFurSpringController</a></li>
+	<li><a href="NiGeomMorpherController.html">NiGeomMorpherController</a></li>
+	<li><a href="NiGeometryData.html">NiGeometryData</a></li>
+	<li><a href="NiImage.html">NiImage</a></li>
+	<li><a href="NiInstancingMeshModifier.html">NiInstancingMeshModifier</a></li>
+	<li><a href="NiIntegerExtraData.html">NiIntegerExtraData</a></li>
+	<li><a href="NiIntegersExtraData.html">NiIntegersExtraData</a></li>
+	<li><a href="NiKeyframeData.html">NiKeyframeData</a></li>
+	<li><a href="NiLODNode.html">NiLODNode</a></li>
+	<li><a href="NiMesh.html">NiMesh</a></li>
+	<li><a href="NiMeshModifier.html">NiMeshModifier</a></li>
+	<li><a href="NiMeshPSysData.html">NiMeshPSysData</a></li>
+	<li><a href="NiMorphData.html">NiMorphData</a></li>
+	<li><a href="NiMorphMeshModifier.html">NiMorphMeshModifier</a></li>
+	<li><a href="NiMorphWeightsController.html">NiMorphWeightsController</a></li>
+	<li><a href="NiNode.html">NiNode</a></li>
+	<li><a href="NiObjectNET.html">NiObjectNET</a></li>
+	<li><a href="NiPSMeshEmitter.html">NiPSMeshEmitter</a></li>
+	<li><a href="NiPSMeshParticleSystem.html">NiPSMeshParticleSystem</a></li>
+	<li><a href="NiPSParticleSystem.html">NiPSParticleSystem</a></li>
+	<li><a href="NiPSSimulator.html">NiPSSimulator</a></li>
+	<li><a href="NiPSSimulatorCollidersStep.html">NiPSSimulatorCollidersStep</a></li>
+	<li><a href="NiPSSimulatorForcesStep.html">NiPSSimulatorForcesStep</a></li>
+	<li><a href="NiPSSpawner.html">NiPSSpawner</a></li>
+	<li><a href="NiPSysEmitterCtlrData.html">NiPSysEmitterCtlrData</a></li>
+	<li><a href="NiPSysMeshEmitter.html">NiPSysMeshEmitter</a></li>
+	<li><a href="NiPSysMeshUpdateModifier.html">NiPSysMeshUpdateModifier</a></li>
+	<li><a href="NiPSysModifier.html">NiPSysModifier</a></li>
+	<li><a href="NiPalette.html">NiPalette</a></li>
+	<li><a href="NiParticleMeshModifier.html">NiParticleMeshModifier</a></li>
+	<li><a href="NiParticleSystem.html">NiParticleSystem</a></li>
+	<li><a href="NiParticleSystemController.html">NiParticleSystemController</a></li>
+	<li><a href="NiParticlesData.html">NiParticlesData</a></li>
+	<li><a href="NiPersistentSrcTextureRendererData.html">NiPersistentSrcTextureRendererData</a></li>
+	<li><a href="NiPhysXActorDesc.html">NiPhysXActorDesc</a></li>
+	<li><a href="NiPhysXBodyDesc.html">NiPhysXBodyDesc</a></li>
+	<li><a href="NiPhysXD6JointDesc.html">NiPhysXD6JointDesc</a></li>
+	<li><a href="NiPhysXJointDesc.html">NiPhysXJointDesc</a></li>
+	<li><a href="NiPhysXMaterialDesc.html">NiPhysXMaterialDesc</a></li>
+	<li><a href="NiPhysXMeshDesc.html">NiPhysXMeshDesc</a></li>
+	<li><a href="NiPhysXProp.html">NiPhysXProp</a></li>
+	<li><a href="NiPhysXPropDesc.html">NiPhysXPropDesc</a></li>
+	<li><a href="NiPhysXShapeDesc.html">NiPhysXShapeDesc</a></li>
+	<li><a href="NiPixelData.html">NiPixelData</a></li>
+	<li><a href="NiPixelFormat.html">NiPixelFormat</a></li>
+	<li><a href="NiRangeLODData.html">NiRangeLODData</a></li>
+	<li><a href="NiRawImageData.html">NiRawImageData</a></li>
+	<li><a href="NiRoom.html">NiRoom</a></li>
+	<li><a href="NiRotData.html">NiRotData</a></li>
+	<li><a href="NiScreenLODData.html">NiScreenLODData</a></li>
+	<li><a href="NiSequence.html">NiSequence</a></li>
+	<li><a href="NiSequenceData.html">NiSequenceData</a></li>
+	<li><a href="NiShadowGenerator.html">NiShadowGenerator</a></li>
+	<li><a href="NiSkinData.html">NiSkinData</a></li>
+	<li><a href="NiSkinInstance.html">NiSkinInstance</a></li>
+	<li><a href="NiSkinPartition.html">NiSkinPartition</a></li>
+	<li><a href="NiSkinningLODController.html">NiSkinningLODController</a></li>
+	<li><a href="NiSkinningMeshModifier.html">NiSkinningMeshModifier</a></li>
+	<li><a href="NiStencilProperty.html">NiStencilProperty</a></li>
+	<li><a href="NiStringExtraData.html">NiStringExtraData</a></li>
+	<li><a href="NiStringsExtraData.html">NiStringsExtraData</a></li>
+	<li><a href="NiSwitchNode.html">NiSwitchNode</a></li>
+	<li><a href="NiTextKeyExtraData.html">NiTextKeyExtraData</a></li>
+	<li><a href="NiTextureModeProperty.html">NiTextureModeProperty</a></li>
+	<li><a href="NiTextureProperty.html">NiTextureProperty</a></li>
+	<li><a href="NiTexturingProperty.html">NiTexturingProperty</a></li>
+	<li><a href="NiTimeController.html">NiTimeController</a></li>
+	<li><a href="NiTriShapeData.html">NiTriShapeData</a></li>
+	<li><a href="NiTriShapeSkinController.html">NiTriShapeSkinController</a></li>
+	<li><a href="NiVertWeightsExtraData.html">NiVertWeightsExtraData</a></li>
+	<li><a href="NiVisData.html">NiVisData</a></li>
+	<li><a href="bhkBallSocketConstraintChain.html">bhkBallSocketConstraintChain</a></li>
+	<li><a href="bhkBlendController.html">bhkBlendController</a></li>
+	<li><a href="bhkCompressedMeshShape.html">bhkCompressedMeshShape</a></li>
+	<li><a href="bhkCompressedMeshShapeData.html">bhkCompressedMeshShapeData</a></li>
+	<li><a href="bhkConstraint.html">bhkConstraint</a></li>
+	<li><a href="bhkConvexListShape.html">bhkConvexListShape</a></li>
+	<li><a href="bhkConvexVerticesShape.html">bhkConvexVerticesShape</a></li>
+	<li><a href="bhkLiquidAction.html">bhkLiquidAction</a></li>
+	<li><a href="bhkListShape.html">bhkListShape</a></li>
+	<li><a href="bhkMeshShape.html">bhkMeshShape</a></li>
+	<li><a href="bhkMoppBvTreeShape.html">bhkMoppBvTreeShape</a></li>
+	<li><a href="bhkMultiSphereShape.html">bhkMultiSphereShape</a></li>
+	<li><a href="bhkNPCollisionObject.html">bhkNPCollisionObject</a></li>
+	<li><a href="bhkNiTriStripsShape.html">bhkNiTriStripsShape</a></li>
+	<li><a href="bhkOrientHingedBodyAction.html">bhkOrientHingedBodyAction</a></li>
+	<li><a href="bhkPackedNiTriStripsShape.html">bhkPackedNiTriStripsShape</a></li>
+	<li><a href="bhkRagdollTemplateData.html">bhkRagdollTemplateData</a></li>
+	<li><a href="bhkRigidBody.html">bhkRigidBody</a></li>
+	<li><a href="hkPackedNiTriStripsData.html">hkPackedNiTriStripsData</a></li>
+	<li><a href="BSGeometryPerSegmentSharedData.html">BSGeometryPerSegmentSharedData</a></li>
+	<li><a href="BSGeometrySegmentData.html">BSGeometrySegmentData</a></li>
+	<li><a href="BSGeometrySegmentSharedData.html">BSGeometrySegmentSharedData</a></li>
+	<li><a href="BSGeometrySubSegment.html">BSGeometrySubSegment</a></li>
+	<li><a href="BSPackedGeomData.html">BSPackedGeomData</a></li>
+	<li><a href="BSPackedGeomObject.html">BSPackedGeomObject</a></li>
+	<li><a href="BSVertexData.html">BSVertexData</a></li>
+	<li><a href="BoneLOD.html">BoneLOD</a></li>
+	<li><a href="BonePose.html">BonePose</a></li>
+	<li><a href="ByteArray.html">ByteArray</a></li>
+	<li><a href="ByteMatrix.html">ByteMatrix</a></li>
+	<li><a href="ConstraintData.html">ConstraintData</a></li>
+	<li><a href="DataStreamRef.html">DataStreamRef</a></li>
+	<li><a href="ElementReference.html">ElementReference</a></li>
+	<li><a href="Footer.html">Footer</a></li>
+	<li><a href="Header.html">Header</a></li>
+	<li><a href="KeyGroup.html">KeyGroup</a></li>
+	<li><a href="LODInfo.html">LODInfo</a></li>
+	<li><a href="LODRange.html">LODRange</a></li>
+	<li><a href="MalleableDescriptor.html">MalleableDescriptor</a></li>
+	<li><a href="MaterialData.html">MaterialData</a></li>
+	<li><a href="MipMap.html">MipMap</a></li>
+	<li><a href="Morph.html">Morph</a></li>
+	<li><a href="NodeSet.html">NodeSet</a></li>
+	<li><a href="NxCapsule.html">NxCapsule</a></li>
+	<li><a href="OblivionSubShape.html">OblivionSubShape</a></li>
+	<li><a href="PhysXStateName.html">PhysXStateName</a></li>
+	<li><a href="Region.html">Region</a></li>
+	<li><a href="SemanticData.html">SemanticData</a></li>
+	<li><a href="ShaderTexDesc.html">ShaderTexDesc</a></li>
+	<li><a href="SizedString.html">SizedString</a></li>
+	<li><a href="SkinInfoSet.html">SkinInfoSet</a></li>
+	<li><a href="StringPalette.html">StringPalette</a></li>
+	<li><a href="TexDesc.html">TexDesc</a></li>
+	<li><a href="UnionBV.html">UnionBV</a></li>
+	<li><a href="bhkCMSDBigTris.html">bhkCMSDBigTris</a></li>
+	<li><a href="bhkCMSDChunk.html">bhkCMSDChunk</a></li>
+	<li><a href="hkWorldObjCinfoProperty.html">hkWorldObjCinfoProperty</a></li>
+
+</ul>
+
+</body>
+</html>

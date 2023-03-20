@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiPSysCollider</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiPSysCollider</h2></center>
+Particle system collider.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiPSysCollider.html">NiPSysCollider</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Bounce</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Amount of bounce for the collider.</td>
+</tr>
+
+<tr>
+    <td class="aname">Spawn on Collide</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Spawn particles on impact?</td>
+</tr>
+
+<tr>
+    <td class="aname">Die on Collide</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Kill particles on impact?</td>
+</tr>
+
+<tr>
+    <td class="aname">Spawn Modifier</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiPSysSpawnModifier.html">NiPSysSpawnModifier</a>&gt;</td>
+    <td class="adesc">Spawner to use for the collider.</td>
+</tr>
+
+<tr>
+    <td class="aname">Parent</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiPSysColliderManager.html">NiPSysColliderManager</a>&gt;</td>
+    <td class="adesc">Link to parent.</td>
+</tr>
+
+<tr>
+    <td class="aname">Next Collider</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiPSysCollider.html">NiPSysCollider</a>&gt;</td>
+    <td class="adesc">The next collider.</td>
+</tr>
+
+<tr>
+    <td class="aname">Collider Object</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiAVObject.html">NiAVObject</a>&gt;</td>
+    <td class="adesc">The object whose position and orientation are the basis of the collider.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+	<li><a href="NiPSysPlanarCollider.html">NiPSysPlanarCollider</a></li>
+	<li><a href="NiPSysSphericalCollider.html">NiPSysSphericalCollider</a></li>
+
+</ul>
+</body>
+</html>

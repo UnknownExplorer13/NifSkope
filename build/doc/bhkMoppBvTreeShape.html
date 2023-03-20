@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - bhkMoppBvTreeShape</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>bhkMoppBvTreeShape</h2></center>
+Memory optimized partial polytope bounding volume tree shape (not an entity).
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkRefObject.html">bhkRefObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkSerializable.html">bhkSerializable</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkShape.html">bhkShape</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkBvTreeShape.html">bhkBvTreeShape</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkMoppBvTreeShape.html">bhkMoppBvTreeShape</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Shape</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="bhkShape.html">bhkShape</a>&gt;</td>
+    <td class="adesc">The shape.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unused</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Garbage data from memory. Referred to as User Data, Shape Collection, and Code.</td>
+</tr>
+
+<tr>
+    <td class="aname">Shape Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Scale.</td>
+</tr>
+
+<tr>
+    <td class="aname">MOPP Data Size</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Number of bytes for MOPP data.</td>
+</tr>
+
+<tr>
+    <td class="aname">Origin</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</td>
+</tr>
+
+<tr>
+    <td class="aname">Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</td>
+</tr>
+
+<tr>
+    <td class="aname">Build Type</td>
+    <td class="atype"><a href="MoppDataBuildType.html"><b>MoppDataBuildType</b></a></td>
+    <td class="adesc">Tells if MOPP Data was organized into smaller chunks (PS3) or not (PC)</td>
+</tr>
+
+<tr>
+    <td class="aname">MOPP Data</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">The tree of bounding volume data.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

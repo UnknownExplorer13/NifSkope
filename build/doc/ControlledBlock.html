@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - ControlledBlock</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>ControlledBlock</h2></center>
+In a .kf file, this links to a controllable object, via its name (or for version 10.2.0.0 and up, a link and offset to a NiStringPalette that contains the name), and a sequence of interpolators that apply to this controllable object, via links.<br/>        For Controller ID, NiInterpController::GetCtlrID() virtual function returns a string formatted specifically for the derived type.<br/>        For Interpolator ID, NiInterpController::GetInterpolatorID() virtual function returns a string formatted specifically for the derived type.<br/>        The string formats are documented on the relevant niobject blocks.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Interpolator</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiInterpolator.html">NiInterpolator</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Controller</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTimeController.html">NiTimeController</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Priority</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Idle animations tend to have low values for this, and high values tend to correspond with the important parts of the animations.</td>
+</tr>
+
+<tr>
+    <td class="aname">Node Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">The name of the animated NiAVObject.</td>
+</tr>
+
+<tr>
+    <td class="aname">Property Type</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">The RTTI type of the NiProperty the controller is attached to, if applicable.</td>
+</tr>
+
+<tr>
+    <td class="aname">Controller Type</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">The RTTI type of the NiTimeController.</td>
+</tr>
+
+<tr>
+    <td class="aname">Controller ID</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">An ID that can uniquely identify the controller among others of the same type on the same NiObjectNET.</td>
+</tr>
+
+<tr>
+    <td class="aname">Interpolator ID</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">An ID that can uniquely identify the interpolator among others of the same type on the same NiObjectNET.</td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="NiSequence.html">NiSequence</a></li>
+	<li><a href="NiSequenceData.html">NiSequenceData</a></li>
+
+</ul>
+
+</body>
+</html>

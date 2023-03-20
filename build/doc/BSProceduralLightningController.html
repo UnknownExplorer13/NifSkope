@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - BSProceduralLightningController</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>BSProceduralLightningController</h2></center>
+Skyrim, Paired with dummy TriShapes, this controller generates lightning shapes for special effects.<br/>    First interpolator controls Generation.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiTimeController.html">NiTimeController</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Next Controller</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTimeController.html">NiTimeController</a>&gt;</td>
+    <td class="adesc">Index of the next controller.</td>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="Flags.html"><b>Flags</b></a></td>
+    <td class="adesc">Controller flags.<br/>            Bit 0 : Anim type, 0=APP_TIME 1=APP_INIT<br/>            Bit 1-2 : Cycle type, 00=Loop 01=Reverse 10=Clamp<br/>            Bit 3 : Active<br/>            Bit 4 : Play backwards<br/>            Bit 5 : Is manager controlled<br/>            Bit 6 : Always seems to be set in Skyrim and Fallout NIFs, unknown function</td>
+</tr>
+
+<tr>
+    <td class="aname">Frequency</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Frequency (is usually 1.0).</td>
+</tr>
+
+<tr>
+    <td class="aname">Phase</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Phase (usually 0.0).</td>
+</tr>
+
+<tr>
+    <td class="aname">Start Time</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Controller start time.</td>
+</tr>
+
+<tr>
+    <td class="aname">Stop Time</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Controller stop time.</td>
+</tr>
+
+<tr>
+    <td class="aname">Target</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiObjectNET.html">NiObjectNET</a>&gt;</td>
+    <td class="adesc">Controller target (object index of the first controllable ancestor of this object).</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="BSProceduralLightningController.html">BSProceduralLightningController</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Interpolator 1: Generation</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiInterpolator.html">NiInterpolator</a>&gt;</td>
+    <td class="adesc">References generation interpolator.</td>
+</tr>
+
+<tr>
+    <td class="aname">Interpolator 2: Mutation</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiInterpolator.html">NiInterpolator</a>&gt;</td>
+    <td class="adesc">References interpolator for Mutation of strips</td>
+</tr>
+
+<tr>
+    <td class="aname">Interpolator 3: Subdivision</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiInterpolator.html">NiInterpolator</a>&gt;</td>
+    <td class="adesc">References subdivision interpolator.</td>
+</tr>
+
+<tr>
+    <td class="aname">Interpolator 4: Num Branches</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiInterpolator.html">NiInterpolator</a>&gt;</td>
+    <td class="adesc">References branches interpolator.</td>
+</tr>
+
+<tr>
+    <td class="aname">Interpolator 5: Num Branches Var</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiInterpolator.html">NiInterpolator</a>&gt;</td>
+    <td class="adesc">References branches variation interpolator.</td>
+</tr>
+
+<tr>
+    <td class="aname">Interpolator 6: Length</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiInterpolator.html">NiInterpolator</a>&gt;</td>
+    <td class="adesc">References length interpolator.</td>
+</tr>
+
+<tr>
+    <td class="aname">Interpolator 7: Length Var</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiInterpolator.html">NiInterpolator</a>&gt;</td>
+    <td class="adesc">References length variation interpolator.</td>
+</tr>
+
+<tr>
+    <td class="aname">Interpolator 8: Width</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiInterpolator.html">NiInterpolator</a>&gt;</td>
+    <td class="adesc">References width interpolator.</td>
+</tr>
+
+<tr>
+    <td class="aname">Interpolator 9: Arc Offset</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiInterpolator.html">NiInterpolator</a>&gt;</td>
+    <td class="adesc">References interpolator for amplitude control. 0=straight, 50=wide</td>
+</tr>
+
+<tr>
+    <td class="aname">Subdivisions</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Branches</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Branches Variation</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Length</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">How far lightning will stretch to.</td>
+</tr>
+
+<tr>
+    <td class="aname">Length Variation</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">How far lightning variation will stretch to.</td>
+</tr>
+
+<tr>
+    <td class="aname">Width</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">How wide the bolt will be.</td>
+</tr>
+
+<tr>
+    <td class="aname">Child Width Mult</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Influences forking behavior with a multiplier.</td>
+</tr>
+
+<tr>
+    <td class="aname">Arc Offset</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Fade Main Bolt</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Fade Child Bolts</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Animate Arc Offset</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Shader Property</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="BSShaderProperty.html">BSShaderProperty</a>&gt;</td>
+    <td class="adesc">Reference to a shader property.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

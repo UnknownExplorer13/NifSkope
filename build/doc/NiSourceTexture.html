@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiSourceTexture</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiSourceTexture</h2></center>
+Describes texture source and properties.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObjectNET.html">NiObjectNET</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Skyrim Shader Type</td>
+    <td class="atype"><a href="BSLightingShaderPropertyShaderType.html"><b>BSLightingShaderPropertyShaderType</b></a></td>
+    <td class="adesc">Configures the main shader path</td>
+</tr>
+
+<tr>
+    <td class="aname">Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">Name of this controllable object, used to refer to the object in .kf files.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Extra Data List</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of Extra Data objects referenced through the list.</td>
+</tr>
+
+<tr>
+    <td class="aname">Extra Data List</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiExtraData.html">NiExtraData</a>&gt;</td>
+    <td class="adesc">List of extra data indices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Controller</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTimeController.html">NiTimeController</a>&gt;</td>
+    <td class="adesc">Controller object index. (The first in a chain)</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiTexture.html">NiTexture</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiSourceTexture.html">NiSourceTexture</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Use External</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Is the texture external?</td>
+</tr>
+
+<tr>
+    <td class="aname">File Name</td>
+    <td class="atype"><a href="FilePath.html"><b>FilePath</b></a></td>
+    <td class="adesc">The external texture file name.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Link</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiObject.html">NiObject</a>&gt;</td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">File Name</td>
+    <td class="atype"><a href="FilePath.html"><b>FilePath</b></a></td>
+    <td class="adesc">The original source filename of the image embedded by the referred NiPixelData object.</td>
+</tr>
+
+<tr>
+    <td class="aname">Pixel Data</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiPixelFormat.html">NiPixelFormat</a>&gt;</td>
+    <td class="adesc">NiPixelData or NiPersistentSrcTextureRendererData</td>
+</tr>
+
+<tr>
+    <td class="aname">Format Prefs</td>
+    <td class="atype"><a href="FormatPrefs.html"><b>FormatPrefs</b></a></td>
+    <td class="adesc">A set of preferences for the texture format. They are a request only and the renderer may ignore them.</td>
+</tr>
+
+<tr>
+    <td class="aname">Is Static</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">If set, then the application cannot assume that any dynamic changes to the pixel data will show in the rendered image.</td>
+</tr>
+
+<tr>
+    <td class="aname">Direct Render</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">A hint to the renderer that the texture can be loaded directly from a texture file into a renderer-specific resource, bypassing the NiPixelData object.</td>
+</tr>
+
+<tr>
+    <td class="aname">Persist Render Data</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Pixel Data is NiPersistentSrcTextureRendererData instead of NiPixelData.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+	<li><a href="NiSourceCubeMap.html">NiSourceCubeMap</a></li>
+
+</ul>
+</body>
+</html>

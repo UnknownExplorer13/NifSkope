@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - bhkBallSocketConstraintChain</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>bhkBallSocketConstraintChain</h2></center>
+A Ball and Socket Constraint chain.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkRefObject.html">bhkRefObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkSerializable.html">bhkSerializable</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkBallSocketConstraintChain.html">bhkBallSocketConstraintChain</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Num Pivots</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Number of pivot points. Divide by 2 to get the number of constraints.</td>
+</tr>
+
+<tr>
+    <td class="aname">Pivots</td>
+    <td class="atype"><a href="ConstraintInfo.html"><b>ConstraintInfo</b></a></td>
+    <td class="adesc">Two pivot points A and B for each constraint.</td>
+</tr>
+
+<tr>
+    <td class="aname">Tau</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">High values are harder and more reactive, lower values are smoother.</td>
+</tr>
+
+<tr>
+    <td class="aname">Damping</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Defines damping strength for the current velocity.</td>
+</tr>
+
+<tr>
+    <td class="aname">Constraint Force Mixing</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Restitution (amount of elasticity) of constraints. Added to the diagonal of the constraint matrix. A value of 0.0 can result in a division by zero with some chain configurations.</td>
+</tr>
+
+<tr>
+    <td class="aname">Max Error Distance</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Maximum distance error in constraints allowed before stabilization algorithm kicks in. A smaller distance causes more resistance.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Entities A</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Number of links in the chain</td>
+</tr>
+
+<tr>
+    <td class="aname">Entities A</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="bhkRigidBody.html">bhkRigidBody</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Entities</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Hardcoded to 2. Don't change.</td>
+</tr>
+
+<tr>
+    <td class="aname">Entity A</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="bhkRigidBody.html">bhkRigidBody</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Entity B</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="bhkRigidBody.html">bhkRigidBody</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Priority</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

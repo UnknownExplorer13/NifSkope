@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - RagdollDescriptor</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>RagdollDescriptor</h2></center>
+This constraint defines a cone in which an object can rotate. The shape of the cone can be controlled in two (orthogonal) directions.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Pivot A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">The point where the constraint is attached to its parent rigidbody.</td>
+</tr>
+
+<tr>
+    <td class="aname">Plane A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</td>
+</tr>
+
+<tr>
+    <td class="aname">Twist A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</td>
+</tr>
+
+<tr>
+    <td class="aname">Pivot B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">The point where the constraint is attached to the other rigidbody.</td>
+</tr>
+
+<tr>
+    <td class="aname">Plane B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Defines the orthogonal plane in which the shape can be controlled (the direction orthogonal on this one and Twist B).</td>
+</tr>
+
+<tr>
+    <td class="aname">Twist B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</td>
+</tr>
+
+<tr>
+    <td class="aname">Twist A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</td>
+</tr>
+
+<tr>
+    <td class="aname">Plane A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</td>
+</tr>
+
+<tr>
+    <td class="aname">Motor A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</td>
+</tr>
+
+<tr>
+    <td class="aname">Pivot A</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Point around which the object will rotate. Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</td>
+</tr>
+
+<tr>
+    <td class="aname">Twist B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</td>
+</tr>
+
+<tr>
+    <td class="aname">Plane B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</td>
+</tr>
+
+<tr>
+    <td class="aname">Motor B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</td>
+</tr>
+
+<tr>
+    <td class="aname">Pivot B</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</td>
+</tr>
+
+<tr>
+    <td class="aname">Cone Max Angle</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Maximum angle the object can rotate around the vector orthogonal on Plane A and Twist A relative to the Twist A vector. Note that Cone Min Angle is not stored, but is simply minus this angle.</td>
+</tr>
+
+<tr>
+    <td class="aname">Plane Min Angle</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Minimum angle the object can rotate around Plane A, relative to Twist A.</td>
+</tr>
+
+<tr>
+    <td class="aname">Plane Max Angle</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Maximum angle the object can rotate around Plane A, relative to Twist A.</td>
+</tr>
+
+<tr>
+    <td class="aname">Twist Min Angle</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Minimum angle the object can rotate around Twist A, relative to Plane A.</td>
+</tr>
+
+<tr>
+    <td class="aname">Twist Max Angle</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Maximum angle the object can rotate around Twist A, relative to Plane A.</td>
+</tr>
+
+<tr>
+    <td class="aname">Max Friction</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Maximum friction, typically 0 or 10. In Fallout 3, typically 100.</td>
+</tr>
+
+<tr>
+    <td class="aname">Motor</td>
+    <td class="atype"><a href="MotorDescriptor.html"><b>MotorDescriptor</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="bhkRagdollConstraint.html">bhkRagdollConstraint</a></li>
+	<li><a href="ConstraintData.html">ConstraintData</a></li>
+	<li><a href="MalleableDescriptor.html">MalleableDescriptor</a></li>
+
+</ul>
+
+</body>
+</html>

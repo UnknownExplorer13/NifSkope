@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - Header</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>Header</h2></center>
+The NIF file header.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Header String</td>
+    <td class="atype"><a href="HeaderString.html"><b>HeaderString</b></a></td>
+    <td class="adesc">'NetImmerse File Format x.x.x.x' (versions <= 10.0.1.2) or 'Gamebryo File Format x.x.x.x' (versions >= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</td>
+</tr>
+
+<tr>
+    <td class="aname">Version</td>
+    <td class="atype"><a href="FileVersion.html"><b>FileVersion</b></a></td>
+    <td class="adesc">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</td>
+</tr>
+
+<tr>
+    <td class="aname">Endian Type</td>
+    <td class="atype"><a href="EndianType.html"><b>EndianType</b></a></td>
+    <td class="adesc">Determines the endianness of the data in the file.</td>
+</tr>
+
+<tr>
+    <td class="aname">User Version</td>
+    <td class="atype"><a href="ulittle32.html"><b>ulittle32</b></a></td>
+    <td class="adesc">An extra version number, for companies that decide to modify the file format.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Blocks</td>
+    <td class="atype"><a href="ulittle32.html"><b>ulittle32</b></a></td>
+    <td class="adesc">Number of file objects.</td>
+</tr>
+
+<tr>
+    <td class="aname">User Version 2</td>
+    <td class="atype"><a href="ulittle32.html"><b>ulittle32</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Export Info</td>
+    <td class="atype"><a href="ExportInfo.html"><b>ExportInfo</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Max Filepath</td>
+    <td class="atype"><a href="ShortString.html"><b>ShortString</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Metadata</td>
+    <td class="atype"><a href="ByteArray.html"><b>ByteArray</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Block Types</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Number of object types in this NIF file.</td>
+</tr>
+
+<tr>
+    <td class="aname">Block Types</td>
+    <td class="atype"><a href="SizedString.html"><b>SizedString</b></a></td>
+    <td class="adesc">List of all object types used in this NIF file.</td>
+</tr>
+
+<tr>
+    <td class="aname">Block Type Index</td>
+    <td class="atype"><a href="BlockTypeIndex.html"><b>BlockTypeIndex</b></a></td>
+    <td class="adesc">Maps file objects on their corresponding type: first file object is of type object_types[object_type_index[0]], the second of object_types[object_type_index[1]], etc.</td>
+</tr>
+
+<tr>
+    <td class="aname">Block Size</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Array of block sizes?</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Strings</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Number of strings.</td>
+</tr>
+
+<tr>
+    <td class="aname">Max String Length</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Maximum string length.</td>
+</tr>
+
+<tr>
+    <td class="aname">Strings</td>
+    <td class="atype"><a href="SizedString.html"><b>SizedString</b></a></td>
+    <td class="adesc">Strings.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Groups</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Groups</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

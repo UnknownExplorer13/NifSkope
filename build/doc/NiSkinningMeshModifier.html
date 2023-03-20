@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiSkinningMeshModifier</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiSkinningMeshModifier</h2></center>
+
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiMeshModifier.html">NiMeshModifier</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Num Submit Points</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Submit Points</td>
+    <td class="atype"><a href="SyncPoint.html"><b>SyncPoint</b></a></td>
+    <td class="adesc">The sync points supported by this mesh modifier for SubmitTasks.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Complete Points</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Complete Points</td>
+    <td class="atype"><a href="SyncPoint.html"><b>SyncPoint</b></a></td>
+    <td class="adesc">The sync points supported by this mesh modifier for CompleteTasks.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiSkinningMeshModifier.html">NiSkinningMeshModifier</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">USE_SOFTWARE_SKINNING = 0x0001<br/>            RECOMPUTE_BOUNDS = 0x0002</td>
+</tr>
+
+<tr>
+    <td class="aname">Skeleton Root</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiAVObject.html">NiAVObject</a>&gt;</td>
+    <td class="adesc">The root bone of the skeleton.</td>
+</tr>
+
+<tr>
+    <td class="aname">Skeleton Transform</td>
+    <td class="atype"><a href="NiTransform.html"><b>NiTransform</b></a></td>
+    <td class="adesc">The transform that takes the root bone parent coordinate system into the skin coordinate system.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Bones</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of bones referenced by this mesh modifier.</td>
+</tr>
+
+<tr>
+    <td class="aname">Bones</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiAVObject.html">NiAVObject</a>&gt;</td>
+    <td class="adesc">Pointers to the bone nodes that affect this skin.</td>
+</tr>
+
+<tr>
+    <td class="aname">Bone Transforms</td>
+    <td class="atype"><a href="NiTransform.html"><b>NiTransform</b></a></td>
+    <td class="adesc">The transforms that go from bind-pose space to bone space.</td>
+</tr>
+
+<tr>
+    <td class="aname">Bone Bounds</td>
+    <td class="atype"><a href="NiBound.html"><b>NiBound</b></a></td>
+    <td class="adesc">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

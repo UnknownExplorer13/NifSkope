@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiGravity</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiGravity</h2></center>
+LEGACY (pre-10.1) particle modifier. Applies a gravitational field on the particles.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiParticleModifier.html">NiParticleModifier</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Next Modifier</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiParticleModifier.html">NiParticleModifier</a>&gt;</td>
+    <td class="adesc">Next particle modifier.</td>
+</tr>
+
+<tr>
+    <td class="aname">Controller</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiParticleSystemController.html">NiParticleSystemController</a>&gt;</td>
+    <td class="adesc">Points to the particle system controller parent.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiGravity.html">NiGravity</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Float 1</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Force</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The strength/force of this gravity.</td>
+</tr>
+
+<tr>
+    <td class="aname">Type</td>
+    <td class="atype"><a href="FieldType.html"><b>FieldType</b></a></td>
+    <td class="adesc">The force field type.</td>
+</tr>
+
+<tr>
+    <td class="aname">Position</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">The position of the mass point relative to the particle system.</td>
+</tr>
+
+<tr>
+    <td class="aname">Direction</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">The direction of the applied acceleration.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

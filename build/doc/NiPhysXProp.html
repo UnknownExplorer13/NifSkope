@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiPhysXProp</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiPhysXProp</h2></center>
+A PhysX prop which holds information about PhysX actors in a Gamebryo scene
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObjectNET.html">NiObjectNET</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Skyrim Shader Type</td>
+    <td class="atype"><a href="BSLightingShaderPropertyShaderType.html"><b>BSLightingShaderPropertyShaderType</b></a></td>
+    <td class="adesc">Configures the main shader path</td>
+</tr>
+
+<tr>
+    <td class="aname">Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">Name of this controllable object, used to refer to the object in .kf files.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Extra Data List</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of Extra Data objects referenced through the list.</td>
+</tr>
+
+<tr>
+    <td class="aname">Extra Data List</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiExtraData.html">NiExtraData</a>&gt;</td>
+    <td class="adesc">List of extra data indices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Controller</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTimeController.html">NiTimeController</a>&gt;</td>
+    <td class="adesc">Controller object index. (The first in a chain)</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiPhysXProp.html">NiPhysXProp</a></th>
+</tr>
+
+<tr>
+    <td class="aname">PhysX to World Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Sources</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Sources</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiObject.html">NiObject</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Dests</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Dests</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiPhysXDest.html">NiPhysXDest</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Modified Meshes</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Modified Meshes</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiMesh.html">NiMesh</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Temp Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Keep Meshes</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Prop Description</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiPhysXPropDesc.html">NiPhysXPropDesc</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

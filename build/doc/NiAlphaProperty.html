@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiAlphaProperty</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiAlphaProperty</h2></center>
+Transparency. Flags 0x00ED.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObjectNET.html">NiObjectNET</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Skyrim Shader Type</td>
+    <td class="atype"><a href="BSLightingShaderPropertyShaderType.html"><b>BSLightingShaderPropertyShaderType</b></a></td>
+    <td class="adesc">Configures the main shader path</td>
+</tr>
+
+<tr>
+    <td class="aname">Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">Name of this controllable object, used to refer to the object in .kf files.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Extra Data List</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of Extra Data objects referenced through the list.</td>
+</tr>
+
+<tr>
+    <td class="aname">Extra Data List</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiExtraData.html">NiExtraData</a>&gt;</td>
+    <td class="adesc">List of extra data indices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Controller</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTimeController.html">NiTimeController</a>&gt;</td>
+    <td class="adesc">Controller object index. (The first in a chain)</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiProperty.html">NiProperty</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiAlphaProperty.html">NiAlphaProperty</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="Flags.html"><b>Flags</b></a></td>
+    <td class="adesc">Bit 0 : alpha blending enable<br/>            Bits 1-4 : source blend mode<br/>            Bits 5-8 : destination blend mode<br/>            Bit 9 : alpha test enable<br/>            Bit 10-12 : alpha test mode<br/>            Bit 13 : no sorter flag ( disables triangle sorting )<br/><br/>            blend modes (glBlendFunc):<br/>            0000 GL_ONE<br/>            0001 GL_ZERO<br/>            0010 GL_SRC_COLOR<br/>            0011 GL_ONE_MINUS_SRC_COLOR<br/>            0100 GL_DST_COLOR<br/>            0101 GL_ONE_MINUS_DST_COLOR<br/>            0110 GL_SRC_ALPHA<br/>            0111 GL_ONE_MINUS_SRC_ALPHA<br/>            1000 GL_DST_ALPHA<br/>            1001 GL_ONE_MINUS_DST_ALPHA<br/>            1010 GL_SRC_ALPHA_SATURATE<br/><br/>            test modes (glAlphaFunc):<br/>            000 GL_ALWAYS<br/>            001 GL_LESS<br/>            010 GL_EQUAL<br/>            011 GL_LEQUAL<br/>            100 GL_GREATER<br/>            101 GL_NOTEQUAL<br/>            110 GL_GEQUAL<br/>            111 GL_NEVER</td>
+</tr>
+
+<tr>
+    <td class="aname">Threshold</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Threshold for alpha testing (see: glAlphaFunc)</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

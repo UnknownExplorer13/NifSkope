@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - TexDesc</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>TexDesc</h2></center>
+NiTexturingProperty::Map. Texture description.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Source</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiSourceTexture.html">NiSourceTexture</a>&gt;</td>
+    <td class="adesc">NiSourceTexture object index.</td>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="Flags.html"><b>Flags</b></a></td>
+    <td class="adesc">Texture mode flags; clamp and filter mode stored in upper byte with 0xYZ00 = clamp mode Y, filter mode Z.</td>
+</tr>
+
+<tr>
+    <td class="aname">Max Anisotropy</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Has Texture Transform</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc">Whether or not the texture coordinates are transformed.</td>
+</tr>
+
+<tr>
+    <td class="aname">Translation</td>
+    <td class="atype"><a href="TexCoord.html"><b>TexCoord</b></a></td>
+    <td class="adesc">The UV translation.</td>
+</tr>
+
+<tr>
+    <td class="aname">Scale</td>
+    <td class="atype"><a href="TexCoord.html"><b>TexCoord</b></a></td>
+    <td class="adesc">The UV scale.</td>
+</tr>
+
+<tr>
+    <td class="aname">Rotation</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The W axis rotation in texture space.</td>
+</tr>
+
+<tr>
+    <td class="aname">Transform Method</td>
+    <td class="atype"><a href="TransformMethod.html"><b>TransformMethod</b></a></td>
+    <td class="adesc">Depending on the source, scaling can occur before or after rotation.</td>
+</tr>
+
+<tr>
+    <td class="aname">Center</td>
+    <td class="atype"><a href="TexCoord.html"><b>TexCoord</b></a></td>
+    <td class="adesc">The origin around which the texture rotates.</td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="NiTexturingProperty.html">NiTexturingProperty</a></li>
+	<li><a href="ShaderTexDesc.html">ShaderTexDesc</a></li>
+
+</ul>
+
+</body>
+</html>

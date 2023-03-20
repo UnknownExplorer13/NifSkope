@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - NiMorphMeshModifier</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>NiMorphMeshModifier</h2></center>
+Performs linear-weighted blending between a set of target data streams.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiMeshModifier.html">NiMeshModifier</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Num Submit Points</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Submit Points</td>
+    <td class="atype"><a href="SyncPoint.html"><b>SyncPoint</b></a></td>
+    <td class="adesc">The sync points supported by this mesh modifier for SubmitTasks.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Complete Points</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Complete Points</td>
+    <td class="atype"><a href="SyncPoint.html"><b>SyncPoint</b></a></td>
+    <td class="adesc">The sync points supported by this mesh modifier for CompleteTasks.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiMorphMeshModifier.html">NiMorphMeshModifier</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">FLAG_RELATIVETARGETS = 0x01<br/>            FLAG_UPDATENORMALS   = 0x02<br/>            FLAG_NEEDSUPDATE     = 0x04<br/>            FLAG_ALWAYSUPDATE    = 0x08<br/>            FLAG_NEEDSCOMPLETION = 0x10<br/>            FLAG_SKINNED         = 0x20<br/>            FLAG_SWSKINNED       = 0x40</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Targets</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">The number of morph targets.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Elements</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of morphing data stream elements.</td>
+</tr>
+
+<tr>
+    <td class="aname">Elements</td>
+    <td class="atype"><a href="ElementReference.html"><b>ElementReference</b></a></td>
+    <td class="adesc">Semantics and normalization of the morphing data stream elements.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - bhkConvexListShape</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>bhkConvexListShape</h2></center>
+A havok shape.<br/>        A list of convex shapes.<br/><br/>        Do not put a bhkPackedNiTriStripsShape in the Sub Shapes. Use a<br/>        separate collision nodes without a list shape for those.<br/><br/>        Also, shapes collected in a bhkListShape may not have the correct<br/>        walking noise, so only use it for non-walkable objects.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkRefObject.html">bhkRefObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkSerializable.html">bhkSerializable</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkShape.html">bhkShape</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkConvexListShape.html">bhkConvexListShape</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Num Sub Shapes</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Sub Shapes</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="bhkConvexShape.html">bhkConvexShape</a>&gt;</td>
+    <td class="adesc">List of shapes.</td>
+</tr>
+
+<tr>
+    <td class="aname">Material</td>
+    <td class="atype"><a href="HavokMaterial.html"><b>HavokMaterial</b></a></td>
+    <td class="adesc">The material of the shape.</td>
+</tr>
+
+<tr>
+    <td class="aname">Radius</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Int 1</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Float 1</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Child Shape Property</td>
+    <td class="atype"><a href="hkWorldObjCinfoProperty.html"><b>hkWorldObjCinfoProperty</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Byte 1</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Float 2</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

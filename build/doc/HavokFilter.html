@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - HavokFilter</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>HavokFilter</h2></center>
+Bethesda Havok. Collision filter info representing Layer, Flags, Part Number, and Group all combined into one uint.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Layer</td>
+    <td class="atype"><a href="Fallout3Layer.html"><b>Fallout3Layer</b></a></td>
+    <td class="adesc">The layer the collision belongs to.</td>
+</tr>
+
+<tr>
+    <td class="aname">Layer</td>
+    <td class="atype"><a href="SkyrimLayer.html"><b>SkyrimLayer</b></a></td>
+    <td class="adesc">The layer the collision belongs to.</td>
+</tr>
+
+<tr>
+    <td class="aname">Flags and Part Number</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">FLAGS are stored in highest 3 bits:<br/>        	Bit 7: sets the LINK property and controls whether this body is physically linked to others.<br/>        	Bit 6: turns collision off (not used for Layer BIPED).<br/>        	Bit 5: sets the SCALED property.<br/><br/>        	PART NUMBER is stored in bits 0-4. Used only when Layer is set to BIPED.<br/><br/>        	Part Numbers for Oblivion, Fallout 3, Skyrim:<br/>        	0 - OTHER<br/>        	1 - HEAD<br/>        	2 - BODY<br/>        	3 - SPINE1<br/>        	4 - SPINE2<br/>        	5 - LUPPERARM<br/>        	6 - LFOREARM<br/>        	7 - LHAND<br/>        	8 - LTHIGH<br/>        	9 - LCALF<br/>        	10 - LFOOT<br/>        	11 - RUPPERARM<br/>        	12 - RFOREARM<br/>        	13 - RHAND<br/>        	14 - RTHIGH<br/>        	15 - RCALF<br/>        	16 - RFOOT<br/>        	17 - TAIL<br/>        	18 - SHIELD<br/>        	19 - QUIVER<br/>        	20 - WEAPON<br/>        	21 - PONYTAIL<br/>        	22 - WING<br/>        	23 - PACK<br/>        	24 - CHAIN<br/>        	25 - ADDONHEAD<br/>        	26 - ADDONCHEST<br/>        	27 - ADDONARM<br/>        	28 - ADDONLEG<br/>        	29-31 - NULL</td>
+</tr>
+
+<tr>
+    <td class="aname">Group</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="bhkNiTriStripsShape.html">bhkNiTriStripsShape</a></li>
+	<li><a href="bhkRigidBody.html">bhkRigidBody</a></li>
+	<li><a href="bhkWorldObject.html">bhkWorldObject</a></li>
+	<li><a href="OblivionSubShape.html">OblivionSubShape</a></li>
+	<li><a href="bhkCMSDMaterial.html">bhkCMSDMaterial</a></li>
+
+</ul>
+
+</body>
+</html>

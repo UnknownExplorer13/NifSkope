@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - BSLightingShaderProperty</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>BSLightingShaderProperty</h2></center>
+Bethesda shader property for Skyrim and later.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObjectNET.html">NiObjectNET</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Skyrim Shader Type</td>
+    <td class="atype"><a href="BSLightingShaderPropertyShaderType.html"><b>BSLightingShaderPropertyShaderType</b></a></td>
+    <td class="adesc">Configures the main shader path</td>
+</tr>
+
+<tr>
+    <td class="aname">Name</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc">Name of this controllable object, used to refer to the object in .kf files.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Extra Data List</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of Extra Data objects referenced through the list.</td>
+</tr>
+
+<tr>
+    <td class="aname">Extra Data List</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiExtraData.html">NiExtraData</a>&gt;</td>
+    <td class="adesc">List of extra data indices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Controller</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTimeController.html">NiTimeController</a>&gt;</td>
+    <td class="adesc">Controller object index. (The first in a chain)</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiProperty.html">NiProperty</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiShadeProperty.html">NiShadeProperty</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="Flags.html"><b>Flags</b></a></td>
+    <td class="adesc">Bit 0: Enable smooth phong shading on this shape. Otherwise, hard-edged flat shading will be used on this shape.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="BSShaderProperty.html">BSShaderProperty</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Shader Type</td>
+    <td class="atype"><a href="BSShaderType.html"><b>BSShaderType</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Shader Flags</td>
+    <td class="atype"><a href="BSShaderFlags.html"><b>BSShaderFlags</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Shader Flags 2</td>
+    <td class="atype"><a href="BSShaderFlags2.html"><b>BSShaderFlags2</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Environment Map Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Scales the intensity of the environment/cube map.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="BSLightingShaderProperty.html">BSLightingShaderProperty</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Shader Flags 1</td>
+    <td class="atype"><a href="SkyrimShaderPropertyFlags1.html"><b>SkyrimShaderPropertyFlags1</b></a></td>
+    <td class="adesc">Skyrim Shader Flags for setting render/shader options.</td>
+</tr>
+
+<tr>
+    <td class="aname">Shader Flags 2</td>
+    <td class="atype"><a href="SkyrimShaderPropertyFlags2.html"><b>SkyrimShaderPropertyFlags2</b></a></td>
+    <td class="adesc">Skyrim Shader Flags for setting render/shader options.</td>
+</tr>
+
+<tr>
+    <td class="aname">Shader Flags 1</td>
+    <td class="atype"><a href="Fallout4ShaderPropertyFlags1.html"><b>Fallout4ShaderPropertyFlags1</b></a></td>
+    <td class="adesc">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</td>
+</tr>
+
+<tr>
+    <td class="aname">Shader Flags 2</td>
+    <td class="atype"><a href="Fallout4ShaderPropertyFlags2.html"><b>Fallout4ShaderPropertyFlags2</b></a></td>
+    <td class="adesc">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</td>
+</tr>
+
+<tr>
+    <td class="aname">UV Offset</td>
+    <td class="atype"><a href="TexCoord.html"><b>TexCoord</b></a></td>
+    <td class="adesc">Offset UVs</td>
+</tr>
+
+<tr>
+    <td class="aname">UV Scale</td>
+    <td class="atype"><a href="TexCoord.html"><b>TexCoord</b></a></td>
+    <td class="adesc">Offset UV Scale to repeat tiling textures, see above.</td>
+</tr>
+
+<tr>
+    <td class="aname">Texture Set</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="BSShaderTextureSet.html">BSShaderTextureSet</a>&gt;</td>
+    <td class="adesc">Texture Set, can have override in an esm/esp</td>
+</tr>
+
+<tr>
+    <td class="aname">Emissive Color</td>
+    <td class="atype"><a href="Color3.html"><b>Color3</b></a></td>
+    <td class="adesc">Glow color and alpha</td>
+</tr>
+
+<tr>
+    <td class="aname">Emissive Multiple</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Multiplied emissive colors</td>
+</tr>
+
+<tr>
+    <td class="aname">Wet Material</td>
+    <td class="atype"><a href="string.html"><b>string</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Texture Clamp Mode</td>
+    <td class="atype"><a href="TexClampMode.html"><b>TexClampMode</b></a></td>
+    <td class="adesc">How to handle texture borders.</td>
+</tr>
+
+<tr>
+    <td class="aname">Alpha</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The material opacity (1=non-transparent).</td>
+</tr>
+
+<tr>
+    <td class="aname">Refraction Strength</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</td>
+</tr>
+
+<tr>
+    <td class="aname">Glossiness</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The material specular power, or glossiness (0-999).</td>
+</tr>
+
+<tr>
+    <td class="aname">Smoothness</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The base roughness (0.0-1.0), multiplied by the smoothness map.</td>
+</tr>
+
+<tr>
+    <td class="aname">Specular Color</td>
+    <td class="atype"><a href="Color3.html"><b>Color3</b></a></td>
+    <td class="adesc">Adds a colored highlight.</td>
+</tr>
+
+<tr>
+    <td class="aname">Specular Strength</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Brightness of specular highlight. (0=not visible) (0-999)</td>
+</tr>
+
+<tr>
+    <td class="aname">Lighting Effect 1</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Controls strength for envmap/backlight/rim/softlight lighting effect?</td>
+</tr>
+
+<tr>
+    <td class="aname">Lighting Effect 2</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Controls strength for envmap/backlight/rim/softlight lighting effect?</td>
+</tr>
+
+<tr>
+    <td class="aname">Subsurface Rolloff</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Rimlight Power</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Backlight Power</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Grayscale to Palette Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Fresnel Power</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Wetness Spec Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Wetness Spec Power</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Wetness Min Var</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Wetness Env Map Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Wetness Fresnel Power</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Wetness Metalness</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Environment Map Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Scales the intensity of the environment/cube map. (0-1)</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Env Map Short</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Skin Tint Color</td>
+    <td class="atype"><a href="Color3.html"><b>Color3</b></a></td>
+    <td class="adesc">Tints the base texture. Overridden by game settings.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Skin Tint Int</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Hair Tint Color</td>
+    <td class="atype"><a href="Color3.html"><b>Color3</b></a></td>
+    <td class="adesc">Tints the base texture. Overridden by game settings.</td>
+</tr>
+
+<tr>
+    <td class="aname">Max Passes</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Max Passes</td>
+</tr>
+
+<tr>
+    <td class="aname">Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Scale</td>
+</tr>
+
+<tr>
+    <td class="aname">Parallax Inner Layer Thickness</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">How far from the surface the inner layer appears to be.</td>
+</tr>
+
+<tr>
+    <td class="aname">Parallax Refraction Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Depth of inner parallax layer effect.</td>
+</tr>
+
+<tr>
+    <td class="aname">Parallax Inner Layer Texture Scale</td>
+    <td class="atype"><a href="TexCoord.html"><b>TexCoord</b></a></td>
+    <td class="adesc">Scales the inner parallax layer texture.</td>
+</tr>
+
+<tr>
+    <td class="aname">Parallax Envmap Strength</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">How strong the environment/cube map is. (0-??)</td>
+</tr>
+
+<tr>
+    <td class="aname">Sparkle Parameters</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">CK lists "snow material" when used.</td>
+</tr>
+
+<tr>
+    <td class="aname">Eye Cubemap Scale</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Eye cubemap scale</td>
+</tr>
+
+<tr>
+    <td class="aname">Left Eye Reflection Center</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Offset to set center for left eye cubemap</td>
+</tr>
+
+<tr>
+    <td class="aname">Right Eye Reflection Center</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Offset to set center for right eye cubemap</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

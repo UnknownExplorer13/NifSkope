@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - bhkConvexVerticesShape</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>bhkConvexVerticesShape</h2></center>
+A convex shape built from vertices. Note that if the shape is used in<br/>        a non-static object (such as clutter), then they will simply fall<br/>        through ground when they are under a bhkListShape.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkRefObject.html">bhkRefObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkSerializable.html">bhkSerializable</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkShape.html">bhkShape</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkSphereRepShape.html">bhkSphereRepShape</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Material</td>
+    <td class="atype"><a href="HavokMaterial.html"><b>HavokMaterial</b></a></td>
+    <td class="adesc">The material of the shape.</td>
+</tr>
+
+<tr>
+    <td class="aname">Radius</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The radius of the sphere that encloses the shape.</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkConvexShape.html">bhkConvexShape</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkConvexVerticesShape.html">bhkConvexVerticesShape</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Vertices Property</td>
+    <td class="atype"><a href="hkWorldObjCinfoProperty.html"><b>hkWorldObjCinfoProperty</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Normals Property</td>
+    <td class="atype"><a href="hkWorldObjCinfoProperty.html"><b>hkWorldObjCinfoProperty</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Vertices</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Number of vertices.</td>
+</tr>
+
+<tr>
+    <td class="aname">Vertices</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Vertices. Fourth component is 0. Lexicographically sorted.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Normals</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of half spaces.</td>
+</tr>
+
+<tr>
+    <td class="aname">Normals</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Half spaces as determined by the set of vertices above. First three components define the normal pointing to the exterior, fourth component is the signed distance of the separating plane to the origin: it is minus the dot product of v and n, where v is any vertex on the separating plane, and n is the normal. Lexicographically sorted.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

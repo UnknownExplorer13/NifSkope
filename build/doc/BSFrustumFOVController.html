@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - BSFrustumFOVController</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>BSFrustumFOVController</h2></center>
+Bethesda-specific time controller.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiTimeController.html">NiTimeController</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Next Controller</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTimeController.html">NiTimeController</a>&gt;</td>
+    <td class="adesc">Index of the next controller.</td>
+</tr>
+
+<tr>
+    <td class="aname">Flags</td>
+    <td class="atype"><a href="Flags.html"><b>Flags</b></a></td>
+    <td class="adesc">Controller flags.<br/>            Bit 0 : Anim type, 0=APP_TIME 1=APP_INIT<br/>            Bit 1-2 : Cycle type, 00=Loop 01=Reverse 10=Clamp<br/>            Bit 3 : Active<br/>            Bit 4 : Play backwards<br/>            Bit 5 : Is manager controlled<br/>            Bit 6 : Always seems to be set in Skyrim and Fallout NIFs, unknown function</td>
+</tr>
+
+<tr>
+    <td class="aname">Frequency</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Frequency (is usually 1.0).</td>
+</tr>
+
+<tr>
+    <td class="aname">Phase</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Phase (usually 0.0).</td>
+</tr>
+
+<tr>
+    <td class="aname">Start Time</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Controller start time.</td>
+</tr>
+
+<tr>
+    <td class="aname">Stop Time</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Controller stop time.</td>
+</tr>
+
+<tr>
+    <td class="aname">Target</td>
+    <td class="atype"><a href="Ptr.html"><b>Ptr</b></a>&lt;<a href="NiObjectNET.html">NiObjectNET</a>&gt;</td>
+    <td class="adesc">Controller target (object index of the first controllable ancestor of this object).</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiInterpController.html">NiInterpController</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiSingleInterpController.html">NiSingleInterpController</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Interpolator</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiInterpolator.html">NiInterpolator</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiFloatInterpController.html">NiFloatInterpController</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="BSFrustumFOVController.html">BSFrustumFOVController</a></th>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

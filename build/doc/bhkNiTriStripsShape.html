@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - bhkNiTriStripsShape</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>bhkNiTriStripsShape</h2></center>
+A shape constructed from a bunch of strips.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkRefObject.html">bhkRefObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkSerializable.html">bhkSerializable</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkShape.html">bhkShape</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkShapeCollection.html">bhkShapeCollection</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkNiTriStripsShape.html">bhkNiTriStripsShape</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Material</td>
+    <td class="atype"><a href="HavokMaterial.html"><b>HavokMaterial</b></a></td>
+    <td class="adesc">The material of the shape.</td>
+</tr>
+
+<tr>
+    <td class="aname">Radius</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Unused</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Garbage data from memory though the last 3 are referred to as maxSize, size, and eSize.</td>
+</tr>
+
+<tr>
+    <td class="aname">Grow By</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Scale</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Scale. Usually (1.0, 1.0, 1.0, 0.0).</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Strips Data</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">The number of strips data objects referenced.</td>
+</tr>
+
+<tr>
+    <td class="aname">Strips Data</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="NiTriStripsData.html">NiTriStripsData</a>&gt;</td>
+    <td class="adesc">Refers to a bunch of NiTriStripsData objects that make up this shape.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Data Layers</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Number of Havok Layers, equal to Number of strips data objects.</td>
+</tr>
+
+<tr>
+    <td class="aname">Data Layers</td>
+    <td class="atype"><a href="HavokFilter.html"><b>HavokFilter</b></a></td>
+    <td class="adesc">Havok Layers for each strip data.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

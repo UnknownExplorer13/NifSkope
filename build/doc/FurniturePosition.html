@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - FurniturePosition</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>FurniturePosition</h2></center>
+Bethesda Animation. Describes a furniture position?
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Offset</td>
+    <td class="atype"><a href="Vector3.html"><b>Vector3</b></a></td>
+    <td class="adesc">Offset of furniture marker.</td>
+</tr>
+
+<tr>
+    <td class="aname">Orientation</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Furniture marker orientation.</td>
+</tr>
+
+<tr>
+    <td class="aname">Position Ref 1</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 2.</td>
+</tr>
+
+<tr>
+    <td class="aname">Position Ref 2</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 1.</td>
+</tr>
+
+<tr>
+    <td class="aname">Heading</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Similar to Orientation, in float form.</td>
+</tr>
+
+<tr>
+    <td class="aname">Animation Type</td>
+    <td class="atype"><a href="AnimationType.html"><b>AnimationType</b></a></td>
+    <td class="adesc">Unknown</td>
+</tr>
+
+<tr>
+    <td class="aname">Entry Properties</td>
+    <td class="atype"><a href="FurnitureEntryPoints.html"><b>FurnitureEntryPoints</b></a></td>
+    <td class="adesc">Unknown/unused in nif?</td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="BSFurnitureMarker.html">BSFurnitureMarker</a></li>
+
+</ul>
+
+</body>
+</html>

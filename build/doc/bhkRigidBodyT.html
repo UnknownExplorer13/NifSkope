@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - bhkRigidBodyT</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>bhkRigidBodyT</h2></center>
+The "T" suffix marks this body as active for translation and rotation.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkRefObject.html">bhkRefObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkSerializable.html">bhkSerializable</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkWorldObject.html">bhkWorldObject</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Shape</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="bhkShape.html">bhkShape</a>&gt;</td>
+    <td class="adesc">Link to the body for this collision object.</td>
+</tr>
+
+<tr>
+    <td class="aname">Havok Filter</td>
+    <td class="atype"><a href="HavokFilter.html"><b>HavokFilter</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Unused</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Garbage data from memory.</td>
+</tr>
+
+<tr>
+    <td class="aname">Broad Phase Type</td>
+    <td class="atype"><a href="BroadPhaseType.html"><b>BroadPhaseType</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Unused Bytes</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Cinfo Property</td>
+    <td class="atype"><a href="hkWorldObjCinfoProperty.html"><b>hkWorldObjCinfoProperty</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkEntity.html">bhkEntity</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkRigidBody.html">bhkRigidBody</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Collision Response</td>
+    <td class="atype"><a href="hkResponseType.html"><b>hkResponseType</b></a></td>
+    <td class="adesc">How the body reacts to collisions. See hkResponseType for hkpWorld default implementations.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unused Byte 1</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Skipped over when writing Collision Response and Callback Delay.</td>
+</tr>
+
+<tr>
+    <td class="aname">Process Contact Callback Delay</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame. The default is once every 65535 frames.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Int 1</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Havok Filter Copy</td>
+    <td class="atype"><a href="HavokFilter.html"><b>HavokFilter</b></a></td>
+    <td class="adesc">Copy of Havok Filter</td>
+</tr>
+
+<tr>
+    <td class="aname">Unused 2</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Garbage data from memory. Matches previous Unused value.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Int 2</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Collision Response 2</td>
+    <td class="atype"><a href="hkResponseType.html"><b>hkResponseType</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Unused Byte 2</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Skipped over when writing Collision Response and Callback Delay.</td>
+</tr>
+
+<tr>
+    <td class="aname">Process Contact Callback Delay 2</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Int 2</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Translation</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</td>
+</tr>
+
+<tr>
+    <td class="aname">Rotation</td>
+    <td class="atype"><a href="hkQuaternion.html"><b>hkQuaternion</b></a></td>
+    <td class="adesc">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</td>
+</tr>
+
+<tr>
+    <td class="aname">Linear Velocity</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Linear velocity.</td>
+</tr>
+
+<tr>
+    <td class="aname">Angular Velocity</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Angular velocity.</td>
+</tr>
+
+<tr>
+    <td class="aname">Inertia Tensor</td>
+    <td class="atype"><a href="hkMatrix3.html"><b>hkMatrix3</b></a></td>
+    <td class="adesc">Defines how the mass is distributed among the body, i.e. how difficult it is to rotate around any given axis.</td>
+</tr>
+
+<tr>
+    <td class="aname">Center</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">The body's center of mass.</td>
+</tr>
+
+<tr>
+    <td class="aname">Mass</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The body's mass in kg. A mass of zero represents an immovable object.</td>
+</tr>
+
+<tr>
+    <td class="aname">Linear Damping</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Reduces the movement of the body over time. A value of 0.1 will remove 10% of the linear velocity every second.</td>
+</tr>
+
+<tr>
+    <td class="aname">Angular Damping</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Reduces the movement of the body over time. A value of 0.05 will remove 5% of the angular velocity every second.</td>
+</tr>
+
+<tr>
+    <td class="aname">Time Factor</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Gravity Factor</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Friction</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">How smooth its surfaces is and how easily it will slide along other bodies.</td>
+</tr>
+
+<tr>
+    <td class="aname">Rolling Friction Multiplier</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Restitution</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">How "bouncy" the body is, i.e. how much energy it has after colliding. Less than 1.0 loses energy, greater than 1.0 gains energy.<br/>            If the restitution is not 0.0 the object will need extra CPU for all new collisions.</td>
+</tr>
+
+<tr>
+    <td class="aname">Max Linear Velocity</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Maximal linear velocity.</td>
+</tr>
+
+<tr>
+    <td class="aname">Max Angular Velocity</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">Maximal angular velocity.</td>
+</tr>
+
+<tr>
+    <td class="aname">Penetration Depth</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The maximum allowed penetration for this object.<br/>            This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.<br/>            A good choice is 5% - 20% of the smallest diameter of the object.</td>
+</tr>
+
+<tr>
+    <td class="aname">Motion System</td>
+    <td class="atype"><a href="hkMotionType.html"><b>hkMotionType</b></a></td>
+    <td class="adesc">Motion system? Overrides Quality when on Keyframed?</td>
+</tr>
+
+<tr>
+    <td class="aname">Deactivator Type</td>
+    <td class="atype"><a href="hkDeactivatorType.html"><b>hkDeactivatorType</b></a></td>
+    <td class="adesc">The initial deactivator type of the body.</td>
+</tr>
+
+<tr>
+    <td class="aname">Enable Deactivation</td>
+    <td class="atype"><a href="bool.html"><b>bool</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Solver Deactivation</td>
+    <td class="atype"><a href="hkSolverDeactivation.html"><b>hkSolverDeactivation</b></a></td>
+    <td class="adesc">How aggressively the engine will try to zero the velocity for slow objects. This does not save CPU.</td>
+</tr>
+
+<tr>
+    <td class="aname">Quality Type</td>
+    <td class="atype"><a href="hkQualityType.html"><b>hkQualityType</b></a></td>
+    <td class="adesc">The type of interaction with other objects.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Bytes 1</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Unknown.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Bytes 2</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Unknown. Skyrim only.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Constraints</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Constraints</td>
+    <td class="atype"><a href="Ref.html"><b>Ref</b></a>&lt;<a href="bhkSerializable.html">bhkSerializable</a>&gt;</td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Body Flags</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">1 = respond to wind</td>
+</tr>
+
+<tr>
+    <td class="aname">Body Flags</td>
+    <td class="atype"><a href="ushort.html"><b>ushort</b></a></td>
+    <td class="adesc">1 = respond to wind</td>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkRigidBodyT.html">bhkRigidBodyT</a></th>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - bhkCompressedMeshShapeData</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>bhkCompressedMeshShapeData</h2></center>
+A compressed mesh shape for collision in Skyrim.
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkRefObject.html">bhkRefObject</a></th>
+</tr>
+
+<tr>
+    <th align="left" style="text-align:left;" colspan="3">From <a href ="bhkCompressedMeshShapeData.html">bhkCompressedMeshShapeData</a></th>
+</tr>
+
+<tr>
+    <td class="aname">Bits Per Index</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Number of bits in the shape-key reserved for a triangle index</td>
+</tr>
+
+<tr>
+    <td class="aname">Bits Per W Index</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Number of bits in the shape-key reserved for a triangle index and its winding</td>
+</tr>
+
+<tr>
+    <td class="aname">Mask W Index</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Mask used to get the triangle index and winding from a shape-key (common: 262143 = 0x3ffff)</td>
+</tr>
+
+<tr>
+    <td class="aname">Mask Index</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Mask used to get the triangle index from a shape-key (common: 131071 = 0x1ffff)</td>
+</tr>
+
+<tr>
+    <td class="aname">Error</td>
+    <td class="atype"><a href="float.html"><b>float</b></a></td>
+    <td class="adesc">The radius of the storage mesh shape? Quantization error?</td>
+</tr>
+
+<tr>
+    <td class="aname">Bounds Min</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">The minimum boundary of the AABB (the coordinates of the corner with the lowest numerical values)</td>
+</tr>
+
+<tr>
+    <td class="aname">Bounds Max</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">The maximum boundary of the AABB (the coordinates of the corner with the highest numerical values)</td>
+</tr>
+
+<tr>
+    <td class="aname">Welding Type</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Material Type</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Materials 32</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Materials 32</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Does not appear to be used.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Materials 16</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Materials 16</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Does not appear to be used.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Materials 8</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Materials 8</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Does not appear to be used.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Materials</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Number of chunk materials</td>
+</tr>
+
+<tr>
+    <td class="aname">Chunk Materials</td>
+    <td class="atype"><a href="bhkCMSDMaterial.html"><b>bhkCMSDMaterial</b></a></td>
+    <td class="adesc">Table (array) with sets of materials. Chunks refers to this table by index.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Named Materials</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Transforms</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Number of chunk transformations</td>
+</tr>
+
+<tr>
+    <td class="aname">Chunk Transforms</td>
+    <td class="atype"><a href="bhkCMSDTransform.html"><b>bhkCMSDTransform</b></a></td>
+    <td class="adesc">Table (array) with sets of transformations. Chunks refers to this table by index.</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Big Verts</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Big Verts</td>
+    <td class="atype"><a href="Vector4.html"><b>Vector4</b></a></td>
+    <td class="adesc">Compressed Vertices?</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Big Tris</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Big Tris</td>
+    <td class="atype"><a href="bhkCMSDBigTris.html"><b>bhkCMSDBigTris</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Chunks</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Chunks</td>
+    <td class="atype"><a href="bhkCMSDChunk.html"><b>bhkCMSDChunk</b></a></td>
+    <td class="adesc"></td>
+</tr>
+
+<tr>
+    <td class="aname">Num Convex Piece A</td>
+    <td class="atype"><a href="uint.html"><b>uint</b></a></td>
+    <td class="adesc">Does not appear to be used. Needs array.</td>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

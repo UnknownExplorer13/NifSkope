@@ -492,6 +492,9 @@ win32:contains(QT_ARCH, i386) {
 	copyFiles( $$DEP )
 }
 
+	DOC += \
+		build/doc
+		
 	XML += \
 		build/nifxml/nif.xml \
 		build/kfmxml/kfm.xml
@@ -510,6 +513,7 @@ win32:contains(QT_ARCH, i386) {
 		LICENSE.md \
 		README.md
 
+	copyDirs( $$DOC, doc )
 	copyDirs( $$SHADERS, shaders )
 	#copyDirs( $$LANG, lang )
 	copyFiles( $$QSS )

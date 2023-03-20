@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>NIF File Format Documentation - AdditionalDataInfo</title>
+    <link rel="stylesheet" href="docsys.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+    | <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+    
+<center><h2>AdditionalDataInfo</h2></center>
+
+<h3>Attributes</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    
+<tr>
+    <td class="aname">Data Type</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Type of data in this channel</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Channel Bytes Per Element</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Number of bytes per element of this channel</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Channel Bytes</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Total number of bytes of this channel (num vertices times num bytes per element)</td>
+</tr>
+
+<tr>
+    <td class="aname">Num Total Bytes Per Element</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Number of bytes per element in all channels together. Sum of num channel bytes per element over all block infos.</td>
+</tr>
+
+<tr>
+    <td class="aname">Block Index</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Unsure. The block in which this channel is stored? Usually there is only one block, and so this is zero.</td>
+</tr>
+
+<tr>
+    <td class="aname">Channel Offset</td>
+    <td class="atype"><a href="int.html"><b>int</b></a></td>
+    <td class="adesc">Offset (in bytes) of this channel. Sum of all num channel bytes per element of all preceeding block infos.</td>
+</tr>
+
+<tr>
+    <td class="aname">Unknown Byte 1</td>
+    <td class="atype"><a href="byte.html"><b>byte</b></a></td>
+    <td class="adesc">Unknown, usually equal to 2.</td>
+</tr>
+
+</table>
+
+<h3>Found In</h3>
+<ul>
+	<li><a href="BSPackedAdditionalGeometryData.html">BSPackedAdditionalGeometryData</a></li>
+	<li><a href="NiAdditionalGeometryData.html">NiAdditionalGeometryData</a></li>
+
+</ul>
+
+</body>
+</html>
