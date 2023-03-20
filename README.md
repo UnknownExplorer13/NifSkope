@@ -8,10 +8,10 @@ You can download the latest release from [GitHub](https://github.com/niftools/Un
 You can download the latest official release from the [NifTools GitHub](https://github.com/niftools/nifskope/releases).
 You can download the latest development release from the [Hexabit's GitHub](https://github.com/hexabits/nifskope/releases).
 
-### Discussion, Help & Issues
+### Discussion, Help, & Issues
 
 For support using NifSkope please join the [NifMania Discord](https://discord.gg/JjHKVNc).
-The official Discord invite is down and the official forums are dead, use the [issues tab](https://github.com/UnknownExplorer13/nifskope/issues) to report issues.
+The official forums are dead, use the [issues tab](https://github.com/UnknownExplorer13/nifskope/issues) to report issues.
 
 ### Contribute
 
