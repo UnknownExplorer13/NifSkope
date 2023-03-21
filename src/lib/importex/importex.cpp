@@ -49,11 +49,11 @@ void import3ds( NifModel * nif, const QModelIndex & index );
 
 void NifSkope::fillImportExportMenus()
 {
-	mExport->addAction( tr( "Export .OBJ" ) );
+	mExport->addAction( tr( "Export .OBJ" ) )->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_E ) );
 	//mExport->addAction( tr( "Export .DAE" ) );
 	//mImport->addAction( tr( "Import .3DS" ) );
-	mImport->addAction( tr( "Import .OBJ" ) );
-	mImport->addAction( tr( "Import .OBJ as Collision" ) );
+	mImport->addAction( tr( "Import .OBJ" ) )->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_I ) );
+	mImport->addAction( tr( "Import .OBJ as Collision" ) )->setShortcut( QKeySequence( Qt::CTRL + Qt::ALT + Qt::Key_I ) );
 }
 
 void NifSkope::sltImportExport( QAction * a )

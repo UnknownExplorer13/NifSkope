@@ -1034,6 +1034,9 @@ background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0
    <property name="text">
     <string>New Window</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="aLoadXML">
    <property name="text">
@@ -1043,6 +1046,9 @@ background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0
   <action name="aReload">
    <property name="text">
     <string>Reload</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+X</string>
    </property>
    <property name="toolTip">
     <string>Reload XML &amp;&amp; NIF</string>
@@ -1059,6 +1065,9 @@ background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0
   <action name="aQuit">
    <property name="text">
     <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
   </action>
   <action name="aHeader">
@@ -1614,6 +1623,9 @@ background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0
    <property name="toolTip">
     <string>Save File</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="aSaveAs">
    <property name="enabled">
@@ -1621,6 +1633,9 @@ background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0
    </property>
    <property name="text">
     <string>Save As...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+S</string>
    </property>
    <property name="toolTip">
     <string>Save File As</string>
@@ -1632,6 +1647,9 @@ background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0
    </property>
    <property name="toolTip">
     <string>Open File</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="aDummyRecentFiles">
