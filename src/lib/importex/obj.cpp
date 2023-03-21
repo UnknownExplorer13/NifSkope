@@ -633,8 +633,8 @@ void importObj( NifModel * nif, const QModelIndex & index, bool collision )
 	if ( iBlock.isValid() && nif->inherits( iBlock, "NiNode" ) ) {
 		iNode = iBlock;
 	} else if ( iBlock.isValid()
-				&& (nif->itemName( iBlock ) == "NiTriShape"
-					 || (collision && nif->inherits( iBlock, "BSTriShape" ) ) ) ) {
+				&& ( nif->itemName( iBlock ) == "NiTriShape"
+					 || ( collision && nif->inherits( iBlock, "BSTriShape" ) ) ) ) {
 		iShape = iBlock;
 		//Find parent of NiTriShape
 		int par_num = nif->getParent( nif->getBlockNumber( iBlock ) );
@@ -658,8 +658,6 @@ void importObj( NifModel * nif, const QModelIndex & index, bool collision )
 				if ( type == "NiMaterialProperty" ) {
 					iMaterial = temp;
 				} else if ( type == "NiTriShapeData" ) {
-					iData = temp;
-				} else if ( ( nif->getUserVersion2() == 100 ) & ( type == "NiSkinPartition" ) ) {
 					iData = temp;
 				} else if ( (type == "NiTexturingProperty") || (type == "NiTextureProperty") ) {
 					iTexProp = temp;
