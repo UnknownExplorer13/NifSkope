@@ -226,7 +226,7 @@ static void writeShape( const NifModel * nif, const QModelIndex & iShape, QTextS
 		} else if ( nif->isNiBlock( iProp, "NiTextureProperty" ) ) {
 			QModelIndex iSource = nif->getBlock( nif->getLink( iProp, "Image" ), "NiImage" );
 			map_Kd = TexCache::find( nif->get<QString>( iSource, "File Name" ), nif->getFolder() );
-		} else if ( nif->isNiBlock( iProp, "NiSkinInstance" ) ) {
+		} else if ( ( nif->inherits( iProp, "NiSkinInstance" ) ) || ( nif->isNiBlock( iProp, "BSSkin::Instance" ) ) ) {
 			QMessageBox::warning(
 				0,
 				"OBJ Export Warning",
@@ -264,9 +264,9 @@ static void writeShape( const NifModel * nif, const QModelIndex & iShape, QTextS
 
 	mtl << "\r\n";
 	mtl << "newmtl " << matn << "\r\n";
-	mtl << "Ka " << mata[0] << " "  << mata[1] << " "  << mata[2] << "\r\n";
-	mtl << "Kd " << matd[0] << " "  << matd[1] << " "  << matd[2] << "\r\n";
-	mtl << "Ks " << mats[0] << " "  << mats[1] << " " << mats[2] << "\r\n";
+	mtl << "Ka " << mata[0] << " " << mata[1] << " " << mata[2] << "\r\n";
+	mtl << "Kd " << matd[0] << " " << matd[1] << " " << matd[2] << "\r\n";
+	mtl << "Ks " << mats[0] << " " << mats[1] << " " << mats[2] << "\r\n";
 	mtl << "d " << matt << "\r\n";
 	mtl << "Ns " << matg << "\r\n";
 
@@ -380,23 +380,76 @@ void exportObj( const NifModel * nif, const QModelIndex & index )
 
 	//--Determine how the file will export, and be sure the user wants to continue--//
 	QList<int> roots;
+	QList<QModelIndex> blockIndex;
+	QList<QString> blockTypes;
 	QModelIndex iBlock = nif->getBlock( index );
 
 	QString question;
+
+	// Check Skyrim SE nif files for BSDismemberSkinInstance blocks
+	// so we can show error message if present
+	if ( nif->getUserVersion2() == 100 ) {
+		for (int i = 0; i < nif->getBlockCount(); ++i ) {
+			blockIndex.append( nif->getBlock( i ) );
+		}
+		for (int i = 0; i < blockIndex.size(); ++i ) {
+			blockTypes.append( nif->getBlockName( blockIndex.at( i ) ) );
+		}
+	}
 
 	if ( iBlock.isValid() ) {
 		roots.append( nif->getBlockNumber( index ) );
 
 		if ( nif->inherits( index, "NiNode" ) ) {
-			question = tr( "NiNode selected.  All children of selected node will be exported." );
+			if ( ( nif->getUserVersion2() == 100 ) & ( blockTypes.contains( "BSDismemberSkinInstance" ) ) ) {
+				QMessageBox::warning(
+					0,
+					"OBJ Export Warning",
+					QString( "Exporting skinned Skyrim SE meshes is currently broken. Please use an app like SSE Nif Optimizer to convert the file to a Skyrim LE nif." )
+				);
+				return;
+				// Notify user that skinned Skyrim SE export is broken
+			}
+			else
+				question = tr( "NiNode or BSFadeNode selected. All children of the selected node will be exported." );
 		} else if ( nif->itemName( index ) == "NiTriShape" || nif->itemName( index ) == "NiTriStrips" ) {
-			question = nif->itemName( index ) + tr( " selected.  Selected mesh will be exported." );
+			question = nif->itemName( index ) + tr( " selected. Selected mesh will be exported." );
+		} else if ( nif->itemName( index ) == "BSTriShape" || nif->itemName( index ) == "BSSubIndexTriShape" ) {
+			if ( ( nif->getUserVersion2() == 100 ) & ( blockTypes.contains( "BSDismemberSkinInstance" ) ) ) {
+				QMessageBox::warning(
+					0,
+					"OBJ Export Warning",
+					QString( "Exporting skinned Skyrim SE meshes is currently broken. Please use an app like SSE Nif Optimizer to convert the file to a Skyrim LE nif." )
+				);
+				return;
+				// Notify user that skinned Skyrim SE export is broken
+			}
+			else
+				question = nif->itemName( index ) + tr( " selected. Selected mesh will be exported." );
 		}
 	}
 
 	if ( question.size() == 0 ) {
-		question = tr( "No NiNode, NiTriShape,or NiTriStrips is selected.  Entire scene will be exported." );
-		roots = nif->getRootLinks();
+		if ( nif->getUserVersion2() < 100 ) {
+			question = tr( "No NiNode, NiTriShape, or NiTriStrips are selected. Entire scene will be exported." );
+			roots = nif->getRootLinks();
+		} else if ( nif->getUserVersion2() == 100 ) {
+			if ( blockTypes.contains( "BSDismemberSkinInstance" ) ) {
+				QMessageBox::warning(
+					0,
+					"OBJ Export Warning",
+					QString( "Exporting skinned Skyrim SE meshes is currently broken. Please use an app like SSE Nif Optimizer to convert the file to a Skyrim LE nif." )
+				);
+				return;
+				// Notify user that skinned Skyrim SE export is broken
+			}
+			else
+				question = tr( "No NiNode, BSFadeNode, or BSTriShape is selected. Entire scene will be exported." );
+				roots = nif->getRootLinks();
+		} else if ( nif->getUserVersion2() == 130 or 155 ) {
+			question = tr( "No NiNode, BSFadeNode, or BSSubIndexTriShape is selected. Entire scene will be exported." );
+			roots = nif->getRootLinks();
+		}
 	}
 
 	int result = QMessageBox::question( 0, tr( "Export OBJ" ), question, QMessageBox::Ok, QMessageBox::Cancel );
@@ -444,7 +497,7 @@ void exportObj( const NifModel * nif, const QModelIndex & index )
 
 	sobj << "# exported with NifSkope\r\n\r\n" << "mtllib " << fname << "\r\n";
 
-	//--Translate NIF structure into file structure --//
+	//--Translate NIF structure into file structure--//
 
 	int ofs[3] = {
 		1, 1, 1
@@ -454,7 +507,7 @@ void exportObj( const NifModel * nif, const QModelIndex & index )
 
 		if ( nif->inherits( iBlock, "NiNode" ) )
 			writeParent( nif, iBlock, sobj, smtl, ofs, Transform() );
-		else if ( nif->isNiBlock( iBlock, { "NiTriShape", "NiTriStrips" } ) )
+		else if ( nif->isNiBlock( iBlock, { "NiTriShape", "NiTriStrips", "BSTriShape", "BSSubIndexTriShape" } ) )
 			writeShape( nif, iBlock, sobj, smtl, ofs, Transform() );
 	}
 
@@ -555,7 +608,7 @@ static void readMtlLib( const QString & fname, QMap<QString, ObjMaterial> & omat
 static void addLink( NifModel * nif, const QModelIndex & iBlock, const QString & name, qint32 link )
 {
 	QModelIndex iArray = nif->getIndex( iBlock, name );
-	QModelIndex iSize  = nif->getIndex( iBlock, QString( "Num %1" ).arg( name ) );
+	QModelIndex iSize = nif->getIndex( iBlock, QString( "Num %1" ).arg( name ) );
 	int numIndices = nif->get<int>( iSize );
 	nif->set<int>( iSize, numIndices + 1 );
 	nif->updateArray( iArray );
@@ -566,14 +619,14 @@ void importObj( NifModel * nif, const QModelIndex & index, bool collision )
 {
 	//--Determine how the file will import, and be sure the user wants to continue--//
 
-	// If no existing node is selected, create a group node.  Otherwise use selected node
+	// If no existing node is selected, create a group node. Otherwise use selected node
 	QPersistentModelIndex iNode, iShape, iStripsShape, iMaterial, iData, iTexProp, iTexSource;
 	QModelIndex iBlock = nif->getBlock( index );
 	bool cBSShaderPPLightingProperty = false;
 
 	//Be sure the user hasn't clicked on a NiTriStrips object
 	if ( iBlock.isValid() && nif->itemName( iBlock ) == "NiTriStrips" ) {
-		QMessageBox::information( 0, tr( "Import OBJ" ), tr( "You cannot import an OBJ file over a NiTriStrips object.  Please convert it to a NiTriShape object first by right-clicking and choosing Mesh > Triangulate" ) );
+		QMessageBox::information( 0, tr( "Import OBJ" ), tr( "You cannot import an OBJ file over an NiTriStrips object. Please convert it to an NiTriShape object first by right-clicking and choosing Mesh > Triangulate" ) );
 		return;
 	}
 
@@ -581,7 +634,7 @@ void importObj( NifModel * nif, const QModelIndex & index, bool collision )
 		iNode = iBlock;
 	} else if ( iBlock.isValid()
 				&& (nif->itemName( iBlock ) == "NiTriShape"
-					 || (collision && nif->inherits( iBlock, "BSTriShape" ))) ) {
+					 || (collision && nif->inherits( iBlock, "BSTriShape" ) ) ) ) {
 		iShape = iBlock;
 		//Find parent of NiTriShape
 		int par_num = nif->getParent( nif->getBlockNumber( iBlock ) );
@@ -605,6 +658,8 @@ void importObj( NifModel * nif, const QModelIndex & index, bool collision )
 				if ( type == "NiMaterialProperty" ) {
 					iMaterial = temp;
 				} else if ( type == "NiTriShapeData" ) {
+					iData = temp;
+				} else if ( ( nif->getUserVersion2() == 100 ) & ( type == "NiSkinPartition" ) ) {
 					iData = temp;
 				} else if ( (type == "NiTexturingProperty") || (type == "NiTextureProperty") ) {
 					iTexProp = temp;
@@ -630,12 +685,12 @@ void importObj( NifModel * nif, const QModelIndex & index, bool collision )
 	if ( !collision ) {
 		if ( iNode.isValid() ) {
 			if ( iShape.isValid() ) {
-				question = tr( "NiTriShape selected.  The first imported mesh will replace the selected one." );
+				question = tr( "NiTriShape selected. The first imported mesh will replace the selected one." );
 			} else {
-				question = tr( "NiNode selected.  Meshes will be attached to the selected node." );
+				question = tr( "NiNode or BSFadeNode selected. Meshes will be attached to the selected node." );
 			}
 		} else {
-			question = tr( "No NiNode or NiTriShape selected.  Meshes will be imported to the root of the file." );
+			question = tr( "No NiNode, BSFadeNode, or NiTriShape selected. Meshes will be imported to the root of the file." );
 		}
 	} else {
 		if ( iNode.isValid() || iShape.isValid() ) {
@@ -776,7 +831,7 @@ void importObj( NifModel * nif, const QModelIndex & index, bool collision )
 			}
 
 			if ( newiShape ) {
-				// don't change a name what already exists; // don't add duplicates
+				// don't change a name what already exists; don't add duplicates
 				nif->set<QString>( iShape, "Name", QString( "%1:%2" ).arg( nif->get<QString>( iNode, "Name" ) ).arg( shapecount++ ) );
 				addLink( nif, iNode, "Children", nif->getBlockNumber( iShape ) );
 			}
@@ -798,14 +853,14 @@ void importObj( NifModel * nif, const QModelIndex & index, bool collision )
 					newiMaterial = true;
 				}
 
-				if ( newiMaterial ) // don't affect a property  that is already there - that name is generated above on export and it has nothign to do with the stored name
+				if ( newiMaterial ) // don't affect a property that is already there - that name is generated above on export and it has nothing to do with the stored name
 					nif->set<QString>( iMaterial, "Name", it.key() );
 
 				nif->set<Color3>( iMaterial, "Ambient Color", mtl.Ka );
 				nif->set<Color3>( iMaterial, "Diffuse Color", mtl.Kd );
 				nif->set<Color3>( iMaterial, "Specular Color", mtl.Ks );
 
-				if ( newiMaterial ) // don't affect a property  that is already there
+				if ( newiMaterial ) // don't affect a property that is already there
 					nif->set<Color3>( iMaterial, "Emissive Color", Color3( 0, 0, 0 ) );
 
 				nif->set<float>( iMaterial, "Alpha", mtl.d );
@@ -1066,7 +1121,7 @@ void importObj( NifModel * nif, const QModelIndex & index, bool collision )
 			nif->set<int>( iData, "Has Points", 1 );
 
 			QModelIndex iLengths = nif->getIndex( iData, "Strip Lengths" );
-			QModelIndex iPoints  = nif->getIndex( iData, "Points" );
+			QModelIndex iPoints = nif->getIndex( iData, "Points" );
 
 			if ( iLengths.isValid() && iPoints.isValid() ) {
 				nif->updateArray( iLengths );
