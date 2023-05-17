@@ -192,6 +192,18 @@ static void writeData( const NifModel * nif, const QModelIndex & iData, QTextStr
 	
 }
 
+// Notify user that skinned Skyrim SE export doesn't work
+void skinnedSkyrimSEMeshWarning()
+{
+	QMessageBox msgBox;
+	msgBox.setIcon(QMessageBox::Warning);
+	msgBox.setTextFormat(Qt::RichText);
+	msgBox.setWindowTitle("OBJ Export Warning");
+	msgBox.setText( "Due to the way Skyrim SE meshes store skinning data it is not currently possible to export them. "
+			"Please use an app like <a href='https://www.nexusmods.com/skyrimspecialedition/mods/4089'>SSE Nif Optimizer</a> to convert the file to a Skyrim LE nif." );
+	msgBox.exec();
+}
+
 static void writeShape( const NifModel * nif, const QModelIndex & iShape, QTextStream & obj, QTextStream & mtl, int ofs[], Transform t )
 {
 	QString name = nif->get<QString>( iShape, "Name" );
@@ -227,6 +239,7 @@ static void writeShape( const NifModel * nif, const QModelIndex & iShape, QTextS
 			QModelIndex iSource = nif->getBlock( nif->getLink( iProp, "Image" ), "NiImage" );
 			map_Kd = TexCache::find( nif->get<QString>( iSource, "File Name" ), nif->getFolder() );
 		} else if ( ( nif->inherits( iProp, "NiSkinInstance" ) ) || ( nif->isNiBlock( iProp, "BSSkin::Instance" ) ) ) {
+			// Notify user that skinned meshes will be exported in a static bind pose without weights
 			QMessageBox::warning(
 				0,
 				"OBJ Export Warning",
@@ -402,13 +415,8 @@ void exportObj( const NifModel * nif, const QModelIndex & index )
 
 		if ( nif->inherits( index, "NiNode" ) ) {
 			if ( ( nif->getUserVersion2() == 100 ) & ( blockTypes.contains( "BSDismemberSkinInstance" ) ) ) {
-				QMessageBox::warning(
-					0,
-					"OBJ Export Warning",
-					QString( "Exporting skinned Skyrim SE meshes is currently broken. Please use an app like SSE Nif Optimizer to convert the file to a Skyrim LE nif." )
-				);
+				skinnedSkyrimSEMeshWarning();
 				return;
-				// Notify user that skinned Skyrim SE export is broken
 			}
 			else
 				question = tr( "NiNode or BSFadeNode selected. All children of the selected node will be exported." );
@@ -416,13 +424,8 @@ void exportObj( const NifModel * nif, const QModelIndex & index )
 			question = nif->itemName( index ) + tr( " selected. Selected mesh will be exported." );
 		} else if ( nif->itemName( index ) == "BSTriShape" || nif->itemName( index ) == "BSSubIndexTriShape" ) {
 			if ( ( nif->getUserVersion2() == 100 ) & ( blockTypes.contains( "BSDismemberSkinInstance" ) ) ) {
-				QMessageBox::warning(
-					0,
-					"OBJ Export Warning",
-					QString( "Exporting skinned Skyrim SE meshes is currently broken. Please use an app like SSE Nif Optimizer to convert the file to a Skyrim LE nif." )
-				);
+				skinnedSkyrimSEMeshWarning();
 				return;
-				// Notify user that skinned Skyrim SE export is broken
 			}
 			else
 				question = nif->itemName( index ) + tr( " selected. Selected mesh will be exported." );
@@ -435,13 +438,8 @@ void exportObj( const NifModel * nif, const QModelIndex & index )
 			roots = nif->getRootLinks();
 		} else if ( nif->getUserVersion2() == 100 ) {
 			if ( blockTypes.contains( "BSDismemberSkinInstance" ) ) {
-				QMessageBox::warning(
-					0,
-					"OBJ Export Warning",
-					QString( "Exporting skinned Skyrim SE meshes is currently broken. Please use an app like SSE Nif Optimizer to convert the file to a Skyrim LE nif." )
-				);
+				skinnedSkyrimSEMeshWarning();
 				return;
-				// Notify user that skinned Skyrim SE export is broken
 			}
 			else
 				question = tr( "No NiNode, BSFadeNode, or BSTriShape is selected. Entire scene will be exported." );
@@ -626,7 +624,7 @@ void importObj( NifModel * nif, const QModelIndex & index, bool collision )
 
 	//Be sure the user hasn't clicked on a NiTriStrips object
 	if ( iBlock.isValid() && nif->itemName( iBlock ) == "NiTriStrips" ) {
-		QMessageBox::information( 0, tr( "Import OBJ" ), tr( "You cannot import an OBJ file over an NiTriStrips object. Please convert it to an NiTriShape object first by right-clicking and choosing Mesh > Triangulate" ) );
+		QMessageBox::information( 0, tr( "Import OBJ" ), tr( "You cannot import an OBJ file over a NiTriStrips object. Please convert it to a NiTriShape object first by right-clicking and choosing Mesh > Triangulate" ) );
 		return;
 	}
 
@@ -829,7 +827,7 @@ void importObj( NifModel * nif, const QModelIndex & index, bool collision )
 			}
 
 			if ( newiShape ) {
-				// don't change a name what already exists; don't add duplicates
+				// don't change a name that already exists; don't add duplicates
 				nif->set<QString>( iShape, "Name", QString( "%1:%2" ).arg( nif->get<QString>( iNode, "Name" ) ).arg( shapecount++ ) );
 				addLink( nif, iNode, "Children", nif->getBlockNumber( iShape ) );
 			}
