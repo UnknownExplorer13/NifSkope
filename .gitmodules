@@ -13,3 +13,6 @@
 [submodule "build/nifxml"]
 	path = build/nifxml
 	url = https://github.com/UnknownExplorer13/nifxml.git
+[submodule "build/NifSkopeHelpDocs"]
+	path = build/NifSkopeHelpDocs
+	url = https://github.com/UnknownExplorer13/NifSkopeHelpDocs.git

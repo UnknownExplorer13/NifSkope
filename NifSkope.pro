@@ -493,7 +493,7 @@ win32:contains(QT_ARCH, i386) {
 }
 
 	DOC += \
-		build/doc
+		build/NifSkopeHelpDocs/doc
 		
 	XML += \
 		build/nifxml/nif.xml \
