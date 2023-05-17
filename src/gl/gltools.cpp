@@ -467,12 +467,14 @@ namespace GLUtils
 		for ( int j = 0; j <= sd; j++ ) {
 			float f = PI * float( j ) / float( sd * 2 );
 
+			//Render front face
 			glBegin( GL_LINE_STRIP );
 
 			for ( int i = 0; i <= sd * 2; i++ )
 				glVertex( a  + x * sin( PI / sd * i ) + y * cos( PI / sd * i ) );
 
 			glEnd();
+
 			//Render rear face
 			glBegin( GL_LINE_STRIP );
 

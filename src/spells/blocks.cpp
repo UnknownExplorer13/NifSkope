@@ -1269,7 +1269,7 @@ public:
 
 REGISTER_SPELL( spPasteOverBlock );
 
-//! Copy a branch (a block and its descendents) to the clipboard
+//! Copy a branch (a block and its descendants) to the clipboard
 
 bool spCopyBranch::isApplicable( const NifModel * nif, const QModelIndex & index )
 {
