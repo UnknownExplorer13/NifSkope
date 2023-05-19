@@ -403,9 +403,9 @@ QColor ColorWheel::choose( const QColor & c, bool alphaEnable, QWidget * parent 
 
 	QHBoxLayout * hbox = new QHBoxLayout;
 	grid->addLayout( hbox, 1, 0, 1, 3 );
-	QPushButton * ok = new QPushButton( "ok" );
+	QPushButton * ok = new QPushButton( "Ok" );
 	hbox->addWidget( ok );
-	QPushButton * cancel = new QPushButton( "cancel" );
+	QPushButton * cancel = new QPushButton( "Cancel" );
 	hbox->addWidget( cancel );
 	connect( ok, &QPushButton::clicked, &dlg, &QDialog::accept );
 	connect( cancel, &QPushButton::clicked, &dlg, &QDialog::reject );

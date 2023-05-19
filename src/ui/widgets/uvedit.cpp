@@ -65,15 +65,14 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	#include <GL/glu.h>
 #endif
 
-#define BASESIZE 512.0
-#define GRIDSIZE 16.0
+#define BASESIZE 576.0
+#define GRIDSIZE 18.0
 #define GRIDSEGS 4
 #define ZOOMUNIT -64.0
 #define MINZOOM 0.1
 #define MAXZOOM 20.0
 #define MAXSCALE 10.0
 #define MAXTRANS 10.0
-
 
 UVWidget * UVWidget::createEditor( NifModel * nif, const QModelIndex & idx )
 {
@@ -112,7 +111,7 @@ QStringList UVWidget::texnames = {
 
 
 UVWidget::UVWidget( QWidget * parent )
-	: QGLWidget( QGLFormat( QGL::SampleBuffers ), parent, 0, Qt::Tool ), undoStack( new QUndoStack( this ) )
+	: QGLWidget( QGLFormat( QGL::SampleBuffers ), parent, 0, Qt::Window ), undoStack( new QUndoStack( this ) )
 {
 	setWindowTitle( tr( "UV Editor" ) );
 	setFocusPolicy( Qt::StrongFocus );
@@ -151,14 +150,17 @@ UVWidget::UVWidget( QWidget * parent )
 	addAction( aSelectAll );
 
 	QAction * aSelectNone = new QAction( tr( "Select &None" ), this );
+	aSelectNone->setShortcut( QKeySequence( "Ctrl+Shift+A" ) );
 	connect( aSelectNone, &QAction::triggered, this, &UVWidget::selectNone );
 	addAction( aSelectNone );
 
 	QAction * aSelectFaces = new QAction( tr( "Select &Faces" ), this );
+	aSelectFaces->setShortcut( QKeySequence( "Ctrl+Shift+F" ) );
 	connect( aSelectFaces, &QAction::triggered, this, &UVWidget::selectFaces );
 	addAction( aSelectFaces );
 
 	QAction * aSelectConnected = new QAction( tr( "Select &Connected" ), this );
+	aSelectConnected->setShortcut( QKeySequence( "Ctrl+Shift+C" ) );
 	connect( aSelectConnected, &QAction::triggered, this, &UVWidget::selectConnected );
 	addAction( aSelectConnected );
 
@@ -801,7 +803,14 @@ bool UVWidget::setNifData( NifModel * nifModel, const QModelIndex & nifIndex )
 
 	nif = nifModel;
 	iShape = nifIndex;
+	QModelIndex iName = nif->getIndex( iShape, "Name" );
 	isDataOnSkin = false;
+
+	auto newTitle = tr( "UV Editor" );
+	if( nif )
+		newTitle += tr( " - " ) + nif->getFileInfo().fileName() + tr( ": " )
+				 + nif->itemName( iShape ) + tr( " - " ) + nif->get<QString>( iName );
+	setWindowTitle( newTitle );
 
 	game = Game::GameManager::get_game(nif->getVersionNumber(), nif->getUserVersion(), nif->getUserVersion2());
 
