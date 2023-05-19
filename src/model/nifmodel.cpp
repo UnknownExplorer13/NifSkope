@@ -44,12 +44,42 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <QFile>
 #include <QSettings>
 
+QHash<QString, QString> NifModel::arrayPseudonyms;
 
+void NifModel::setupArrayPseudonyms()
+{
+	if( !arrayPseudonyms.isEmpty() )
+		return;
+
+	auto registerPseudonym = []( const QString & plural, const QString & singular )
+	{
+		arrayPseudonyms.insert( plural, singular + " " );
+	};
+
+	registerPseudonym( "Vertex Data", "Vertex" );
+	registerPseudonym( "Vertices", "Vertex" );
+	registerPseudonym( "Triangles", "Triangle" );
+	registerPseudonym( "Normals", "Normal" );
+	registerPseudonym( "Tangents", "Tangent" );
+	registerPseudonym( "Bitangents", "Bitangent" );
+	registerPseudonym( "Vertex Colors", "Vertex Color" );
+	registerPseudonym( "Textures", "Texture" );
+	registerPseudonym( "Strings", "String" );
+	registerPseudonym( "Children", "Child" );
+	registerPseudonym( "Extra Data List", "Extra Data" );
+	registerPseudonym( "Chunk Materials", "Chunk Material" );
+	registerPseudonym( "Chunk Transforms", "Chunk Transform" );
+	registerPseudonym( "Big Verts", "Big Vert" );
+	registerPseudonym( "Big Tris", "Big Tri" );
+	registerPseudonym( "Chunks", "Chunk" );
+	registerPseudonym( "Effects", "Effect" );
+}
 
 //! @file nifmodel.cpp The NIF data model.
 
 NifModel::NifModel( QObject * parent ) : BaseModel( parent )
 {
+	setupArrayPseudonyms();
 	updateSettings();
 
 	clear();
@@ -1181,15 +1211,28 @@ QVariant NifModel::data( const QModelIndex & idx, int role ) const
 			switch ( column ) {
 			case NameCol:
 				{
-					if ( ndr )
-						return item->name();
+					auto iName = item->name();
 
-					QString a = "";
+					if ( ndr )
+						return iName;
 
 					if ( itemType( index ) == "NiBlock" )
-						a = QString::number( getBlockNumber( index ) ) + " ";
+						return QString::number( getBlockNumber( index ) ) + " " + iName;
+					else if ( isArray( item->parent() ) )
+					{
+						auto arrayName = arrayPseudonyms.value( iName );
+						if ( arrayName.isEmpty() )
+						{
+							if ( iName == "UV Sets" )
+								arrayName = QString( ( item->value().type() == NifValue::tVector2 ) ? "UV " : "UV Set " );
+							else
+								arrayName = iName + " ";
+						}
 
-					return a + item->name();
+					return arrayName + QString::number( item->row() );
+					}
+
+					return " " + iName;
 				}
 				break;
 			case TypeCol:
