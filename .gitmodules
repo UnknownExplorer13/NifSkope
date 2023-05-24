@@ -1,18 +1,15 @@
 [submodule "qhull"]
 	path = lib/qhull
 	url = https://github.com/qhull/qhull.git
-[submodule "lib/zlib"]
-	path = lib/zlib
-	url = https://github.com/madler/zlib.git
 [submodule "lib/gli"]
 	path = lib/gli
 	url = https://github.com/g-truc/gli.git
-[submodule "build/kfmxml"]
-	path = build/kfmxml
-	url = https://github.com/C0bra5/kfmxml.git
-[submodule "build/nifxml"]
-	path = build/nifxml
-	url = https://github.com/UnknownExplorer13/nifxml.git
+[submodule "lib/zlib"]
+	path = lib/zlib
+	url = https://github.com/madler/zlib.git
 [submodule "build/NifSkopeHelpDocs"]
 	path = build/NifSkopeHelpDocs
 	url = https://github.com/UnknownExplorer13/NifSkopeHelpDocs.git
+[submodule "build/nifxml"]
+	path = build/nifxml
+	url = https://github.com/UnknownExplorer13/nifxml.git

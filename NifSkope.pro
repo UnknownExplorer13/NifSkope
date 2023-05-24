@@ -497,7 +497,7 @@ win32:contains(QT_ARCH, i386) {
 		
 	XML += \
 		build/nifxml/nif.xml \
-		build/kfmxml/kfm.xml
+		build/nifxml/kfm.xml
 
 	QSS += \
 		res/style.qss
