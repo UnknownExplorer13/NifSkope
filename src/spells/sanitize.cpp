@@ -141,11 +141,11 @@ public:
 
 REGISTER_SPELL( spSanitizeLinkArrays );
 
-//! Fixes texture path names and options
-class spAdjustTextureSources final : public Spell
+//! Cleans texture paths and removes of unnecessary data
+class spCleanupTexturePaths final : public Spell
 {
 public:
-	QString name() const override final { return Spell::tr( "Adjust Texture Sources" ); }
+	QString name() const override final { return Spell::tr( "Cleanup Texture Paths" ); }
 	QString page() const override final { return Spell::tr( "Sanitize" ); }
 	bool sanity() const override final { return true; }
 
@@ -157,22 +157,87 @@ public:
 	QModelIndex cast( NifModel * nif, const QModelIndex & ) override final
 	{
 		for ( int i = 0; i < nif->getBlockCount(); i++ ) {
-			QModelIndex iTexSrc = nif->getBlock( i, "NiSourceTexture" );
+			auto iBSSTS = nif->getBlock( i, "BSShaderTextureSet" );
+			auto iBSSNLP = nif->getBlock( i, "BSShaderNoLightingProperty" );
+			auto iBSESP = nif->getBlock( i, "BSEffectShaderProperty" );
+			auto iNiST = nif->getBlock( i, "NiSourceTexture" );
 
-			if ( iTexSrc.isValid() ) {
-				QModelIndex iFileName = nif->getIndex( iTexSrc, "File Name" );
+			//Not working, needs to edit array values
+			//W.I.P
+			/*if ( iBSSTS.isValid() ) {
+				QVector<QString> iArray;
+				iArray << nif->getArray<QString>( iBSSTS, "Textures" );
+				QModelIndex iFileName = nif->get<QString>( ( iArray[0].data().toString() ) );
+				int pos = nif->get<QString>( iFileName ).indexOf( QString( "\\textures\\" ) );
 
 				if ( iFileName.isValid() ) // adjust file path
 					nif->set<QString>( iFileName, nif->get<QString>( iFileName ).replace( "/", "\\" ) );
+					int pos = nif->get<QString>( iFileName ).indexOf( QString( "\\textures\\" ) );
+					nif->set<QString>( iFileName, nif->get<QString>( iFileName ).replace( nif->get<QString>( iFileName ).left( pos + 1 ), "" ) );
+
+			}*/
+
+			if ( iBSSNLP.isValid() ) {
+				QModelIndex iFileName = nif->getIndex( iBSSNLP, "File Name" );
+
+				if ( iFileName.isValid() ) // adjust file path
+					nif->set<QString>( iFileName, nif->get<QString>( iFileName ).replace( "/", "\\" ) );
+					int pos = nif->get<QString>( iFileName ).indexOf( QString( "\\textures\\" ) );
+					nif->set<QString>( iFileName, nif->get<QString>( iFileName ).replace( nif->get<QString>( iFileName ).left( pos + 1 ), "" ) );
+
+			}
+
+			if ( iBSESP.isValid() ) {
+				QModelIndex iFileNameSource = nif->getIndex( iBSESP, "Source Texture" );
+				QModelIndex iFileNameGreyscale = nif->getIndex( iBSESP, "Greyscale Texture" );
+				QModelIndex iFileNameEnvMap = nif->getIndex( iBSESP, "Env Map Texture" );
+				QModelIndex iFileNameNormal = nif->getIndex( iBSESP, "Normal Texture" );
+				QModelIndex iFileNameEnvMask = nif->getIndex( iBSESP, "Env Mask Texture" );
+
+				if ( iFileNameSource.isValid() ) // adjust file path
+					nif->set<QString>( iFileNameSource, nif->get<QString>( iFileNameSource ).replace( "/", "\\" ) );
+					int posSource = nif->get<QString>( iFileNameSource ).indexOf( QString( "\\textures\\" ) );
+					nif->set<QString>( iFileNameSource, nif->get<QString>( iFileNameSource ).replace( nif->get<QString>( iFileNameSource ).left( posSource + 1 ), "" ) );
+
+				if ( iFileNameGreyscale.isValid() ) // adjust file path
+					nif->set<QString>( iFileNameGreyscale, nif->get<QString>( iFileNameGreyscale ).replace( "/", "\\" ) );
+					int posGreyscale = nif->get<QString>( iFileNameGreyscale ).indexOf( QString( "\\textures\\" ) );
+					nif->set<QString>( iFileNameGreyscale, nif->get<QString>( iFileNameGreyscale ).replace( nif->get<QString>( iFileNameGreyscale ).left( posGreyscale + 1 ), "" ) );
+
+				if ( iFileNameEnvMap.isValid() ) // adjust file path
+					nif->set<QString>( iFileNameEnvMap, nif->get<QString>( iFileNameEnvMap ).replace( "/", "\\" ) );
+					int posEnvMap = nif->get<QString>( iFileNameEnvMap ).indexOf( QString( "\\textures\\" ) );
+					nif->set<QString>( iFileNameEnvMap, nif->get<QString>( iFileNameEnvMap ).replace( nif->get<QString>( iFileNameEnvMap ).left( posEnvMap + 1 ), "" ) );
+
+				if ( iFileNameNormal.isValid() ) // adjust file path
+					nif->set<QString>( iFileNameNormal, nif->get<QString>( iFileNameNormal ).replace( "/", "\\" ) );
+					int posNormal = nif->get<QString>( iFileNameNormal ).indexOf( QString( "\\textures\\" ) );
+					nif->set<QString>( iFileNameNormal, nif->get<QString>( iFileNameNormal ).replace( nif->get<QString>( iFileNameNormal ).left( posNormal + 1 ), "" ) );
+
+				if ( iFileNameEnvMask.isValid() ) // adjust file path
+					nif->set<QString>( iFileNameEnvMask, nif->get<QString>( iFileNameEnvMask ).replace( "/", "\\" ) );
+					int posEnvMask = nif->get<QString>( iFileNameEnvMask ).indexOf( QString( "\\textures\\" ) );
+					nif->set<QString>( iFileNameEnvMask, nif->get<QString>( iFileNameEnvMask ).replace( nif->get<QString>( iFileNameEnvMask ).left( posEnvMask + 1 ), "" ) );
+
+			}
+
+			if ( iNiST.isValid() ) {
+				QModelIndex iFileName = nif->getIndex( iNiST, "File Name" );
+
+				if ( iFileName.isValid() ) // adjust file path
+					nif->set<QString>( iFileName, nif->get<QString>( iFileName ).replace( "/", "\\" ) );
+					int pos = nif->get<QString>( iFileName ).indexOf( QString( "\\textures\\" ) );
+					nif->set<QString>( iFileName, nif->get<QString>( iFileName ).replace( nif->get<QString>( iFileName ).left( pos + 1 ), "" ) );
 
 				if ( nif->checkVersion( 0x14000005, 0x14000005 ) ) {
 					// adjust format options (oblivion only)
-					nif->set<int>( iTexSrc, "Pixel Layout", 6 );
-					nif->set<int>( iTexSrc, "Use Mipmaps", 1 );
-					nif->set<int>( iTexSrc, "Alpha Format", 3 );
-					nif->set<int>( iTexSrc, "Unknown Byte", 1 );
-					nif->set<int>( iTexSrc, "Unknown Byte 2", 1 );
+					nif->set<int>( iNiST, "Pixel Layout", 6 );
+					nif->set<int>( iNiST, "Use Mipmaps", 1 );
+					nif->set<int>( iNiST, "Alpha Format", 3 );
+					nif->set<int>( iNiST, "Unknown Byte", 1 );
+					nif->set<int>( iNiST, "Unknown Byte 2", 1 );
 				}
+
 			}
 		}
 
@@ -180,7 +245,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spAdjustTextureSources );
+REGISTER_SPELL( spCleanupTexturePaths );
 
 //! Reorders blocks
 
