@@ -18,7 +18,7 @@ I barely know how to code so I'd like to thank these people for their work that 
 * UV Editor changes
 
 ### [Joseph Crowell](https://github.com/gavrant/nifskope/commit/0217eaf849c95e5377700249d5fafcc914cf8c4a)
-* De-hardcoded color wheel icon code
+* Original de-hardcoded color wheel icon code
 
 ### [UnknownExplorer13](https://github.com/UnknownExplorer13/nifskope)
 * Allow rendering of bhkCylinderShape collision objects
@@ -26,3 +26,4 @@ I barely know how to code so I'd like to thank these people for their work that 
 * Help docs submodule
 * More UV Editor shortcuts
 * Small changes to gavrant's UV Editor code
+* More de-hardcoded icons
