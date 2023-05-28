@@ -158,7 +158,7 @@ bool KfmModel::updateArrayItem( NifItem * array )
 	int d1 = getArraySize( array );
 
 	if ( d1 > 1024 * 1024 * 8 ) {
-		auto m = tr( "array %1 much too large. %2 bytes requested" ).arg( array->name() ).arg( d1 );
+		auto m = tr( "Array %1 much too large. %2 bytes requested." ).arg( array->name() ).arg( d1 );
 		if ( msgMode == MSG_USER ) {
 			Message::append( nullptr, tr( "Could not update array item." ), m, QMessageBox::Critical );
 		} else {
@@ -301,7 +301,7 @@ bool KfmModel::load( QIODevice & device )
 
 	if ( !kfmroot || !load( kfmroot, stream ) ) {
 		Message::critical( nullptr, tr( "The file could not be read. See Details for more information." ),
-			tr( "failed to load kfm file (%1)" ).arg( version2string( version ) )
+			tr( "Failed to load kfm file (%1)." ).arg( version2string( version ) )
 		);
 		return false;
 	}
@@ -369,7 +369,7 @@ bool KfmModel::save( NifItem * parent, NifOStream & stream ) const
 			if ( !child->arr1().isEmpty() || !child->arr2().isEmpty() || child->childCount() > 0 ) {
 				if ( !child->arr1().isEmpty() && child->childCount() != getArraySize( child ) ) {
 					Message::append( tr( "Warnings were generated while reading the blocks." ),
-						tr( "%1 array size mismatch" ).arg( child->name() )
+						tr( "%1 array size mismatch." ).arg( child->name() )
 					);
 				}
 

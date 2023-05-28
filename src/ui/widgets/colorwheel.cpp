@@ -50,8 +50,6 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <math.h>
 
-static QIconPtr icon = nullptr;
-
 ColorWheel::ColorWheel( QWidget * parent ) : QWidget( parent )
 {
 	H = 0.0; S = 0.0; V = 1.0;
@@ -72,14 +70,6 @@ ColorWheel::ColorWheel( const QColor & c, QWidget * parent ) : QWidget( parent )
 
 	if ( V > 1.0 || V < 0.0 )
 		V = 1.0;
-}
-
-QIcon ColorWheel::getIcon()
-{
-	if ( !icon )
-		icon = QIconPtr( new QIcon( ":/img/icon/color-wheel.png" ) );
-
-	return *icon;
 }
 
 QColor ColorWheel::getColor() const

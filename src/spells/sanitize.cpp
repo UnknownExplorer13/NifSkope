@@ -649,7 +649,7 @@ public:
 		nif->updateHeader();
 
 		for ( const QString& s : modifiedNames ) {
-			Message::append( Spell::tr( "One or more NiControllerSequence rows have been sanitized" ),
+			Message::append( Spell::tr( "One or more NiControllerSequence rows have been sanitized." ),
 							 QString( "%1" ).arg( s ) );
 		}
 

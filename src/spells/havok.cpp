@@ -256,7 +256,7 @@ public:
 		}
 
 		Message::info( nullptr,
-					   Spell::tr( "Created hull with %1 vertices, %2 normals" )
+					   Spell::tr( "Created hull with %1 vertices, %2 normals." )
 						.arg( convex_verts.count() )
 						.arg( convex_norms.count() ) 
 		);
@@ -400,7 +400,7 @@ public:
 		QModelIndex iBodyB = nif->getBlock( nif->getLink( BKHUtils::bhkGetEntity( nif, iConstraint, "Entity B" ) ), "bhkRigidBody" );
 
 		if ( !iBodyA.isValid() || !iBodyB.isValid() ) {
-			Message::warning( nullptr, Spell::tr( "Couldn't find the bodies for this constraint" ) );
+			Message::warning( nullptr, Spell::tr( "Couldn't find the bodies for this constraint." ) );
 			return idx;
 		}
 

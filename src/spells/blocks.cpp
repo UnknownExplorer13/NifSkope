@@ -1439,7 +1439,7 @@ QModelIndex spPasteBranch::cast( NifModel * nif, const QModelIndex & index )
 							blockMap.insert( ipm.key(), block );
 						} else {
 							Message::append( tr( B_ERR ).arg( name() ),
-											 tr( "failed to map parent link %1" ).arg( ipm.value() ),
+											 tr( "failed to map parent link %1." ).arg( ipm.value() ),
 											 QMessageBox::Critical
 							);
 							return index;
@@ -1957,7 +1957,7 @@ QModelIndex spDuplicateBranch::cast( NifModel * nif, const QModelIndex & index )
 				blockMap.insert( ipm.key(), block );
 			} else {
 				Message::append( tr( B_ERR ).arg( name() ),
-								 tr( "failed to map parent link %1" ).arg( ipm.value() ),
+								 tr( "Failed to map parent link %1." ).arg( ipm.value() ),
 								 QMessageBox::Critical
 				);
 				return index;

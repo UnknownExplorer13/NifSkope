@@ -245,7 +245,7 @@ bool Renderer::Shader::load( const QString & filepath )
 	catch ( QString & err )
 	{
 		status = false;
-		Message::append( QObject::tr( "There were errors during shader compilation" ), QString( "%1:\r\n\r\n%2" ).arg( name ).arg( err ) );
+		Message::append( QObject::tr( "There were errors during shader compilation." ), QString( "%1:\r\n\r\n%2" ).arg( name ).arg( err ) );
 		return false;
 	}
 	status = true;
@@ -378,7 +378,7 @@ bool Renderer::Program::load( const QString & filepath, Renderer * renderer )
 	catch ( QString & x )
 	{
 		status = false;
-		Message::append( QObject::tr( "There were errors during shader compilation" ), QString( "%1:\r\n\r\n%2" ).arg( name ).arg( x ) );
+		Message::append( QObject::tr( "There were errors during shader compilation." ), QString( "%1:\r\n\r\n%2" ).arg( name ).arg( x ) );
 		return false;
 	}
 	status = true;

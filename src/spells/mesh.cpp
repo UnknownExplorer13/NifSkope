@@ -115,7 +115,7 @@ static void removeWasteVertices( NifModel * nif, const QModelIndex & iData, cons
 
 		// remove them
 
-		Message::info( nullptr, Spell::tr( "Removed %1 vertices" ).arg( verts.count() - used.count() ) );
+		Message::info( nullptr, Spell::tr( "Removed %1 vertices." ).arg( verts.count() - used.count() ) );
 
 		if ( verts.count() == used.count() )
 			return;
@@ -227,12 +227,12 @@ static void removeWasteVertices( NifModel * nif, const QModelIndex & iData, cons
 
 		if ( iSkinPart.isValid() ) {
 			nif->removeNiBlock( nif->getBlockNumber( iSkinPart ) );
-			Message::warning( nullptr, Spell::tr( "The skin partition was removed, please regenerate it with the skin partition spell" ) );
+			Message::warning( nullptr, Spell::tr( "The skin partition was removed, please regenerate it with the skin partition spell." ) );
 		}
 	}
 	catch ( QString & e )
 	{
-		Message::warning( nullptr, Spell::tr( "There were errors during the operation" ), e );
+		Message::warning( nullptr, Spell::tr( "There were errors during the operation." ), e );
 	}
 }
 
@@ -442,7 +442,7 @@ public:
 		}
 
 		if ( cnt > 0 ) {
-			Message::info( nullptr, Spell::tr( "Removed %1 triangles" ).arg( cnt ) );
+			Message::info( nullptr, Spell::tr( "Removed %1 triangles." ).arg( cnt ) );
 			nif->set<int>( iData, "Num Triangles", tris.count() );
 			nif->set<int>( iData, "Num Triangle Points", tris.count() * 3 );
 			nif->updateArray( iData, "Triangles" );
@@ -574,7 +574,7 @@ public:
 		}
 		catch ( QString & e )
 		{
-			Message::warning( nullptr, Spell::tr( "There were errors during the operation" ), e );
+			Message::warning( nullptr, Spell::tr( "There were errors during the operation." ), e );
 		}
 
 		return index;

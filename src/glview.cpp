@@ -176,7 +176,7 @@ GLView::GLView( const QGLFormat & format, QWidget * p, const QGLWidget * shareWi
 	glFuncs = glContext->functions();
 
 	if ( !glFuncs ) {
-		Message::critical( this, tr( "Could not obtain OpenGL functions" ) );
+		Message::critical( this, tr( "Could not obtain OpenGL functions." ) );
 		exit( 1 );
 	}
 
@@ -1557,7 +1557,7 @@ void GLView::saveImage()
 			if ( writer.write( *img ) ) {
 				dlg->accept();
 			} else {
-				Message::critical( this, tr( "Could not save %1" ).arg( file->file() ) );
+				Message::critical( this, tr( "Could not save %1." ).arg( file->file() ) );
 			}
 
 			delete img;

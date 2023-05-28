@@ -16,82 +16,6 @@
 #include <QPushButton>
 #include <QSettings>
 
-
-/* XPM */
-static char const * transform_xpm[] = {
-	"64 64 6 1",
-	"   c None",
-	".	c #1800FF",
-	"+	c #FF0301",
-	"@	c #C46EBC",
-	"#	c #0DFF00",
-	"$	c #2BFFAC",
-	"                                                                ",
-	"                                                                ",
-	"                                                                ",
-	"                             .                                  ",
-	"                            ...                                 ",
-	"                           .....                                ",
-	"                          .......                               ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                    ##           ",
-	"     +                      ...                  ####           ",
-	"    ++++                    ...                 #####           ",
-	"     +++++                  ...                #######          ",
-	"      +++++                 ...              #######            ",
-	"        +++++               ...             #####               ",
-	"          +++++             ...           #####                 ",
-	"           +++++            ...          #####                  ",
-	"             +++++          ...        #####                    ",
-	"               +++++        ...       #####                     ",
-	"                +++++       ...      ####                       ",
-	"                  +++++     ...    #####                        ",
-	"                    +++++   ...   ####                          ",
-	"                     ++++++ ... #####                           ",
-	"                       +++++...#####                            ",
-	"                         +++...###                              ",
-	"                          ++...+#                               ",
-	"                           #...++                               ",
-	"                         ###...++++                             ",
-	"                        ####...++++++                           ",
-	"                      ##### ...  +++++                          ",
-	"                     ####   ...    +++++                        ",
-	"                   #####    ...     ++++++                      ",
-	"                  #####     ...       +++++                     ",
-	"                #####       ...         +++++                   ",
-	"               #####        ...          ++++++                 ",
-	"              ####          ...            +++++                ",
-	"            #####           ...              +++++              ",
-	"           ####             ...               ++++++            ",
-	"         #####              ...                 +++++  +        ",
-	"        #####               ...                   +++++++       ",
-	"      #####                 ...                    +++++++      ",
-	"     #####                  ...                      +++++      ",
-	"    ####                    ...                      ++++       ",
-	"    ###                     ...                        +        ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                            ...                                 ",
-	"                                                                ",
-	"                                                                ",
-	"                                                                ",
-	"                                                                ",
-	"                                                                ",
-	"                                                                "
-};
-
 bool spApplyTransformation::isApplicable( const NifModel * nif, const QModelIndex & index )
 {
 	return nif->itemType( index ) == "NiBlock" &&
@@ -106,7 +30,7 @@ QModelIndex spApplyTransformation::cast( NifModel * nif, const QModelIndex & ind
 		 || nif->getLink( index, "Skin Instance" ) != -1
 		 || nif->getLink( index, "Skin" ) != -1 )
 		if ( QMessageBox::question( 0, Spell::tr( "Apply Transformation" ),
-			Spell::tr( "On animated and or skinned nodes Apply Transformation most likely won't work the way you expected it." ),
+			Spell::tr( "On animated and/or skinned nodes Apply Transformation most likely won't work the way you expect it to." ),
 			Spell::tr( "Try anyway" ),
 			Spell::tr( "Cancel" ) ) != 0 )
 		{
@@ -334,21 +258,13 @@ public:
 
 REGISTER_SPELL( spPasteTransformation );
 
-static QIconPtr transform_xpm_icon = nullptr;
-
 class spEditTransformation final : public Spell
 {
 public:
 	QString name() const override final { return Spell::tr( "Edit" ); }
 	QString page() const override final { return Spell::tr( "Transform" ); }
 	bool instant() const override final { return true; }
-	QIcon icon() const override final
-	{
-		if ( !transform_xpm_icon )
-			transform_xpm_icon = QIconPtr( new QIcon(QPixmap( transform_xpm )) );
-
-		return *transform_xpm_icon;
-	}
+	QIcon icon() const override { return QIcon( ":/img/transform" ); }
 
 	bool isApplicable( const NifModel * nif, const QModelIndex & index ) override final
 	{

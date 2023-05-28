@@ -143,7 +143,7 @@ public:
 	{
 		int ofs = nif->fileOffset( index );
 		Message::info( nif->getWindow(),
-			Spell::tr( "Estimated file offset is %1 (0x%2)" ).arg( ofs ).arg( ofs, 0, 16 ),
+			Spell::tr( "Estimated file offset is %1 (0x%2)." ).arg( ofs ).arg( ofs, 0, 16 ),
 			Spell::tr( "Block: %1\nOffset: %2 (0x%3)" ).arg( index.data( Qt::DisplayRole ).toString() ).arg( ofs ).arg( ofs, 0, 16 )
 		);
 		return index;

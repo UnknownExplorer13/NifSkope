@@ -159,7 +159,7 @@ public:
 
 				if ( !missingNodes.isEmpty() ) {
 					for ( const QString& nn : missingNodes ) {
-						Message::append( Spell::tr( "Errors occurred while attaching .KF" ), nn );
+						Message::append( Spell::tr( "Errors occurred while attaching .KF." ), nn );
 					}
 				}
 
@@ -167,7 +167,7 @@ public:
 			}
 			catch ( QString & e )
 			{
-				Message::append( Spell::tr( "Errors occurred while attaching .KF" ), e );
+				Message::append( Spell::tr( "Errors occurred while attaching .KF." ), e );
 			}
 		}
 		return index;

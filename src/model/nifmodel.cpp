@@ -230,7 +230,7 @@ void NifModel::clear()
 	version = version2number( cfg.startupVersion );
 
 	if ( !supportedVersions.isEmpty() && !isVersionSupported( version ) ) {
-		Message::warning( nullptr, tr( "Unsupported 'Startup Version' %1 specified, reverting to 20.0.0.5" ).arg( cfg.startupVersion ) );
+		Message::warning( nullptr, tr( "Unsupported 'Startup Version' %1 specified, reverting to 20.0.0.5." ).arg( cfg.startupVersion ) );
 		version = 0x14000005;
 	}
 	endResetModel();
@@ -575,13 +575,13 @@ bool NifModel::updateArrayItem( NifItem * array )
 
 	// Error handling
 	if ( rows > 1024 * 1024 * 8 ) {
-		auto m = tr( "[%1] Array %2 much too large. %3 bytes requested" ).arg( getBlockNumber( array ) )
+		auto m = tr( "[%1] Array %2 much too large. %3 bytes requested." ).arg( getBlockNumber( array ) )
 			.arg( array->name() ).arg( rows );
 		logMessage(tr(readFail), m, QMessageBox::Critical);
 
 		return false;
 	} else if ( rows < 0 ) {
-		auto m = tr( "[%1] Array %2 invalid" ).arg( getBlockNumber( array ) ).arg( array->name() );
+		auto m = tr( "[%1] Array %2 invalid." ).arg( getBlockNumber( array ) ).arg( array->name() );
 		logMessage(tr(readFail), m, QMessageBox::Critical);
 
 		return false;
@@ -712,7 +712,7 @@ QModelIndex NifModel::insertNiBlock( const QString & identifier, int at )
 		return createIndex( branch->row(), 0, branch );
 	}
 
-	logMessage(tr("Could not insert NiBlock."), tr("Unknown block %1").arg(identifier), QMessageBox::Critical);
+	logMessage(tr("Could not insert NiBlock."), tr("Unknown block %1.").arg(identifier), QMessageBox::Critical);
 	
 	return QModelIndex();
 }
@@ -1038,7 +1038,7 @@ void NifModel::insertAncestor( NifItem * parent, const QString & identifier, int
 			insertType( parent, data );
 		}
 	} else {
-		logMessage(tr("Cannot insert parent."), tr("Unknown parent %1").arg(identifier));
+		logMessage(tr("Cannot insert parent."), tr("Unknown parent %1.").arg(identifier));
 	}
 
 	restoreState();
@@ -1822,7 +1822,7 @@ bool NifModel::load( QIODevice & device )
 	// read header
 	NifItem * header = getHeaderItem();
 	if ( !header || !loadHeader( header, stream ) ) {
-		auto m = tr( "Failed to load file header (version %1, %2)" ).arg( version, 0, 16 ).arg( version2string( version ) );
+		auto m = tr( "Failed to load file header (version %1, %2)." ).arg( version, 0, 16 ).arg( version2string( version ) );
 		logMessage(tr(readFail), m, QMessageBox::Critical);
 
 		resetState();
@@ -2146,7 +2146,7 @@ bool NifModel::loadHeaderOnly( const QString & fname )
 	QFile f( fname );
 
 	if ( !f.open( QIODevice::ReadOnly ) ) {
-		Message::critical( nullptr, tr( "Failed to open %1" ).arg( fname ) );
+		Message::critical( nullptr, tr( "Failed to open %1." ).arg( fname ) );
 		return false;
 	}
 
@@ -2156,7 +2156,7 @@ bool NifModel::loadHeaderOnly( const QString & fname )
 	NifItem * header = getHeaderItem();
 
 	if ( !header || !loadHeader( header, stream ) ) {
-		logMessage(tr(readFail), tr("Failed to load file header version %1").arg(version), QMessageBox::Critical);
+		logMessage(tr(readFail), tr("Failed to load file header version %1.").arg(version), QMessageBox::Critical);
 		return false;
 	}
 
@@ -2985,7 +2985,7 @@ void NifModel::convertNiBlock( const QString & identifier, const QModelIndex & i
 		return;
 
 	if ( !inherits( btype, identifier ) && !inherits( identifier, btype ) ) {
-		logMessage(tr("Cannot convert NiBlock."), tr("Block type %1 and %2 are not related").arg(btype, identifier), QMessageBox::Critical);
+		logMessage(tr("Cannot convert NiBlock."), tr("Block type %1 and %2 are not related.").arg(btype, identifier), QMessageBox::Critical);
 		return;
 	}
 

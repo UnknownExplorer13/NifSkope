@@ -152,7 +152,7 @@ public:
 	QModelIndex cast( NifModel * nif, const QModelIndex & iBlock ) override final
 	{
 		if ( !TheHavokCode.Initialize() ) {
-			Message::critical( nullptr, Spell::tr( "Unable to locate NifMopp.dll" ) );
+			Message::critical( nullptr, Spell::tr( "Unable to locate NifMopp.dll." ) );
 			return iBlock;
 		}
 
@@ -202,7 +202,7 @@ public:
 		}
 
 		if ( verts.isEmpty() || triangles.isEmpty() ) {
-			Message::critical( nullptr, Spell::tr( "Insufficient data to calculate MOPP code" ),
+			Message::critical( nullptr, Spell::tr( "Insufficient data to calculate MOPP code." ),
 				Spell::tr("Vertices: %1, Triangles: %2").arg( !verts.isEmpty() ).arg( !triangles.isEmpty() )
 			);
 			return iBlock;
@@ -213,7 +213,7 @@ public:
 		QByteArray moppcode = TheHavokCode.CalculateMoppCode( subshapeVerts, verts, triangles, &origin, &scale );
 
 		if ( moppcode.size() == 0 ) {
-			Message::critical( nullptr, Spell::tr( "Failed to generate MOPP code" ) );
+			Message::critical( nullptr, Spell::tr( "Failed to generate MOPP code." ) );
 		} else {
 			auto iMoppCode = nif->getIndex( ibhkMoppBvTreeShape, "MOPP Code" );
 

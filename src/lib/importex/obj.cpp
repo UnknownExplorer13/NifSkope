@@ -473,14 +473,14 @@ void exportObj( const NifModel * nif, const QModelIndex & index )
 	QFile fobj( fname + ".obj" );
 
 	if ( !fobj.open( QIODevice::WriteOnly ) ) {
-		qCCritical( nsIo ) << tr( "Failed to write %1" ).arg( fobj.fileName() );
+		qCCritical( nsIo ) << tr( "Failed to write %1." ).arg( fobj.fileName() );
 		return;
 	}
 
 	QFile fmtl( fname + ".mtl" );
 
 	if ( !fmtl.open( QIODevice::WriteOnly ) ) {
-		qCCritical( nsIo ) << tr( "Failed to write %1" ).arg( fmtl.fileName() );
+		qCCritical( nsIo ) << tr( "Failed to write %1." ).arg( fmtl.fileName() );
 		return;
 	}
 
@@ -554,7 +554,7 @@ static void readMtlLib( const QString & fname, QMap<QString, ObjMaterial> & omat
 	QFile file( fname );
 
 	if ( !file.open( QIODevice::ReadOnly ) ) {
-		qCCritical( nsIo ) << tr( "Failed to read %1" ).arg( fname );
+		qCCritical( nsIo ) << tr( "Failed to read %1." ).arg( fname );
 		return;
 	}
 
@@ -624,7 +624,7 @@ void importObj( NifModel * nif, const QModelIndex & index, bool collision )
 
 	//Be sure the user hasn't clicked on a NiTriStrips object
 	if ( iBlock.isValid() && nif->itemName( iBlock ) == "NiTriStrips" ) {
-		QMessageBox::information( 0, tr( "Import OBJ" ), tr( "You cannot import an OBJ file over a NiTriStrips object. Please convert it to a NiTriShape object first by right-clicking and choosing Mesh > Triangulate" ) );
+		QMessageBox::information( 0, tr( "Import OBJ" ), tr( "You cannot import an OBJ file over a NiTriStrips object. Please convert it to a NiTriShape object first by right-clicking and choosing Mesh > Triangulate." ) );
 		return;
 	}
 

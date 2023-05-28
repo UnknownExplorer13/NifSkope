@@ -28,7 +28,7 @@ template <typename T> void copyValue( NifModel * nif, const QModelIndex & iDst, 
 }
 
 
-class spStrippify final : public Spell
+class spStripify final : public Spell
 {
 	QString name() const override final { return Spell::tr( "Stripify" ); }
 	QString page() const override final { return Spell::tr( "Mesh" ); }
@@ -77,8 +77,8 @@ class spStrippify final : public Spell
 		}
 
 		if ( numTriangles > USHRT_MAX * 2 ) {
-			Message::append( tr( "Strippify failed on one or more blocks." ),
-				tr( "Block %1: Too many triangles (%2) to strippify this shape." )
+			Message::append( tr( "Stripify failed on one or more blocks." ),
+				tr( "Block %1: Too many triangles (%2) to stripify this shape." )
 				.arg( nif->getBlockNumber( idx ) )
 				.arg( numTriangles )
 			);
@@ -195,10 +195,10 @@ class spStrippify final : public Spell
 	}
 };
 
-REGISTER_SPELL( spStrippify );
+REGISTER_SPELL( spStripify );
 
 
-class spStrippifyAll final : public Spell
+class spStripifyAll final : public Spell
 {
 public:
 	QString name() const override final { return Spell::tr( "Stripify all TriShapes" ); }
@@ -220,7 +220,7 @@ public:
 				iTriShapes << idx;
 		}
 
-		spStrippify Stripper;
+		spStripify Stripper;
 
 		for ( const QModelIndex& idx : iTriShapes ) {
 			Stripper.castIfApplicable( nif, idx );
@@ -230,7 +230,7 @@ public:
 	}
 };
 
-REGISTER_SPELL( spStrippifyAll );
+REGISTER_SPELL( spStripifyAll );
 
 
 class spTriangulate final : public Spell

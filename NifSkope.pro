@@ -265,7 +265,7 @@ SOURCES += \
 	src/spells/sanitize.cpp \
 	src/spells/skeleton.cpp \
 	src/spells/stringpalette.cpp \
-	src/spells/strippify.cpp \
+	src/spells/stripify.cpp \
 	src/spells/tangentspace.cpp \
 	src/spells/texture.cpp \
 	src/spells/transform.cpp \

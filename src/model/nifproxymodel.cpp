@@ -336,7 +336,7 @@ void NifProxyModel::updateItem( NifProxyItem * item, bool fast )
 			updateItem( child, fast );
 		} else {
 			Message::append( tr( "Warnings were generated while reading NIF file." ),
-				tr( "infinite recursive link construct detected %1 -> %2" ).arg( item->block() ).arg( child->block() )
+				tr( "Infinite recursive link construct detected %1 -> %2." ).arg( item->block() ).arg( child->block() )
 			);
 		}
 	}

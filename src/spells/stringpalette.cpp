@@ -20,53 +20,6 @@
  * All classes here inherit from the Spell class.
  */
 
-/* XPM */
-static char const * txt_xpm[] = {
-	"32 32 36 1",
-	"   c None",
-	".	c #FFFFFF", "+	c #000000", "@	c #BDBDBD", "#	c #717171", "$	c #252525",
-	"%	c #4F4F4F", "&	c #A9A9A9", "*	c #A8A8A8", "=	c #555555", "-	c #EAEAEA",
-	";	c #151515", ">	c #131313", ",	c #D0D0D0", "'	c #AAAAAA", ")	c #080808",
-	"!	c #ABABAB", "~	c #565656", "{	c #D1D1D1", "]	c #4D4D4D", "^	c #4E4E4E",
-	"/	c #FDFDFD", "(	c #A4A4A4", "_	c #0A0A0A", ":	c #A5A5A5", "<	c #050505",
-	"[	c #C4C4C4", "}	c #E9E9E9", "|	c #D5D5D5", "1	c #141414", "2	c #3E3E3E",
-	"3	c #DDDDDD", "4	c #424242", "5	c #070707", "6	c #040404", "7	c #202020",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	" ...........          ....      ",
-	" .+++++++++.         .@#$.      ",
-	" .+++++++++.         .+++.      ",
-	" ....+++..............+++...    ",
-	"    .+++.   %++&.*++=++++++.    ",
-	"    .+++.  .-;+>,>+;-++++++.    ",
-	"    .+++.   .'++)++!..+++...    ",
-	"    .+++.    .=+++~. .+++.      ",
-	"    .+++.    .{+++{. .+++.      ",
-	"    .+++.    .]+++^. .+++/      ",
-	"    .+++.   .(++_++:..<++[..    ",
-	"    .+++.  .}>+;|;+1}.2++++.    ",
-	"    .+++.   ^++'.'++%.34567.    ",
-	"    .....  .................    ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                "
-};
-
-static QIconPtr txt_xpm_icon = nullptr;
-
 //! Edit a single offset into a string palette.
 class spEditStringOffset final : public Spell
 {
@@ -74,14 +27,8 @@ public:
 	QString name() const override final { return Spell::tr( "Edit String Offset" ); }
 	QString page() const override final { return Spell::tr( "" ); }
 	bool constant() const override final { return true; }
-	QIcon icon() const override final
-	{
-		if ( !txt_xpm_icon )
-			txt_xpm_icon = QIconPtr( new QIcon(QPixmap( txt_xpm )) );
-
-		return *txt_xpm_icon;
-	}
 	bool instant() const override final { return true; }
+	QIcon icon() const override { return QIcon( ":/img/string" ); }
 
 	bool isApplicable( const NifModel * nif, const QModelIndex & index ) override final
 	{
@@ -98,7 +45,7 @@ public:
 		QDialog dlg;
 
 		QLabel * lb = new QLabel( &dlg );
-		lb->setText( Spell::tr( "Select a string or enter a new one" ) );
+		lb->setText( Spell::tr( "Select a string or enter a new one." ) );
 
 		QListWidget * lw = new QListWidget( &dlg );
 		lw->addItems( strings.keys() );
@@ -222,7 +169,7 @@ StringPaletteRegexDialog::StringPaletteRegexDialog( NifModel * nif, QPersistentM
 	replace = new QLineEdit( this );
 
 	QLabel * title = new QLabel( this );
-	title->setText( Spell::tr( "Entries in the string palette" ) );
+	title->setText( Spell::tr( "Entries in the string palette:" ) );
 	QLabel * subTitle = new QLabel( this );
 	subTitle->setText( Spell::tr( "Enter a pair of regular expressions to search and replace." ) );
 	QLabel * refText = new QLabel( this );
@@ -312,7 +259,7 @@ public:
 			iPalette = nif->getBlock( nif->getLink( index.parent(), "String Palette" ) );
 
 			if ( !iPalette.isValid() ) {
-				qCWarning( nsSpell ) << Spell::tr( "Cannot find string palette" );
+				qCWarning( nsSpell ) << Spell::tr( "Cannot find string palette." );
 				return QModelIndex();
 			}
 		}
@@ -435,7 +382,7 @@ public:
 		// update the palette itself
 		nif->set<QByteArray>( iPalette, "Palette", bytes );
 
-		Message::info( nullptr, Spell::tr( "Updated %1 offsets in %2 sequences" ).arg( numRefsUpdated ).arg( sequenceUpdateList.size() ) );
+		Message::info( nullptr, Spell::tr( "Updated %1 offsets in %2 sequences." ).arg( numRefsUpdated ).arg( sequenceUpdateList.size() ) );
 
 		return index;
 	}
@@ -482,7 +429,7 @@ public:
 		int currentRow = 0;
 
 		QLabel * title = new QLabel( &dlg );
-		title->setText( Spell::tr( "Select an animation sequence to edit the string palette for" ) );
+		title->setText( Spell::tr( "Select an animation sequence to edit the string palette for." ) );
 		grid->addWidget( title, currentRow, 0, 1, 2 );
 		currentRow++;
 
