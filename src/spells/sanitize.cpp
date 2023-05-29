@@ -162,20 +162,16 @@ public:
 			auto iBSESP = nif->getBlock( i, "BSEffectShaderProperty" );
 			auto iNiST = nif->getBlock( i, "NiSourceTexture" );
 
-			//Not working, needs to edit array values
-			//W.I.P
-			/*if ( iBSSTS.isValid() ) {
-				QVector<QString> iArray;
-				iArray << nif->getArray<QString>( iBSSTS, "Textures" );
-				QModelIndex iFileName = nif->get<QString>( ( iArray[0].data().toString() ) );
-				int pos = nif->get<QString>( iFileName ).indexOf( QString( "\\textures\\" ) );
+			if ( iBSSTS.isValid() ) {
+				QModelIndex iTextures = nif->getIndex( iBSSTS, "Textures" );
 
-				if ( iFileName.isValid() ) // adjust file path
-					nif->set<QString>( iFileName, nif->get<QString>( iFileName ).replace( "/", "\\" ) );
-					int pos = nif->get<QString>( iFileName ).indexOf( QString( "\\textures\\" ) );
-					nif->set<QString>( iFileName, nif->get<QString>( iFileName ).replace( nif->get<QString>( iFileName ).left( pos + 1 ), "" ) );
+				for ( int i = 0; i < nif->rowCount( iTextures ); i++ ) {
+					QString iFileName = nif->get<QString>( iTextures.child( i, 0 ) ).replace( "/", "\\" );
+					int pos = iFileName.indexOf( QString( "\\textures\\" ) );
+					nif->set<QString>( iTextures.child( i, 0 ), iFileName.replace( iFileName.left( pos + 1 ), "" ) );
+				}
 
-			}*/
+			}
 
 			if ( iBSSNLP.isValid() ) {
 				QModelIndex iFileName = nif->getIndex( iBSSNLP, "File Name" );
