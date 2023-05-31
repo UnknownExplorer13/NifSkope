@@ -165,65 +165,106 @@ public:
 			if ( iBSSTS.isValid() ) {
 				QModelIndex iTextures = nif->getIndex( iBSSTS, "Textures" );
 
-				for ( int i = 0; i < nif->rowCount( iTextures ); i++ ) {
-					QString iFileName = nif->get<QString>( iTextures.child( i, 0 ) ).replace( "/", "\\" );
-					int pos = iFileName.indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
-					nif->set<QString>( iTextures.child( i, 0 ), iFileName.replace( iFileName.left( pos + 1 ), "" ) );
-				}
+				if ( iTextures.isValid() ) // adjust file paths
+					for ( int i = 0; i < nif->rowCount( iTextures ); i++ ) {
+						QString iFileName = nif->get<QString>( iTextures.child( i, 0 ) ).replace( "/", "\\" );
+						int pos = iFileName.indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
+						if ( pos == 0 ) {
+							nif->set<QString>( iTextures.child( i, 0 ), iFileName.remove( 0, 1 ) );
+						}
+						else {
+							nif->set<QString>( iTextures.child( i, 0 ), iFileName.replace( iFileName.left( pos + 1 ), "" ) );
+						}
+					}
 
 			}
 
 			if ( iBSSNLP.isValid() ) {
-				QModelIndex iFileName = nif->getIndex( iBSSNLP, "File Name" );
+				QModelIndex iTexture = nif->getIndex( iBSSNLP, "File Name" );
+				QString iFileName = nif->get<QString>( iTexture ).replace( "/", "\\" );
+				int pos = iFileName.indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
 
-				if ( iFileName.isValid() ) // adjust file path
-					nif->set<QString>( iFileName, nif->get<QString>( iFileName ).replace( "/", "\\" ) );
-					int pos = nif->get<QString>( iFileName ).indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
-					nif->set<QString>( iFileName, nif->get<QString>( iFileName ).replace( nif->get<QString>( iFileName ).left( pos + 1 ), "" ) );
+				if ( iTexture.isValid() ) // adjust file path
+					if ( pos == 0 ) {
+						nif->set<QString>( iTexture, iFileName.remove( 0, 1 ) );
+					}
+					else {
+						nif->set<QString>( iTexture, iFileName.replace( iFileName.left( pos + 1 ), "" ) );
+					}
 
 			}
 
 			if ( iBSESP.isValid() ) {
-				QModelIndex iFileNameSource = nif->getIndex( iBSESP, "Source Texture" );
-				QModelIndex iFileNameGreyscale = nif->getIndex( iBSESP, "Greyscale Texture" );
-				QModelIndex iFileNameEnvMap = nif->getIndex( iBSESP, "Env Map Texture" );
-				QModelIndex iFileNameNormal = nif->getIndex( iBSESP, "Normal Texture" );
-				QModelIndex iFileNameEnvMask = nif->getIndex( iBSESP, "Env Mask Texture" );
+				QModelIndex iTextureSource = nif->getIndex( iBSESP, "Source Texture" );
+				QModelIndex iTextureGreyscale = nif->getIndex( iBSESP, "Greyscale Texture" );
+				QModelIndex iTextureEnvMap = nif->getIndex( iBSESP, "Env Map Texture" );
+				QModelIndex iTextureNormal = nif->getIndex( iBSESP, "Normal Texture" );
+				QModelIndex iTextureEnvMask = nif->getIndex( iBSESP, "Env Mask Texture" );
+				QString iFileNameSource = nif->get<QString>( iTextureSource ).replace( "/", "\\" );
+				QString iFileNameGreyscale = nif->get<QString>( iTextureGreyscale ).replace( "/", "\\" );
+				QString iFileNameEnvMap = nif->get<QString>( iTextureEnvMap ).replace( "/", "\\" );
+				QString iFileNameNormal = nif->get<QString>( iTextureNormal ).replace( "/", "\\" );
+				QString iFileNameEnvMask = nif->get<QString>( iTextureEnvMask ).replace( "/", "\\" );
+				int posSource = iFileNameSource.indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
+				int posGreyscale = iFileNameGreyscale.indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
+				int posEnvMap = iFileNameEnvMap.indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
+				int posNormal = iFileNameNormal.indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
+				int posEnvMask = iFileNameEnvMask.indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
 
-				if ( iFileNameSource.isValid() ) // adjust file path
-					nif->set<QString>( iFileNameSource, nif->get<QString>( iFileNameSource ).replace( "/", "\\" ) );
-					int posSource = nif->get<QString>( iFileNameSource ).indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
-					nif->set<QString>( iFileNameSource, nif->get<QString>( iFileNameSource ).replace( nif->get<QString>( iFileNameSource ).left( posSource + 1 ), "" ) );
+				if ( iTextureSource.isValid() ) // adjust source file path
+					if ( posSource == 0 ) {
+						nif->set<QString>( iTextureSource, iFileNameSource.remove( 0, 1 ) );
+					}
+					else {
+						nif->set<QString>( iTextureSource, iFileNameSource.replace( iFileNameSource.left( posSource + 1 ), "" ) );
+					}
 
-				if ( iFileNameGreyscale.isValid() ) // adjust file path
-					nif->set<QString>( iFileNameGreyscale, nif->get<QString>( iFileNameGreyscale ).replace( "/", "\\" ) );
-					int posGreyscale = nif->get<QString>( iFileNameGreyscale ).indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
-					nif->set<QString>( iFileNameGreyscale, nif->get<QString>( iFileNameGreyscale ).replace( nif->get<QString>( iFileNameGreyscale ).left( posGreyscale + 1 ), "" ) );
+				if ( iTextureGreyscale.isValid() ) // adjust greyscale file path
+					if ( posGreyscale == 0 ) {
+						nif->set<QString>( iTextureGreyscale, iFileNameGreyscale.remove( 0, 1 ) );
+					}
+					else {
+						nif->set<QString>( iTextureGreyscale, iFileNameGreyscale.replace( iFileNameGreyscale.left( posGreyscale + 1 ), "" ) );
+					}
 
-				if ( iFileNameEnvMap.isValid() ) // adjust file path
-					nif->set<QString>( iFileNameEnvMap, nif->get<QString>( iFileNameEnvMap ).replace( "/", "\\" ) );
-					int posEnvMap = nif->get<QString>( iFileNameEnvMap ).indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
-					nif->set<QString>( iFileNameEnvMap, nif->get<QString>( iFileNameEnvMap ).replace( nif->get<QString>( iFileNameEnvMap ).left( posEnvMap + 1 ), "" ) );
+				if ( iTextureEnvMap.isValid() ) // adjust env map file path
+					if ( posEnvMap == 0 ) {
+						nif->set<QString>( iTextureEnvMap, iFileNameEnvMap.remove( 0, 1 ) );
+					}
+					else {
+						nif->set<QString>( iTextureEnvMap, iFileNameEnvMap.replace( iFileNameEnvMap.left( posEnvMap + 1 ), "" ) );
+					}
 
-				if ( iFileNameNormal.isValid() ) // adjust file path
-					nif->set<QString>( iFileNameNormal, nif->get<QString>( iFileNameNormal ).replace( "/", "\\" ) );
-					int posNormal = nif->get<QString>( iFileNameNormal ).indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
-					nif->set<QString>( iFileNameNormal, nif->get<QString>( iFileNameNormal ).replace( nif->get<QString>( iFileNameNormal ).left( posNormal + 1 ), "" ) );
+				if ( iTextureNormal.isValid() ) // adjust normal file path
+					if ( posNormal == 0 ) {
+						nif->set<QString>( iTextureNormal, iFileNameNormal.remove( 0, 1 ) );
+					}
+					else {
+						nif->set<QString>( iTextureNormal, iFileNameNormal.replace( iFileNameNormal.left( posNormal + 1 ), "" ) );
+					}
 
-				if ( iFileNameEnvMask.isValid() ) // adjust file path
-					nif->set<QString>( iFileNameEnvMask, nif->get<QString>( iFileNameEnvMask ).replace( "/", "\\" ) );
-					int posEnvMask = nif->get<QString>( iFileNameEnvMask ).indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
-					nif->set<QString>( iFileNameEnvMask, nif->get<QString>( iFileNameEnvMask ).replace( nif->get<QString>( iFileNameEnvMask ).left( posEnvMask + 1 ), "" ) );
+				if ( iTextureEnvMask.isValid() ) // adjust env mask file path
+					if ( posEnvMask == 0 ) {
+						nif->set<QString>( iTextureEnvMask, iFileNameEnvMask.remove( 0, 1 ) );
+					}
+					else {
+						nif->set<QString>( iTextureEnvMask, iFileNameEnvMask.replace( iFileNameEnvMask.left( posEnvMask + 1 ), "" ) );
+					}
 
 			}
 
 			if ( iNiST.isValid() ) {
-				QModelIndex iFileName = nif->getIndex( iNiST, "File Name" );
+				QModelIndex iTexture = nif->getIndex( iNiST, "File Name" );
+				QString iFileName = nif->get<QString>( iTexture ).replace( "/", "\\" );
+				int pos = iFileName.indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
 
-				if ( iFileName.isValid() ) // adjust file path
-					nif->set<QString>( iFileName, nif->get<QString>( iFileName ).replace( "/", "\\" ) );
-					int pos = nif->get<QString>( iFileName ).indexOf( QString( "\\textures\\" ), 0, Qt::CaseInsensitive );
-					nif->set<QString>( iFileName, nif->get<QString>( iFileName ).replace( nif->get<QString>( iFileName ).left( pos + 1 ), "" ) );
+				if ( iTexture.isValid() ) // adjust file path
+					if ( pos == 0 ) {
+						nif->set<QString>( iTexture, iFileName.remove( 0, 1 ) );
+					}
+					else {
+						nif->set<QString>( iTexture, iFileName.replace( iFileName.left( pos + 1 ), "" ) );
+					}
 
 				if ( nif->checkVersion( 0x14000005, 0x14000005 ) ) {
 					// adjust format options (oblivion only)
