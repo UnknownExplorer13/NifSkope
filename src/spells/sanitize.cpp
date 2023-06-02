@@ -3,6 +3,7 @@
 #include "spells/misc.h"
 
 #include <QInputDialog>
+#include <QAbstractButton>
 
 #include <algorithm> // std::stable_sort
 
@@ -157,10 +158,30 @@ public:
 	QModelIndex cast( NifModel * nif, const QModelIndex & ) override final
 	{
 		for ( int i = 0; i < nif->getBlockCount(); i++ ) {
+			auto iBSLSP = nif->getBlock( i, "BSLightingShaderProperty" );
 			auto iBSSTS = nif->getBlock( i, "BSShaderTextureSet" );
 			auto iBSSNLP = nif->getBlock( i, "BSShaderNoLightingProperty" );
 			auto iBSESP = nif->getBlock( i, "BSEffectShaderProperty" );
 			auto iNiST = nif->getBlock( i, "NiSourceTexture" );
+
+			// adjust material file path (fallout 4 only)
+			if ( nif->checkVersion( 0x14020007, 0x14020007 ) && nif->getUserVersion2() == 130 ) {
+
+				if ( iBSLSP.isValid() ) {
+					QModelIndex iMaterial = nif->getIndex( iBSLSP, "Name" );
+					QString iFileName = nif->get<QString>( iMaterial ).replace( "/", "\\" );
+					int pos = iFileName.indexOf( QString( "\\materials\\" ), 0, Qt::CaseInsensitive );
+
+					if ( iMaterial.isValid() ) // adjust file path
+						if ( pos == 0 ) {
+							nif->set<QString>( iMaterial, iFileName.remove( 0, 1 ) );
+						}
+						else {
+							nif->set<QString>( iMaterial, iFileName.replace( iFileName.left( pos + 1 ), "" ) );
+						}
+
+				}
+			}
 
 			if ( iBSSTS.isValid() ) {
 				QModelIndex iTextures = nif->getIndex( iBSSTS, "Textures" );
@@ -285,7 +306,6 @@ public:
 REGISTER_SPELL( spCleanupTexturePaths );
 
 //! Reorders blocks
-
 bool spSanitizeBlockOrder::isApplicable( const NifModel *, const QModelIndex & index )
 {
 	// all files
@@ -839,5 +859,97 @@ QModelIndex spWarningEnvironmentMapping::cast(NifModel * nif, const QModelIndex 
 	return QModelIndex();
 }
 
-
 REGISTER_SPELL(spWarningEnvironmentMapping);
+
+//! Check collision block materials for NONE value materials (Skyrim LE/SE only)
+class spCheckCollisionMaterials final : public Spell
+{
+public:
+	QString name() const override final { return Spell::tr( "Invalid Collision Materials" ); }
+	QString page() const override final { return Spell::tr( "Error Checking" ); }
+	bool constant() const override final { return true; }
+	bool sanity() const override final { return true; }
+
+	bool isApplicable( const NifModel * nif, const QModelIndex & index ) override final
+	{
+		return nif && !index.isValid() && ( nif->checkVersion( 0x14020007, 0x14020007 ) && nif->getUserVersion2() == 83 || 100 );
+	}
+
+	QModelIndex cast( NifModel * nif, const QModelIndex & ) override final
+	{
+		QStringList errors;
+
+		for ( int i = 0; i < nif->getBlockCount(); i++ ) {
+			QModelIndex iBlock = nif->getBlock( i );
+			QModelIndex iAnyBhkShape;
+			auto iBhkCMSD = nif->getBlock( i, "bhkCompressedMeshShapeData" );
+
+			if ( iBhkCMSD.isValid() ) {
+				QModelIndex iChunkMaterials = nif->getIndex( iBhkCMSD, "Chunk Materials" );
+
+				if ( iChunkMaterials.isValid() ) // check material
+					for ( int i = 0; i < nif->rowCount( iChunkMaterials ); i++ ) {
+						QModelIndex iMaterial = nif->getIndex( iChunkMaterials.child( i, 0 ), "Material" );
+						int iValue = nif->get<int>( iMaterial );
+						if ( iValue == 0 ) {
+							errors.append( QString( nif->getBlockName( iBhkCMSD ) ) + QString( " (block " ) +
+										   QString::number( nif->getBlockNumber( iBhkCMSD ) ) +
+										   QString( "): Chunk Material " ) + QString::number( i )
+							);
+						}
+						else {
+						
+						}
+					}
+			}
+
+			//can probably clean this if statement up somehow; add more or statements to support more blocks if needed
+			if ( ( nif->inherits( iBlock, "bhkSphereRepShape" ) )             ||
+				 ( nif->getBlockName( iBlock ) == "bhkConvexListShape" )      ||
+				 ( nif->getBlockName( iBlock ) == "bhkConvexTransformShape" ) ||
+				 ( nif->getBlockName( iBlock ) == "bhkListShape" )            ||
+				 ( nif->getBlockName( iBlock ) == "bhkTransformShape" )
+				)
+				iAnyBhkShape = iBlock;
+				if ( iAnyBhkShape.isValid() ) {
+					QModelIndex iMaterial = nif->getIndex( iAnyBhkShape, "Material" );
+					int iValue = nif->get<int>( iMaterial );
+
+					if ( iMaterial.isValid() ) // check material
+						if ( iValue == 0 ) {
+							errors.append( QString( nif->getBlockName( iAnyBhkShape ) ) + QString( " (block " ) +
+										   QString::number( nif->getBlockNumber( iAnyBhkShape ) ) +
+										   QString( ")" )
+							);
+						}
+						else {
+						
+						}
+				}
+		}
+
+		if ( !errors.isEmpty() ) {
+						QMessageBox msgBox;
+						msgBox.setIcon(QMessageBox::Warning);
+						msgBox.setTextFormat(Qt::PlainText);
+						msgBox.setWindowTitle("Collision Material Warning");
+						msgBox.setText( "One or more counts of SKY_HAV_MAT_NONE collision material detected." );
+						msgBox.setDetailedText( errors.join( "\n" ) );
+						QAbstractButton *detailsButton = NULL;
+						foreach (QAbstractButton *button, msgBox.buttons()) {
+							if (msgBox.buttonRole(button) == QMessageBox::ActionRole) {
+								detailsButton = button;
+								break;
+							}
+						}
+						if (detailsButton) {
+							detailsButton->click();
+						}
+						msgBox.exec();
+					}
+
+		return QModelIndex();
+	}
+};
+
+REGISTER_SPELL( spCheckCollisionMaterials );
