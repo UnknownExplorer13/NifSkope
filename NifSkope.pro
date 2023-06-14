@@ -247,6 +247,7 @@ SOURCES += \
 	src/model/undocommands.cpp \
 	src/spells/animation.cpp \
 	src/spells/array.cpp \
+	src/spells/automate.cpp \
 	src/spells/blocks.cpp \
 	src/spells/bounds.cpp \
 	src/spells/color.cpp \
