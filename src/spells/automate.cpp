@@ -77,7 +77,7 @@ public:
 
 };
 
-// Automatically setup NiStringExtraData (and BSBehaviorGraphExtraData if needed) block(s) for weapons
+// Automatically setup BSXFlags block
 class spAutoAddBSXFlags final : public Spell, uiAutomateDialogSetup
 {
 public:
