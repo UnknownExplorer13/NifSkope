@@ -100,21 +100,33 @@ public:
 			QVBoxLayout * vbox = new QVBoxLayout( &dlg );
 			//QStringList templateChoices = { "None", "Animated Static", "Clutter", "Static" };
 			//QComboBox * cmbOptions = dlgCombo( vbox, Spell::tr( "Template" ), templateChoices );  //Templates don't work yet, commenting out for now
-			//vbox->addWidget( new QLabel( "Templates" ) );
 			//vbox->addWidget( new QLabel( "" ) );
 			vbox->addWidget( new QLabel( "Flags to enable:" ) );
+
+			QStringList flagDesc {
+									  "The mesh has an animation (one or more).",                                                              //Animated
+									  "The mesh has collision.",                                                                               //Havok
+									  "The mesh is a \"skeleton.nif\" file used by actors.",                                                   //Ragdoll
+									  "The mesh has mutliple collision shapes (e.g. two bhkBoxShapes).",                                       //Complex
+									  "The mesh uses addon nodes (e.g. candle flames).",                                                       //Addon
+									  "The mesh has one or more editor markers.",                                                              //Editor Marker
+									  "The mesh uses Havok physics (e.g. a helmet ground model).",                                             //Dynamic
+									  "The mesh has a single collision shape and/or a single animation (e.g. an animation called \"idle\").",  //Articulated
+									  "This one isn't used and should be hidden. Please report if visible.",                                   //Needs Transform Updates
+									  "The mesh will be able to use External Emittance settings in the CK."                                    //External Emit
+									};
 
 			QStringList flagChoices {
 									  "Has Animations",                                 //Animated (1)
 									  "Enable Collision",                               //Havok (2)
 									  "Is a \"skeleton.nif\" file",                     //Ragdoll (4)
-									  "Multiple Collision Blocks",                      //Complex (8)
-									  "Uses Addon Nodes (e.g. candle flames)",          //Addon (16)
+									  "Has Multiple Collision Blocks",                  //Complex (8)
+									  "Uses Addon Nodes",                               //Addon (16)
 									  "Has Editor Marker(s)",                           //Editor Marker (32)
-									  "Has Havok Physics (e.g. helmet ground model)",   //Dynamic (64)
+									  "Has Havok Physics",                              //Dynamic (64)
 									  "Has One Collision Block and/or Animation",       //Articulated (128)
-									  "Has Moving Parts",                               //Needs Transform Updates (256)
-									  "Enable External Emittance in CK"                 //External Emit (512)
+									  "Has Moving Parts (not used,should be hidden)",   //Needs Transform Updates (256)
+									  "Enable External Emittance"                       //External Emit (512)
 									};
 
 			/* // Add commented out flag values as seen in flags.cpp; Disabled by default
@@ -129,10 +141,12 @@ public:
 			QList<QCheckBox *> chkBoxes;
 			int x = 0;
 			for ( const QString& flagName : flagChoices ) {
+				vbox->addWidget( new QLabel( flagDesc.at( x ) ) );
 				chkBoxes << dlgCheck( vbox, QString( "%1" ).arg( flagName ) );
 				x++;
 			}
-			chkBoxes.at( 8 )->hide(); //Hides the Needs Transform Updates option as Skyrim doesn't use it
+			vbox->itemAt( 17 )->widget()->hide(); //itemAt( 20 ) when templates are implemented
+			chkBoxes.at( 8 )->hide();             //Hides the Needs Transform Updates option as Skyrim doesn't use it
 
 			dlgButtons( &dlg, vbox, "Add BSXFlags" );
 
