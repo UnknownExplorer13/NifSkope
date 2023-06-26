@@ -2,8 +2,6 @@
 
 A list of features I'd like to implement at some point. These features will probably only be implemented for Skyrim and/or Fallout 4 nif files as that's what I work with the most.
 
-* Edit gavrant's index item array value code for textures to show what each slot is used for (slot 0 = Diffuse, slot 1 = Normal, etc.)
-
 * A spell to automate the setup of specific shader types (Default, Environment Mapping, Glow, etc.)
 
 * More warnings for things that might CTD Skyrim (as suggested by mathy)
