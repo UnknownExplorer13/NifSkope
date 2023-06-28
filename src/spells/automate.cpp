@@ -98,9 +98,9 @@ public:
 
 			QDialog dlg;
 			QVBoxLayout * vbox = new QVBoxLayout( &dlg );
-			//QStringList templateChoices = { "None", "Animated Static", "Clutter", "Static" };
-			//QComboBox * cmbOptions = dlgCombo( vbox, Spell::tr( "Template" ), templateChoices );  //Templates don't work yet, commenting out for now
-			//vbox->addWidget( new QLabel( "" ) );
+			QStringList templateChoices = { "None", "Animated Static", "Clutter", "Static" };
+			QComboBox * cmbOptions = dlgCombo( vbox, Spell::tr( "Template (doesn't work properly yet)" ), templateChoices );
+			vbox->addWidget( new QLabel( "" ) );
 			vbox->addWidget( new QLabel( "Flags to enable:" ) );
 
 			QStringList flagDesc {
@@ -145,7 +145,8 @@ public:
 				chkBoxes << dlgCheck( vbox, QString( "%1" ).arg( flagName ) );
 				x++;
 			}
-			vbox->itemAt( 17 )->widget()->hide(); //itemAt( 20 ) when templates are implemented
+			cmbOptions->setEnabled( false );  //Disables the template box from being selected, remove when working properly
+			vbox->itemAt( 20 )->widget()->hide();
 			chkBoxes.at( 8 )->hide();             //Hides the Needs Transform Updates option as Skyrim doesn't use it
 
 			dlgButtons( &dlg, vbox, "Add BSXFlags" );
