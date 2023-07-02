@@ -887,6 +887,7 @@ public:
 		bool isDynamic = false;  // 64
 		bool isArticulated = false;  // 128
 		bool isExternalEmit = false;  // 512
+		int iCollisionBlockCount = 0;
 		QModelIndex iBSXBlock;
 		quint32 iBSXValue;
 
@@ -896,7 +897,6 @@ public:
 			auto iBSLSP = nif->getBlock( i, "BSLightingShaderProperty" );
 			auto iBHK = nif->getBlock( i, "bhkCollisionObject" );
 			auto iBSVN = nif->getBlock( i, "BSValueNode" );
-			int iCollisionBlockCount = 0;
 
 			if ( iBSX.isValid() ) {
 				iBSXBlock = iBSX;
@@ -961,9 +961,6 @@ public:
 		if ( isHavok == true ) {
 				errors.append( QString( "One or more collision blocks present. Please enable the \"Havok\" flag in the BSXFlags block." ) );
 		}
-		if ( isComplex == true ) {
-				errors.append( QString( "More than one collision block present. Please enable the \"Complex\" flag and disable the \"Articulated\" flag in the BSXFlags block." ) );
-		}
 		if ( isAddon == true ) {
 				errors.append( QString( "One or more addon nodes present. Please enable the \"Addon\" flag in the BSXFlags block." ) );
 		}
@@ -973,11 +970,14 @@ public:
 		if ( isDynamic == true ) {
 				errors.append( QString( "One or more dynamic collision blocks present. Please enable the \"Dynamic\" flag in the BSXFlags block." ) );
 		}
-		if ( isArticulated == true ) {
-				errors.append( QString( "One collision block present. Please enable the \"Articulated\" flag and disable the \"Complex\" flag in the BSXFlags block." ) );
-		}
 		if ( isExternalEmit == true ) {
 				errors.append( QString( "One or more meshes use external emittance. Please enable the \"External Emit\" flag in the BSXFlags block." ) );
+		}
+		if ( isComplex == true ) {
+				errors.append( QString( "More than one collision block present. Please enable the \"Complex\" flag and disable the \"Articulated\" flag in the BSXFlags block." ) );
+		}
+		if ( isArticulated == true ) {
+				errors.append( QString( "One collision block present. Please enable the \"Articulated\" flag and disable the \"Complex\" flag in the BSXFlags block." ) );
 		}
 
 		if ( !errors.isEmpty() ) {
@@ -1085,13 +1085,7 @@ public:
 					}
 			}
 
-			//can probably clean this if statement up somehow; add more or statements to support more blocks if needed
-			if ( ( nif->inherits( iBlock, "bhkSphereRepShape" ) )             ||
-				 ( nif->getBlockName( iBlock ) == "bhkConvexListShape" )      ||
-				 ( nif->getBlockName( iBlock ) == "bhkConvexTransformShape" ) ||
-				 ( nif->getBlockName( iBlock ) == "bhkListShape" )            ||
-				 ( nif->getBlockName( iBlock ) == "bhkTransformShape" )
-				)
+			if ( nif->inherits( iBlock, { "bhkSphereRepShape", "bhkConvexListShape", "bhkConvexTransformShape", "bhkListShape", "bhkTransformShape" } ) ) {
 				iAnyBhkShape = iBlock;
 				if ( iAnyBhkShape.isValid() ) {
 					QModelIndex iMaterial = nif->getIndex( iAnyBhkShape, "Material" );
@@ -1104,6 +1098,7 @@ public:
 										   QString( ")" )
 							);
 				}
+			}
 		}
 
 		if ( !errors.isEmpty() ) {
