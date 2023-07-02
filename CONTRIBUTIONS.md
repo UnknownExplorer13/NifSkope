@@ -22,6 +22,7 @@ I barely know how to code so I'd like to thank these people for their work that 
 
 #### [UnknownExplorer13](https://github.com/UnknownExplorer13/nifskope)
 * Allow rendering of bhkCylinderShape collision objects
+* BSXFlags warnings
 * Enhanced obj export code
 * Help docs submodule
 * More UV Editor shortcuts
@@ -35,4 +36,5 @@ A list of people who have helped with development outside of coding such as spot
 * Dementius
 * fishy
 * Jani
+* mathy
 * TheSpamCat

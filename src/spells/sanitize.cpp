@@ -4,6 +4,7 @@
 
 #include <QInputDialog>
 #include <QAbstractButton>
+#include <QPushButton>
 
 #include <algorithm> // std::stable_sort
 
@@ -861,6 +862,190 @@ QModelIndex spWarningEnvironmentMapping::cast(NifModel * nif, const QModelIndex 
 
 REGISTER_SPELL(spWarningEnvironmentMapping);
 
+//! Check BSXFlags block and make sure correct flags are ticked for features present inside the nif
+class spCheckBSXFlags final : public Spell
+{
+public:
+	QString name() const override final { return Spell::tr( "Check BSXFlags" ); }
+	QString page() const override final { return Spell::tr( "Error Checking" ); }
+	bool constant() const override final { return true; }
+	bool sanity() const override final { return true; }
+
+	bool isApplicable( const NifModel * nif, const QModelIndex & index ) override final
+	{
+		return nif && !index.isValid() && ( nif->checkVersion( 0x14020007, 0x14020007 ) && nif->getUserVersion2() == 83 || 100 );
+	}
+
+	QModelIndex cast( NifModel * nif, const QModelIndex & ) override final
+	{
+		QStringList errors;
+		bool isAnimated = false;  // 1
+		bool isHavok = false;  // 2
+		bool isComplex = false;  // 8
+		bool isAddon = false;  // 16
+		bool isEditorMarker = false;  // 32
+		bool isDynamic = false;  // 64
+		bool isArticulated = false;  // 128
+		bool isExternalEmit = false;  // 512
+		QModelIndex iBSXBlock;
+		quint32 iBSXValue;
+
+		for ( int i = 0; i < nif->getBlockCount(); i++ ) {
+			QModelIndex iBlock = nif->getBlock( i );
+			auto iBSX = nif->getBlock( i, "BSXFlags" );
+			auto iBSLSP = nif->getBlock( i, "BSLightingShaderProperty" );
+			auto iBHK = nif->getBlock( i, "bhkCollisionObject" );
+			auto iBSVN = nif->getBlock( i, "BSValueNode" );
+			int iCollisionBlockCount = 0;
+
+			if ( iBSX.isValid() ) {
+				iBSXBlock = iBSX;
+				iBSXValue = nif->get<quint32>( iBSXBlock, "Integer Data" );
+			}
+
+			if ( nif->inherits( iBlock, "NiTimeController" ) ) {
+				if ( !( iBSXValue & 0x01 ) ) // Check BSXFlags
+					isAnimated = true;
+			}
+
+			if ( iBHK.isValid() ) {
+				auto iBHKChild = nif->getIndex( nif->getBlock( nif->getLink( iBHK, "Body" ) ), "Rigid Body Info" );
+				iCollisionBlockCount++;
+
+				if ( !( iBSXValue & 0x02 ) ) { // Check BSXFlags
+					isHavok = true;
+				}
+
+				if ( nif->get<int>( iBHKChild.child( 31, 0 ) ) == 4 ) {
+					if ( !( iBSXValue & 0x40 ) ) // Check BSXFlags
+						isDynamic = true;
+				}
+
+				if ( iCollisionBlockCount == 1 ) {
+					if ( !( iBSXValue & 0x80 ) ) // Check BSXFlags
+						isArticulated = true;
+				}
+				else if ( iCollisionBlockCount > 1 ) {
+					if ( !( iBSXValue & 0x08 ) ) // Check BSXFlags
+						isArticulated = false;
+						isComplex = true;
+				}
+			}
+
+			if ( iBSVN.isValid() ) {
+				if ( !( iBSXValue & 0x10 ) ) // Check BSXFlags
+					isAddon = true;
+			}
+
+			if ( nif->getBlockName( iBlock ) == ( "NiTriShape" ) || nif->getBlockName( iBlock ) == ( "BSTriShape" ) ) {
+				if ( nif->get<QString>( iBlock, "Name" ) == ( "EditorMarker" ) ) {
+					if ( !( iBSXValue & 0x20 ) ) // Check BSXFlags
+						isEditorMarker = true;
+				}
+			}
+
+			if ( iBSLSP.isValid() ) {
+				auto sf1 = nif->get<quint32>( iBSLSP, "Shader Flags 1" );
+
+				if ( sf1 & 0x20000000 ) {
+					if ( !( iBSXValue & 0x200 ) ) // Check BSXFlags
+						isExternalEmit = true;
+				}
+			}
+		}
+
+		// Add errors to list outside for loop as we only need one error message for one or more occurrences
+		if ( isAnimated == true ) {
+				errors.append( QString( "One or more animation blocks present. Please enable the \"Animated\" flag in the BSXFlags block." ) );
+		}
+		if ( isHavok == true ) {
+				errors.append( QString( "One or more collision blocks present. Please enable the \"Havok\" flag in the BSXFlags block." ) );
+		}
+		if ( isComplex == true ) {
+				errors.append( QString( "More than one collision block present. Please enable the \"Complex\" flag and disable the \"Articulated\" flag in the BSXFlags block." ) );
+		}
+		if ( isAddon == true ) {
+				errors.append( QString( "One or more addon nodes present. Please enable the \"Addon\" flag in the BSXFlags block." ) );
+		}
+		if ( isEditorMarker == true ) {
+				errors.append( QString( "One or more editor markers present. Please enable the \"Editor Marker\" flag in the BSXFlags block." ) );
+		}
+		if ( isDynamic == true ) {
+				errors.append( QString( "One or more dynamic collision blocks present. Please enable the \"Dynamic\" flag in the BSXFlags block." ) );
+		}
+		if ( isArticulated == true ) {
+				errors.append( QString( "One collision block present. Please enable the \"Articulated\" flag and disable the \"Complex\" flag in the BSXFlags block." ) );
+		}
+		if ( isExternalEmit == true ) {
+				errors.append( QString( "One or more meshes use external emittance. Please enable the \"External Emit\" flag in the BSXFlags block." ) );
+		}
+
+		if ( !errors.isEmpty() ) {
+			QMessageBox msgBox;
+			msgBox.setIcon( QMessageBox::Warning );
+			msgBox.setTextFormat( Qt::PlainText );
+			msgBox.setWindowTitle( "BSXFlags Warning" );
+			msgBox.setText( "One or more warnings detected in BSXFlags block." );
+			msgBox.setDetailedText( errors.join( "\n\n" ) );
+			msgBox.setStandardButtons( QMessageBox::Ok );
+			QAbstractButton * btnAutoFix = msgBox.addButton( "Auto Fix", QMessageBox::ApplyRole );
+			QAbstractButton * detailsButton = NULL;
+
+			foreach ( QAbstractButton * button, msgBox.buttons() ) {
+				if ( msgBox.buttonRole( button ) == QMessageBox::ActionRole ) {
+					detailsButton = button;
+					break;
+				}
+			}
+
+			if ( detailsButton ) {
+				detailsButton->click();
+			}
+
+			msgBox.exec();
+
+			if( msgBox.clickedButton() == btnAutoFix ) {
+				quint32 flagsToAdd = 0;
+
+				if ( isAddon == true ) {
+					flagsToAdd = flagsToAdd + 0x10;
+				}
+				if ( isAnimated == true ) {
+					flagsToAdd = flagsToAdd + 0x01;
+				}
+				if ( isArticulated == true ) {
+					flagsToAdd = flagsToAdd + 0x80;
+					if ( iBSXValue & 0x08 )
+						iBSXValue = ( iBSXValue - 0x08 );
+				}
+				if ( isHavok == true ) {
+					flagsToAdd = flagsToAdd + 0x02;
+				}
+				if ( isComplex == true ) {
+					flagsToAdd = flagsToAdd + 0x08;
+					if ( iBSXValue & 0x80 )
+						iBSXValue = ( iBSXValue - 0x80 );
+				}
+				if ( isDynamic == true ) {
+					flagsToAdd = flagsToAdd + 0x40;
+				}
+				if ( isEditorMarker == true ) {
+					flagsToAdd = flagsToAdd + 0x20;
+				}
+				if ( isExternalEmit == true ) {
+					flagsToAdd = flagsToAdd + 0x200;
+				}
+
+				nif->set<int>( iBSXBlock, "Integer Data",  ( iBSXValue + flagsToAdd ) );
+			}
+		}
+
+		return QModelIndex();
+	}
+};
+
+REGISTER_SPELL( spCheckBSXFlags );
+
 //! Check collision block materials for NONE value materials (Skyrim LE/SE only)
 class spCheckCollisionMaterials final : public Spell
 {
@@ -891,15 +1076,12 @@ public:
 					for ( int i = 0; i < nif->rowCount( iChunkMaterials ); i++ ) {
 						QModelIndex iMaterial = nif->getIndex( iChunkMaterials.child( i, 0 ), "Material" );
 						int iValue = nif->get<int>( iMaterial );
-						if ( iValue == 0 ) {
+
+						if ( iValue == 0 )
 							errors.append( QString( nif->getBlockName( iBhkCMSD ) ) + QString( " (block " ) +
 										   QString::number( nif->getBlockNumber( iBhkCMSD ) ) +
 										   QString( "): Chunk Material " ) + QString::number( i )
 							);
-						}
-						else {
-						
-						}
 					}
 			}
 
@@ -916,37 +1098,36 @@ public:
 					int iValue = nif->get<int>( iMaterial );
 
 					if ( iMaterial.isValid() ) // check material
-						if ( iValue == 0 ) {
+						if ( iValue == 0 )
 							errors.append( QString( nif->getBlockName( iAnyBhkShape ) ) + QString( " (block " ) +
 										   QString::number( nif->getBlockNumber( iAnyBhkShape ) ) +
 										   QString( ")" )
 							);
-						}
-						else {
-						
-						}
 				}
 		}
 
 		if ( !errors.isEmpty() ) {
-						QMessageBox msgBox;
-						msgBox.setIcon(QMessageBox::Warning);
-						msgBox.setTextFormat(Qt::PlainText);
-						msgBox.setWindowTitle("Collision Material Warning");
-						msgBox.setText( "One or more counts of SKY_HAV_MAT_NONE collision material detected." );
-						msgBox.setDetailedText( errors.join( "\n" ) );
-						QAbstractButton *detailsButton = NULL;
-						foreach (QAbstractButton *button, msgBox.buttons()) {
-							if (msgBox.buttonRole(button) == QMessageBox::ActionRole) {
-								detailsButton = button;
-								break;
-							}
-						}
-						if (detailsButton) {
-							detailsButton->click();
-						}
-						msgBox.exec();
-					}
+			QMessageBox msgBox;
+			msgBox.setIcon( QMessageBox::Warning );
+			msgBox.setTextFormat( Qt::PlainText );
+			msgBox.setWindowTitle( "Collision Material Warning" );
+			msgBox.setText( "One or more counts of SKY_HAV_MAT_NONE collision material detected." );
+			msgBox.setDetailedText( errors.join( "\n" ) );
+			QAbstractButton * detailsButton = NULL;
+
+			foreach ( QAbstractButton * button, msgBox.buttons() ) {
+				if ( msgBox.buttonRole( button ) == QMessageBox::ActionRole) {
+					detailsButton = button;
+					break;
+				}
+			}
+
+			if ( detailsButton ) {
+				detailsButton->click();
+			}
+
+			msgBox.exec();
+		}
 
 		return QModelIndex();
 	}
