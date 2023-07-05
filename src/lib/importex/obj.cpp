@@ -37,6 +37,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "lib/nvtristripwrapper.h"
 
+#include <QAbstractButton>
 #include <QApplication>
 #include <QDebug>
 #include <QFile>
@@ -52,6 +53,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // "globals"
 bool objCulling;
 QRegularExpression objCullRegExp;
+QStringList expSknMeshWarnings;
 
 
 /*
@@ -60,7 +62,9 @@ QRegularExpression objCullRegExp;
 
 static void writeData( const NifModel * nif, const QModelIndex & iData, QTextStream & obj, int ofs[1], Transform t )
 {
-	// copy vertices
+	// Copy vertices
+
+	auto vf = nif->get<BSVertexDesc>( iData, "Vertex Desc" );
 
 	if ( nif->getUserVersion2() < 100 ) {
 		QVector<Vector3> verts = nif->getArray<Vector3>( iData, "Vertices" );
@@ -70,7 +74,7 @@ static void writeData( const NifModel * nif, const QModelIndex & iData, QTextStr
 			obj << "v " << qSetRealNumberPrecision( 17 ) << v[0] << " " << v[1] << " " << v[2] << "\r\n";
 		}
 
-		// copy texcoords
+		// Copy UVs
 
 		QModelIndex iUV = nif->getIndex( iData, "UV Sets" );
 		QVector<Vector2> texco = nif->getArray<Vector2>( iUV.child( 0, 0 ) );
@@ -79,7 +83,7 @@ static void writeData( const NifModel * nif, const QModelIndex & iData, QTextStr
 			obj << "vt " << t[0] << " " << 1.0 - t[1] << "\r\n";
 		}
 
-		// copy normals
+		// Copy normals
 
 		QVector<Vector3> norms = nif->getArray<Vector3>( iData, "Normals" );
 		foreach( Vector3 n, norms )
@@ -88,7 +92,7 @@ static void writeData( const NifModel * nif, const QModelIndex & iData, QTextStr
 			obj << "vn " << n[0] << " " << n[1] << " " << n[2] << "\r\n";
 		}
 
-		// get the triangles
+		// Get triangles
 
 		QVector<Triangle> tris;
 
@@ -105,7 +109,7 @@ static void writeData( const NifModel * nif, const QModelIndex & iData, QTextStr
 			tris = nif->getArray<Triangle>( iData, "Triangles" );
 		}
 
-		// write the triangles
+		// Write triangles
 
 		foreach( Triangle t, tris )
 		{
@@ -130,6 +134,74 @@ static void writeData( const NifModel * nif, const QModelIndex & iData, QTextStr
 
 		ofs[0] += verts.count();
 		ofs[1] += texco.count();
+		ofs[2] += norms.count();
+	} if ( (vf & VertexFlags::VF_SKINNED) && nif->getUserVersion2() == 100 ) {
+		auto skinID = nif->getLink( nif->getIndex( iData, "Skin" ) );
+		auto partID = nif->getLink( nif->getBlock( skinID, "NiSkinInstance" ), "Skin Partition" );
+		auto iPartBlock = nif->getBlock( partID, "NiSkinPartition" );
+		auto iVertData = nif->getIndex( iPartBlock, "Vertex Data" );
+		auto iPartitionData = nif->getIndex( iPartBlock, "Partitions" );
+
+		// Copy vertices, UVs, and normals then write to obj
+		QVector<Vector3> verts;
+		QVector<Vector2> coords;
+		QVector<Vector3> norms;
+
+		auto numVerts = nif->get<int>( iPartBlock, "Data Size" ) / nif->get<int>( iPartBlock, "Vertex Size" );
+		for ( int i = 0; i < numVerts; i++ ) {
+			auto idx = nif->index( i, 0, iVertData );
+
+			verts += nif->get<Vector3>( idx, "Vertex" );
+			coords += nif->get<HalfVector2>( idx, "UV" );
+			norms += nif->get<ByteVector3>( idx, "Normal" );
+		}
+
+		for ( Vector3 & v : verts ) {
+			v = t * v;
+			obj << "v " << qSetRealNumberPrecision( 17 ) << v[0] << " " << v[1] << " " << v[2] << "\r\n";
+		}
+
+		for ( Vector2 & c : coords ) {
+			obj << "vt " << c[0] << " " << 1.0 - c[1] << "\r\n";
+		}
+
+		for ( Vector3 & n : norms ) {
+			n = t.rotation * n;
+			obj << "vn " << n[0] << " " << n[1] << " " << n[2] << "\r\n";
+		}
+
+		// Copy triangles from all partitions then write to obj
+		QVector<Triangle> tris;
+
+		auto numPartitions = nif->get<int>( nif->getBlock( skinID ), "Num Partitions" );
+		for ( int i = 0; i < numPartitions; i++ ) {
+			auto idx = nif->index( i, 0, iPartitionData );
+
+			tris << nif->getArray<Triangle>( idx, "Triangles" );
+		}
+
+		for ( const Triangle & t : tris ) {
+			obj << "f";
+
+			for ( int p = 0; p < 3; p++ ) {
+				obj << " " << ofs[0] + t[p];
+
+				if ( norms.count() )
+					if ( coords.count() )
+						obj << "/" << ofs[1] + t[p] << "/" << ofs[2] + t[p];
+					else
+						obj << "//" << ofs[2] + t[p];
+
+
+				else if ( coords.count() )
+					obj << "/" << ofs[1] + t[p];
+			}
+
+			obj << "\r\n";
+		}
+
+		ofs[0] += verts.count();
+		ofs[1] += coords.count();
 		ofs[2] += norms.count();
 	} else {
 		auto iVertData = nif->getIndex( iData, "Vertex Data" );
@@ -192,18 +264,6 @@ static void writeData( const NifModel * nif, const QModelIndex & iData, QTextStr
 	
 }
 
-// Notify user that skinned Skyrim SE export doesn't work
-void skinnedSkyrimSEMeshWarning()
-{
-	QMessageBox msgBox;
-	msgBox.setIcon(QMessageBox::Warning);
-	msgBox.setTextFormat(Qt::RichText);
-	msgBox.setWindowTitle("OBJ Export Warning");
-	msgBox.setText( "Due to the way Skyrim SE meshes store skinning data it is not currently possible to export them. "
-			"Please use an app like <a href='https://www.nexusmods.com/skyrimspecialedition/mods/4089'>SSE Nif Optimizer</a> to convert the file to a Skyrim LE nif." );
-	msgBox.exec();
-}
-
 static void writeShape( const NifModel * nif, const QModelIndex & iShape, QTextStream & obj, QTextStream & mtl, int ofs[], Transform t )
 {
 	QString name = nif->get<QString>( iShape, "Name" );
@@ -239,14 +299,8 @@ static void writeShape( const NifModel * nif, const QModelIndex & iShape, QTextS
 			QModelIndex iSource = nif->getBlock( nif->getLink( iProp, "Image" ), "NiImage" );
 			map_Kd = TexCache::find( nif->get<QString>( iSource, "File Name" ), nif->getFolder() );
 		} else if ( ( nif->inherits( iProp, "NiSkinInstance" ) ) || ( nif->isNiBlock( iProp, "BSSkin::Instance" ) ) ) {
-			// Notify user that skinned meshes will be exported in a static bind pose without weights
-			QMessageBox::warning(
-				0,
-				"OBJ Export Warning",
-				QString( "The shape " ) + name + QString( " is skinned, but the "
-					"obj format does not support skinning. This mesh will be "
-					"exported statically in its bind pose, without skin weights." )
-			);
+			// Append shape name to skinned mesh warning list to notify user that skinned meshes will be exported in a static bind pose without weights
+			expSknMeshWarnings.append( name );
 		} else if ( nif->isNiBlock( iProp, { "BSShaderNoLightingProperty", "SkyShaderProperty", "TileShaderProperty" } ) ) {
 			map_Kd = TexCache::find( nif->get<QString>( iProp, "File Name" ), nif->getFolder() );
 		} else if ( nif->isNiBlock( iProp, "BSEffectShaderProperty" ) ) {
@@ -414,21 +468,11 @@ void exportObj( const NifModel * nif, const QModelIndex & index )
 		roots.append( nif->getBlockNumber( index ) );
 
 		if ( nif->inherits( index, "NiNode" ) ) {
-			if ( ( nif->getUserVersion2() == 100 ) & ( blockTypes.contains( "BSDismemberSkinInstance" ) ) ) {
-				skinnedSkyrimSEMeshWarning();
-				return;
-			}
-			else
-				question = tr( "NiNode or BSFadeNode selected. All children of the selected node will be exported." );
+			question = tr( "NiNode or BSFadeNode selected. All children of the selected node will be exported." );
 		} else if ( nif->itemName( index ) == "NiTriShape" || nif->itemName( index ) == "NiTriStrips" ) {
 			question = nif->itemName( index ) + tr( " selected. Selected mesh will be exported." );
 		} else if ( nif->itemName( index ) == "BSTriShape" || nif->itemName( index ) == "BSSubIndexTriShape" ) {
-			if ( ( nif->getUserVersion2() == 100 ) & ( blockTypes.contains( "BSDismemberSkinInstance" ) ) ) {
-				skinnedSkyrimSEMeshWarning();
-				return;
-			}
-			else
-				question = nif->itemName( index ) + tr( " selected. Selected mesh will be exported." );
+			question = nif->itemName( index ) + tr( " selected. Selected mesh will be exported." );
 		}
 	}
 
@@ -437,13 +481,8 @@ void exportObj( const NifModel * nif, const QModelIndex & index )
 			question = tr( "No NiNode, NiTriShape, or NiTriStrips are selected. Entire scene will be exported." );
 			roots = nif->getRootLinks();
 		} else if ( nif->getUserVersion2() == 100 ) {
-			if ( blockTypes.contains( "BSDismemberSkinInstance" ) ) {
-				skinnedSkyrimSEMeshWarning();
-				return;
-			}
-			else
-				question = tr( "No NiNode, BSFadeNode, or BSTriShape is selected. Entire scene will be exported." );
-				roots = nif->getRootLinks();
+			question = tr( "No NiNode, BSFadeNode, or BSTriShape is selected. Entire scene will be exported." );
+			roots = nif->getRootLinks();
 		} else if ( nif->getUserVersion2() == 130 or 155 ) {
 			question = tr( "No NiNode, BSFadeNode, or BSSubIndexTriShape is selected. Entire scene will be exported." );
 			roots = nif->getRootLinks();
@@ -513,6 +552,33 @@ void exportObj( const NifModel * nif, const QModelIndex & index )
 
 	settings.endGroup(); // OBJ
 	settings.endGroup(); // Import-Export
+
+	if ( !expSknMeshWarnings.isEmpty() ) {
+		QMessageBox msgBox;
+		msgBox.setIcon( QMessageBox::Warning );
+		msgBox.setTextFormat( Qt::PlainText );
+		msgBox.setWindowTitle( "OBJ Export Warning" );
+		msgBox.setText( "One or more shapes are skinned, but the "
+						"obj format does not support skinning. These meshes have been "
+						"exported statically in their bind pose without skin weights." );
+		msgBox.setDetailedText( expSknMeshWarnings.join( "\n" ) );
+		QAbstractButton * detailsButton = NULL;
+
+		foreach ( QAbstractButton * button, msgBox.buttons() ) {
+			if ( msgBox.buttonRole( button ) == QMessageBox::ActionRole) {
+				detailsButton = button;
+				break;
+			}
+		}
+
+		if ( detailsButton ) {
+			detailsButton->click();
+		}
+
+		msgBox.exec();
+	}
+
+	expSknMeshWarnings.clear();
 }
 
 
