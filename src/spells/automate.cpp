@@ -218,9 +218,9 @@ public:
 			QDialog dlg;
 			QVBoxLayout * vbox = new QVBoxLayout( &dlg );
 
-			QStringList weaponChoices = { "Arrow/Bolt", "Battleaxe/Greatsword/Warhammer", "Bow", "Crossbow", "Dagger", "Mace", "Shield", "Sword", "War Axe" };
+			QStringList weapChoice = { "Arrow/Bolt", "Battleaxe/Greatsword/Warhammer", "Bow", "Crossbow", "Dagger", "Mace", "Shield", "Sword", "War Axe" };
 
-			QComboBox * cmbOptions = dlgCombo( vbox, Spell::tr( "Weapon type:" ), weaponChoices );
+			QComboBox * cmbOptions = dlgCombo( vbox, Spell::tr( "Weapon type:" ), weapChoice );
 
 			dlgButtons( &dlg, vbox, "Add Data" );
 
@@ -326,3 +326,118 @@ public:
 };
 
 REGISTER_SPELL( spAutoAddWeaponData );
+
+// Automatically setup blood texture blocks for weapons
+class spAutoAddWeaponBlood final : public Spell, uiAutomateDialogSetup
+{
+public:
+	QString name() const override final { return Spell::tr( "Add Blood Shader" ); }
+	QString page() const override final { return Spell::tr( "Automate" ); }
+
+	bool isApplicable( const NifModel * nif, const QModelIndex & index ) override final
+	{
+		return nif && ( ( nif->getBlockName( index ) == "NiTriShape" || nif->getBlockName( index ) == "BSTriShape" ) && ( nif->checkVersion( 0x14020007, 0x14020007 ) && nif->getUserVersion2() == 83 || 100 ) );
+	}
+
+	QModelIndex cast( NifModel * nif, const QModelIndex & index ) override final
+	{
+		QModelIndex iBlock = nif->getBlock( index );
+
+		if ( iBlock.isValid() ) {
+			QDialog dlg;
+			QVBoxLayout * vbox = new QVBoxLayout( &dlg );
+
+			QStringList texType = { "Blood Color", "Blood Lighting" };
+			QStringList weapType = { "Blunt", "Sharp" };
+
+			QComboBox * cmb1Options = dlgCombo( vbox, Spell::tr( "Blood shader:" ), texType );
+			QComboBox * cmb2Options = dlgCombo( vbox, Spell::tr( "Weapon type:" ), weapType );
+
+			dlgButtons( &dlg, vbox, "Add Textures" );
+
+			if ( dlg.exec() == QDialog::Accepted ) {
+				QModelIndex alpha;
+				QModelIndex blood;
+				QModelIndex bloodLight;
+				QModelIndex bloodLightTex;
+
+				// Get cmbOptions value and fill values accordingly
+				if ( cmb1Options->currentIndex() == 0 ) {
+					int sf1 = ( ( 1 << 26 ) + ( 1 << 27 ) + ( 1 << 31 ) );
+					int sf2 = 1 << 17;
+
+					// Set block name and flags
+					nif->set<QString>( iBlock, "Name", "BloodEffects" );
+					nif->set<int>( iBlock, "Flags", 524303 );
+
+					// Add and setup NiAlphaProperty
+					auto newAlpha = nif->insertNiBlock( "NiAlphaProperty" );
+					alpha = newAlpha;
+					nif->set<int>( alpha, "Flags", 21059 );
+					nif->set<int>( alpha, "Threshold", 0 );
+					nif->setLink( iBlock, "Alpha Property", nif->getBlockNumber( alpha ) );
+
+					// Add and setup BSEffectShaderProperty
+					auto newBlood = nif->insertNiBlock( "BSEffectShaderProperty" );
+					blood = newBlood;
+					nif->set<int>( blood, "Shader Flags 1", sf1 );
+					nif->set<int>( blood, "Shader Flags 2", sf2 );
+					nif->set<Color4>( blood, "Base Color", { 1.0f, 1.0f, 1.0f, 1.0f } );
+					nif->setLink( iBlock, "Shader Property", nif->getBlockNumber( blood ) );
+					if ( cmb2Options->currentIndex() == 0 ) {
+						nif->set<QString>( blood, "Source Texture", "textures\\blood\\BloodHitDecals01.dds" );
+					}
+					else if ( cmb2Options->currentIndex() == 1 ) {
+						nif->set<QString>( blood, "Source Texture", "textures\\blood\\BloodEdge01.dds" );
+					}
+				}
+				else if ( cmb1Options->currentIndex() == 1 ) {
+					int sf1 = ( 1 + ( 1 << 3 ) + ( 1 << 8 ) + ( 1 << 9 ) + ( 1 << 22 ) +
+							  ( 1 << 25 ) + ( 1 << 26 ) + ( 1 << 27 ) + ( 1 << 31 ) );
+					int sf2 = ( ( 1 << 5 ) + ( 1 << 15 ) );
+
+					// Set block name and flags
+					nif->set<QString>( iBlock, "Name", "BloodLighting" );
+					nif->set<int>( iBlock, "Flags", 524303 );
+
+					// Add and setup NiAlphaProperty
+					auto newAlpha = nif->insertNiBlock( "NiAlphaProperty" );
+					alpha = newAlpha;
+					nif->set<int>( alpha, "Flags", 21005 );
+					nif->set<int>( alpha, "Threshold", 0 );
+					nif->setLink( iBlock, "Alpha Property", nif->getBlockNumber( alpha ) );
+
+					// Add and setup BSEffectShaderProperty
+					auto newBloodLight = nif->insertNiBlock( "BSLightingShaderProperty" );
+					bloodLight = newBloodLight;
+					nif->set<int>( bloodLight, "Shader Flags 1", sf1 );
+					nif->set<int>( bloodLight, "Shader Flags 2", sf2 );
+					nif->set<float>( bloodLight, "Glossiness", 500 );
+					nif->set<Color3>( bloodLight, "Specular Color", { 1.0f, 1.0f, 1.0f } );
+					nif->set<float>( bloodLight, "Specular Strength", 5 );
+					nif->setLink( iBlock, "Shader Property", nif->getBlockNumber( bloodLight ) );
+
+					// Add and setup BSShaderTextureSet
+					auto newBloodLightTex = nif->insertNiBlock( "BSShaderTextureSet" );
+					bloodLightTex = newBloodLightTex;
+					nif->set<int>( bloodLightTex, "Num Textures", 9 );
+					nif->updateArray( nif->getIndex( bloodLightTex, "Textures" ) );
+					nif->setLink( nif->getIndex( bloodLight, "Texture Set" ), nif->getBlockNumber( bloodLightTex ) );
+					if ( cmb2Options->currentIndex() == 0 ) {
+						nif->set<QString>( nif->getIndex( bloodLightTex, "Textures" ).child( 0, 0 ), "textures\\blood\\BloodHitDecals01Add.dds" );
+						nif->set<QString>( nif->getIndex( bloodLightTex, "Textures" ).child( 1, 0 ), "textures\\blood\\BloodHitDecals01_n.dds" );
+					}
+					else if ( cmb2Options->currentIndex() == 1 ) {
+						nif->set<QString>( nif->getIndex( bloodLightTex, "Textures" ).child( 0, 0 ), "textures\\blood\\BloodEdge01Add.dds" );
+						nif->set<QString>( nif->getIndex( bloodLightTex, "Textures" ).child( 1, 0 ), "textures\\blood\\BloodEdge01_n.dds" );
+					}
+				}
+			}
+		}
+
+		return QModelIndex();
+	}
+
+};
+
+REGISTER_SPELL( spAutoAddWeaponBlood );
