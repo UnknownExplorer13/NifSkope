@@ -73,6 +73,16 @@ void NifModel::setupArrayPseudonyms()
 	registerPseudonym( "Big Tris", "Big Tri" );
 	registerPseudonym( "Chunks", "Chunk" );
 	registerPseudonym( "Effects", "Effect" );
+	registerPseudonym( "Partitions", "Partition" );
+	registerPseudonym( "Bones", "Bone" );
+	registerPseudonym( "Bone List", "Bone" );
+	registerPseudonym( "Bone Weights", "Bone Weight" );
+	registerPseudonym( "Vertex Weights", "Vertex Weight" );
+	registerPseudonym( "Bone Indices", "Bone Index" );
+	registerPseudonym( "Unused 01", "Unused 01 Value" );
+	registerPseudonym( "Unused 02", "Unused 02 Value" );
+	registerPseudonym( "Unused 03", "Unused 03 Value" );
+	registerPseudonym( "Unused 04", "Unused 04 Value" );
 }
 
 //! @file nifmodel.cpp The NIF data model.
@@ -1229,7 +1239,7 @@ QVariant NifModel::data( const QModelIndex & idx, int role ) const
 								arrayName = iName + " ";
 						}
 
-					return arrayName + QString::number( item->row() );
+						return arrayName + QString::number( item->row() );
 					}
 
 					return " " + iName;

@@ -615,7 +615,7 @@ void BSShape::drawSelection() const
 	if ( n == "Bounding Sphere" && !extraData ) {
 		auto sph = BoundSphere( nif, idx );
 		if ( sph.radius > 0.0 ) {
-			glColor4f( 1, 1, 1, 0.33 );
+			glColor4f( 1, 1, 1, 0.33f );
 			GLUtils::drawSphereSimple( sph.center, sph.radius, 72 );
 		}
 	}
@@ -631,7 +631,6 @@ void BSShape::drawSelection() const
 			for ( int i = 0; i < dataCt; i++ ) {
 				auto d = data.child( i, 0 );
 
-				int numC = nif->get<int>( d, "Num Combined" );
 				auto c = nif->getIndex( d, "Combined" );
 				int cCt = nif->rowCount( c );
 
@@ -652,7 +651,7 @@ void BSShape::drawSelection() const
 		float pbvR = nif->get<float>( iBSphere.child( 1, 2 ) );
 
 		if ( pbvR > 0.0 ) {
-			glColor4f( 0, 1, 0, 0.33 );
+			glColor4f( 0, 1, 0, 0.33f );
 			GLUtils::drawSphereSimple( pbvC, pbvR, 72 );
 		}
 
@@ -677,7 +676,7 @@ void BSShape::drawSelection() const
 			glMultMatrix( scene->view * t );
 
 			if ( bvR > 0.0 ) {
-				glColor4f( 1, 1, 1, 0.33 );
+				glColor4f( 1, 1, 1, 0.33f );
 				GLUtils::drawSphereSimple( Vector3( 0, 0, 0 ), bvR, 72 );
 			}
 

@@ -1,4 +1,3 @@
-
 #include "checkablemessagebox.h"
 #include "ui_checkablemessagebox.h"
 
