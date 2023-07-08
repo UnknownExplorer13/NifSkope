@@ -920,16 +920,6 @@ public:
 					if ( !( iBSXValue & 0x40 ) ) // Check BSXFlags
 						isDynamic = true;
 				}
-
-				if ( iCollisionBlockCount == 1 ) {
-					if ( !( iBSXValue & 0x80 ) ) // Check BSXFlags
-						isArticulated = true;
-				}
-				else if ( iCollisionBlockCount > 1 ) {
-					if ( !( iBSXValue & 0x08 ) ) // Check BSXFlags
-						isArticulated = false;
-						isComplex = true;
-				}
 			}
 
 			if ( iBSVN.isValid() ) {
@@ -956,28 +946,34 @@ public:
 
 		// Add errors to list outside for loop as we only need one error message for one or more occurrences
 		if ( isAnimated == true ) {
-				errors.append( QString( "One or more animation blocks present. Please enable the \"Animated\" flag in the BSXFlags block." ) );
+			errors.append( QString( "One or more animation blocks present. Please enable the \"Animated\" flag in the BSXFlags block." ) );
 		}
 		if ( isHavok == true ) {
-				errors.append( QString( "One or more collision blocks present. Please enable the \"Havok\" flag in the BSXFlags block." ) );
+			errors.append( QString( "One or more collision blocks present. Please enable the \"Havok\" flag in the BSXFlags block." ) );
 		}
 		if ( isAddon == true ) {
-				errors.append( QString( "One or more addon nodes present. Please enable the \"Addon\" flag in the BSXFlags block." ) );
+			errors.append( QString( "One or more addon nodes present. Please enable the \"Addon\" flag in the BSXFlags block." ) );
 		}
 		if ( isEditorMarker == true ) {
-				errors.append( QString( "One or more editor markers present. Please enable the \"Editor Marker\" flag in the BSXFlags block." ) );
+			errors.append( QString( "One or more editor markers present. Please enable the \"Editor Marker\" flag in the BSXFlags block." ) );
 		}
 		if ( isDynamic == true ) {
-				errors.append( QString( "One or more dynamic collision blocks present. Please enable the \"Dynamic\" flag in the BSXFlags block." ) );
+			errors.append( QString( "One or more dynamic collision blocks present. Please enable the \"Dynamic\" flag in the BSXFlags block." ) );
 		}
 		if ( isExternalEmit == true ) {
-				errors.append( QString( "One or more meshes use external emittance. Please enable the \"External Emit\" flag in the BSXFlags block." ) );
+			errors.append( QString( "One or more meshes use external emittance. Please enable the \"External Emit\" flag in the BSXFlags block." ) );
 		}
-		if ( isComplex == true ) {
+		if ( iCollisionBlockCount > 1 ) {
+			if ( !( iBSXValue & 0x08 ) ) { // Check BSXFlags
+				isComplex = true;
 				errors.append( QString( "More than one collision block present. Please enable the \"Complex\" flag and disable the \"Articulated\" flag in the BSXFlags block." ) );
+			}
 		}
-		if ( isArticulated == true ) {
+		if ( iCollisionBlockCount == 1 ) {
+			if ( !( iBSXValue & 0x80 ) ) { // Check BSXFlags
+				isArticulated = true;
 				errors.append( QString( "One collision block present. Please enable the \"Articulated\" flag and disable the \"Complex\" flag in the BSXFlags block." ) );
+			}
 		}
 
 		if ( !errors.isEmpty() ) {

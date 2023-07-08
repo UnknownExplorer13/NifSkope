@@ -104,16 +104,16 @@ public:
 			vbox->addWidget( new QLabel( "Flags to enable:" ) );
 
 			QStringList flagDesc {
-									  "The mesh has an animation (one or more).",                                                              //Animated
-									  "The mesh has collision.",                                                                               //Havok
-									  "The mesh is a \"skeleton.nif\" file used by actors.",                                                   //Ragdoll
-									  "The mesh has mutliple collision shapes (e.g. two bhkBoxShapes).",                                       //Complex
-									  "The mesh uses addon nodes (e.g. candle flames).",                                                       //Addon
-									  "The mesh has one or more editor markers.",                                                              //Editor Marker
-									  "The mesh uses Havok physics (e.g. a helmet ground model).",                                             //Dynamic
-									  "The mesh has a single collision shape and/or a single animation (e.g. an animation called \"idle\").",  //Articulated
-									  "This one isn't used and should be hidden. Please report if visible.",                                   //Needs Transform Updates
-									  "The mesh will be able to use External Emittance settings in the CK."                                    //External Emit
+									  "The mesh has an animation (one or more).",                                                                       //Animated
+									  "The mesh has collision.",                                                                                        //Havok
+									  "The mesh is a \"skeleton.nif\" file used by actors.",                                                            //Ragdoll
+									  "The mesh has multiple bhkCollisionObject blocks.",                                                               //Complex
+									  "The mesh uses addon nodes (e.g. candle flames).",                                                                //Addon
+									  "The mesh has one or more editor markers.",                                                                       //Editor Marker
+									  "The mesh uses Havok physics (e.g. a helmet ground model).",                                                      //Dynamic
+									  "The mesh has a single bhkCollisionObject block and/or a single animation (e.g. an animation called \"idle\").",  //Articulated
+									  "This one isn't used and should be hidden. Please report if visible.",                                            //Needs Transform Updates
+									  "The mesh will be able to use External Emittance settings in the CK."                                             //External Emit
 									};
 
 			QStringList flagChoices {
