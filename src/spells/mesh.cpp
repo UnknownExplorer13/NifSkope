@@ -677,26 +677,38 @@ QModelIndex spUpdateCenterRadius::cast( NifModel * nif, const QModelIndex & inde
 
 REGISTER_SPELL( spUpdateCenterRadius );
 
-//! Updates Bounds of BSTriShape
+//! Updates Bounds of NiTriShape or BSTriShape
 class spUpdateBounds final : public Spell
 {
 public:
-	QString name() const override final { return Spell::tr( "Update Bounds" ); }
+	QString name() const override final { return Spell::tr( "Update Bounding Sphere" ); }
 	QString page() const override final { return Spell::tr( "Mesh" ); }
 
 	bool isApplicable( const NifModel * nif, const QModelIndex & index ) override final
 	{
-		return nif->inherits( index, "BSTriShape" ) && nif->getIndex( index, "Vertex Data" ).isValid();
+		return nif->inherits( index, "NiTriShape" ) || nif->inherits( index, "BSTriShape" ) && nif->getIndex( index, "Vertex Data" ).isValid();
 	}
 
 	QModelIndex cast( NifModel * nif, const QModelIndex & index ) override final
 	{
-		auto vertData = nif->getIndex( index, "Vertex Data" );
-
-		// Retrieve the verts
+		QModelIndex vertData;
 		QVector<Vector3> verts;
-		for ( int i = 0; i < nif->rowCount( vertData ); i++ ) {
-			verts << nif->get<Vector3>( vertData.child( i, 0 ), "Vertex" );
+
+		if ( nif->inherits( index, "NiTriShape" ) ) {
+			vertData = nif->getIndex( nif->getBlock( nif->getLink( index, "Data" ) ), "Vertices" );
+
+			// Retrieve the verts
+			for ( int i = 0; i < nif->rowCount( vertData ); i++ ) {
+				verts << nif->get<Vector3>( vertData.child( i, 0 ) );
+			}
+		}
+		else if ( nif->inherits( index, "BSTriShape" ) ) {
+			vertData = nif->getIndex( index, "Vertex Data" );
+
+			// Retrieve the verts
+			for ( int i = 0; i < nif->rowCount( vertData ); i++ ) {
+				verts << nif->get<Vector3>( vertData.child( i, 0 ), "Vertex" );
+			}
 		}
 
 		if ( verts.isEmpty() )

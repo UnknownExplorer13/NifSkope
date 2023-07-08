@@ -54,7 +54,13 @@ BoundSphere::BoundSphere( const QVector<Vector3> & verts )
 void BoundSphere::update( NifModel * nif, const QModelIndex & index )
 {
 	auto idx = index;
-	auto sph = nif->getIndex( idx, "Bounding Sphere" );
+	QModelIndex sph;
+
+	if ( nif->inherits( idx, "NiTriShape" ) )
+		sph = nif->getIndex( nif->getBlock( nif->getLink( idx, "Data" ) ), "Bounding Sphere" );
+	else
+		sph = nif->getIndex( idx, "Bounding Sphere" );
+
 	if ( sph.isValid() )
 		idx = sph;
 
