@@ -1231,7 +1231,7 @@ REGISTER_SPELL( spFixBoneBounds );
 class spMirrorSkeleton final : public Spell
 {
 public:
-	QString name() const override final { return Spell::tr( "Mirror armature" ); }
+	QString name() const override final { return Spell::tr( "Mirror Armature" ); }
 	QString page() const override final { return Spell::tr( "Skeleton" ); }
 
 	bool isApplicable( const NifModel * nif, const QModelIndex & index ) override final

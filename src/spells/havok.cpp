@@ -577,7 +577,7 @@ REGISTER_SPELL( spPackHavokStrips );
 class spConvertListShape final : public Spell
 {
 public:
-	QString name() const override final { return Spell::tr( "Convert to bhkConvexListShape" ); }
+	QString name() const override final { return Spell::tr( "Convert To bhkConvexListShape" ); }
 	QString page() const override final { return Spell::tr( "Havok" ); }
 
 	bool isApplicable( const NifModel * nif, const QModelIndex & idx ) override final

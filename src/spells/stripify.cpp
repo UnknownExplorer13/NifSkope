@@ -201,7 +201,7 @@ REGISTER_SPELL( spStripify );
 class spStripifyAll final : public Spell
 {
 public:
-	QString name() const override final { return Spell::tr( "Stripify all TriShapes" ); }
+	QString name() const override final { return Spell::tr( "Stripify All TriShapes" ); }
 	QString page() const override final { return Spell::tr( "Optimize" ); }
 
 	bool isApplicable( const NifModel * nif, const QModelIndex & index ) override final
@@ -365,7 +365,7 @@ REGISTER_SPELL( spTriangulateAll );
 class spStichStrips final : public Spell
 {
 public:
-	QString name() const override final { return Spell::tr( "Stich Strips" ); }
+	QString name() const override final { return Spell::tr( "Stitch Strips" ); }
 	QString page() const override final { return Spell::tr( "Mesh" ); }
 
 	static QModelIndex getStripsData( const NifModel * nif, const QModelIndex & index )
@@ -427,7 +427,7 @@ REGISTER_SPELL( spStichStrips );
 class spUnstichStrips final : public Spell
 {
 public:
-	QString name() const override final { return Spell::tr( "Unstich Strips" ); }
+	QString name() const override final { return Spell::tr( "Unstitch Strips" ); }
 	QString page() const override final { return Spell::tr( "Mesh" ); }
 
 	bool isApplicable( const NifModel * nif, const QModelIndex & index ) override final
