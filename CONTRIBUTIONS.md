@@ -36,5 +36,6 @@ A list of people who have helped with development outside of coding such as spot
 * Dementius
 * fishy
 * Jani
+* KhrysINXS
 * mathy
 * TheSpamCat

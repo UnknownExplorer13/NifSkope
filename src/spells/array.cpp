@@ -1,7 +1,5 @@
 #include "spellbook.h"
 
-
-
 // Brief description is deliberately not autolinked to class Spell
 /*! \file array.cpp
  * \brief Array editing spells
@@ -15,11 +13,11 @@ class spArrayMoveUp final : public Spell
 public:
     QString name() const override final { return Spell::tr( "Move Up" ); }
     QString page() const override final { return Spell::tr( "Array" ); }
-    QKeySequence hotkey() const override final { return { Qt::CTRL + Qt::Key_Up }; }
+    QKeySequence hotkey() const override final { return { Qt::CTRL + Qt::ALT + Qt::Key_Up }; }
 
 	bool isApplicable( const NifModel * nif, const QModelIndex & index ) override final
 	{
-        return ( ! nif->isNiBlock(index) ) && nif->isArray(index.parent()) && index.row() > 0;
+        return ( !nif->isNiBlock( index ) ) && nif->isArray( index.parent() ) && index.row() > 0;
 	}
 
 	QModelIndex cast( NifModel * nif, const QModelIndex & index ) override final
@@ -33,19 +31,17 @@ public:
 
 REGISTER_SPELL( spArrayMoveUp );
 
-
-
 //! Moves an array entry down by 1
 class spArrayMoveDown final : public Spell
 {
 public:
     QString name() const override final { return Spell::tr( "Move Down" ); }
     QString page() const override final { return Spell::tr( "Array" ); }
-    QKeySequence hotkey() const override final { return { Qt::CTRL + Qt::Key_Down }; }
+    QKeySequence hotkey() const override final { return { Qt::CTRL + Qt::ALT + Qt::Key_Down }; }
 
     bool isApplicable( const NifModel * nif, const QModelIndex & index ) override final
     {
-        return ( ! nif->isNiBlock(index) ) && nif->isArray(index.parent()) && index.row() < nif->rowCount( index.parent() );
+        return ( !nif->isNiBlock( index ) ) && nif->isArray( index.parent() ) && index.row() < nif->rowCount( index.parent() );
     }
 
     QModelIndex cast( NifModel * nif, const QModelIndex & index ) override final
