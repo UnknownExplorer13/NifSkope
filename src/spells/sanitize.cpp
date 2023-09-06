@@ -896,6 +896,7 @@ public:
 			auto iBSX = nif->getBlock( i, "BSXFlags" );
 			auto iBSLSP = nif->getBlock( i, "BSLightingShaderProperty" );
 			auto iBHK = nif->getBlock( i, "bhkCollisionObject" );
+			auto iBHKSP = nif->getBlock( i, "bhkSPCollisionObject" );
 			auto iBSVN = nif->getBlock( i, "BSValueNode" );
 
 			if ( iBSX.isValid() ) {
@@ -920,6 +921,10 @@ public:
 					if ( !( iBSXValue & 0x40 ) ) // Check BSXFlags
 						isDynamic = true;
 				}
+			}
+
+			if ( iBHKSP.isValid() ) {
+				iCollisionBlockCount++;
 			}
 
 			if ( iBSVN.isValid() ) {
