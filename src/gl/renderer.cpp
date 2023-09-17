@@ -627,7 +627,7 @@ bool Renderer::setupProgram( Program * prog, Shape * mesh, const PropertyList & 
 		mat = mesh->bsesp->mat();
 
 	QString default_n = ::default_n;
-	if ( mesh->nifVersion == 155 )
+	if ( mesh->nifVersion >= 151 )
 		default_n = ::default_ns;
 
 	// texturing
@@ -766,7 +766,7 @@ bool Renderer::setupProgram( Program * prog, Shape * mesh, const PropertyList & 
 
 		// Glow params
 
-		if ( (opts & Scene::DoGlow) && (opts & Scene::DoLighting) && (mesh->bslsp->hasEmittance || mesh->nifVersion == 155) )
+		if ( (opts & Scene::DoGlow) && (opts & Scene::DoLighting) && (mesh->bslsp->hasEmittance || mesh->nifVersion >= 151) )
 			prog->uni1f( GLOW_MULT, mesh->bslsp->getEmissiveMult() );
 		else
 			prog->uni1f( GLOW_MULT, 0 );
@@ -846,7 +846,7 @@ bool Renderer::setupProgram( Program * prog, Shape * mesh, const PropertyList & 
 		// Always bind mask regardless of shader settings
 		prog->uniSampler( bsprop, SAMP_ENV_MASK, 5, texunit, white, clamp );
 
-		if ( mesh->nifVersion == 155 ) {
+		if ( mesh->nifVersion >= 151 ) {
 			prog->uniSampler( bsprop, SAMP_REFLECTIVITY, 8, texunit, black, clamp );
 			prog->uniSampler( bsprop, SAMP_LIGHTING, 9, texunit, lighting, clamp );
 		}
@@ -933,7 +933,7 @@ bool Renderer::setupProgram( Program * prog, Shape * mesh, const PropertyList & 
 				fn->glUniform1i( uniCubeMap, texunit++ );
 			}
 			prog->uniSampler( bsprop, SAMP_SPECULAR, 4, texunit, white, clamp );
-			if ( mesh->nifVersion == 155 ) {
+			if ( mesh->nifVersion >= 151 ) {
 				prog->uniSampler( bsprop, SAMP_REFLECTIVITY, 6, texunit, black, clamp );
 				prog->uniSampler( bsprop, SAMP_LIGHTING, 7, texunit, lighting, clamp );
 			}

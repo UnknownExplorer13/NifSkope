@@ -415,13 +415,13 @@ void BSShape::drawShapes( NodeList * secondPass, bool presort )
 
 
 	if ( !Node::SELECTING ) {
-		if ( nifVersion == 155 )
+		if ( nifVersion >= 151 )
 			glEnable( GL_FRAMEBUFFER_SRGB );
 		else
 			glDisable( GL_FRAMEBUFFER_SRGB );
 		shader = scene->renderer->setupProgram( this, shader );
 	
-	} else if ( nifVersion == 155 ) {
+	} else if ( nifVersion >= 151 ) {
 		glDisable( GL_FRAMEBUFFER_SRGB );
 	}
 	

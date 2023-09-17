@@ -164,8 +164,12 @@ public:
 	{
 		QString str = list.value(attr);
 		if ( tokens.contains( attr ) ) {
-			for ( const auto & p : tokens[attr] )
-				str.replace( p.first, p.second );
+			for ( const auto& p : tokens[attr] )
+				if ( p.second == "INFINITY" )
+					str.replace(p.first, "0x7F800000");
+				else
+					str.replace( p.first, p.second );
+
 		}
 		return str;
 	}
@@ -310,7 +314,7 @@ public:
 				}
 				break;
             case tagModule: // idk
-            case tagVerAttr: // don't care, it's just metadata
+            case tagVerAttr: // Unused Metadata
                 break;
 			default:
 				err( tr( "expected basic, enum, struct, niobject or version got %1 instead" ).arg( tagid ) );
@@ -511,7 +515,7 @@ public:
 			}
 			break;
         case tagVerAttr:
-            // just metadata don't care about it
+            // Unused Metadata
             break;
 		default:
 			err( tr( "error unhandled tag %1" ).arg( tagid ) );
@@ -631,8 +635,8 @@ public:
 	bool checkType( const NifData & d )
 	{
 		return ( NifModel::compounds.contains( d.type() )
-		        || NifValue::type( d.type() ) != NifValue::tNone
-		        || d.type() == XMLTMPL
+				|| NifValue::type( d.type() ) != NifValue::tNone
+				|| d.type() == XMLTMPL
 		);
 	}
 
@@ -640,10 +644,10 @@ public:
 	bool checkTemp( const NifData & d )
 	{
 		return ( d.temp().isEmpty()
-		        || NifValue::type( d.temp() ) != NifValue::tNone
-		        || d.temp() == XMLTMPL
-		        || NifModel::blocks.contains( d.temp() )
-		        || NifModel::compounds.contains( d.temp() )
+				|| NifValue::type( d.temp() ) != NifValue::tNone
+				|| d.temp() == XMLTMPL
+				|| NifModel::blocks.contains( d.temp() )
+				|| NifModel::compounds.contains( d.temp() )
 		);
 	}
 
@@ -708,12 +712,12 @@ bool NifModel::loadXML()
 	QDir        dir( QCoreApplication::applicationDirPath() );
 	QString     fname;
 	QStringList xmlList( QStringList()
-	                     << "nif.xml"
+						<< "nif.xml"
 #ifdef Q_OS_LINUX
-	                     << "/usr/share/nifskope/nif.xml"
+						<< "/usr/share/nifskope/nif.xml"
 #endif
 #ifdef Q_OS_MACX
-						 << "../../../nif.xml"
+						<< "../../../nif.xml"
 #endif
 	);
 	for ( const QString& str : xmlList ) {

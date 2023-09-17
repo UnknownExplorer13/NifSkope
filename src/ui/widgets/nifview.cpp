@@ -202,6 +202,7 @@ void NifTreeView::pasteTo( QModelIndex iDest, const NifValue & srcValue )
 		break;
 	case NifValue::tFloat:
 	case NifValue::tHfloat:
+	case NifValue::tNormbyte:
 		nif->set<float>( iDest, srcValue.get<float>() );
 		break;
 	case NifValue::tColor3:

@@ -74,6 +74,8 @@ void NifValue::initialize()
 
 	typeMap.insert( "bool",           NifValue::tBool );
 	typeMap.insert( "byte",           NifValue::tByte );
+	typeMap.insert( "sbyte",          NifValue::tByte );
+	typeMap.insert( "normbyte",       NifValue::tNormbyte );
 	typeMap.insert( "char",           NifValue::tByte );
 	typeMap.insert( "word",           NifValue::tWord );
 	typeMap.insert( "short",          NifValue::tShort );
@@ -595,6 +597,7 @@ bool NifValue::operator==( const NifValue & other ) const
 	case tUInt64:
 		return val.u64 == other.val.u64;
 
+	case tNormbyte:
 	case tFloat:
 	case tHfloat:
 		return val.f32 == other.val.f32;
@@ -836,9 +839,10 @@ bool NifValue::setFromString( const QString & s )
 		val.f32 = s.toDouble( &ok );
 		return ok;
 	case tHfloat:
+	case tNormbyte:
 		val.u64 = 0;
 		val.f32 = s.toDouble( &ok );
-		return ok;
+		break;
 	case tString:
 	case tSizedString:
 	case tText:
@@ -919,6 +923,7 @@ QString NifValue::toString() const
 			return QString("0.0");
 		return NumOrMinMax( val.f32, 'G', 6 );
 	case tHfloat:
+	case tNormbyte:
 		return QString::number( val.f32, 'f', 4 );
 	case tString:
 	case tSizedString:

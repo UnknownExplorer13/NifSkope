@@ -522,7 +522,7 @@ namespace GLUtils
 
 			QModelIndex iChunkArr = nif->getIndex( iData, "Chunks" );
 			for ( int r = 0; r < nif->rowCount( iChunkArr ); r++ ) {
-				auto iChunk = nif->index(r, 0, iChunkArr);
+				auto iChunk = nif->index( r, 0, iChunkArr );
 				Vector4 chunkOrigin = nif->get<Vector4>( iChunk, "Translation" );
 
 				quint32 transformIndex = nif->get<quint32>( iChunk, "Transform Index" );
@@ -533,7 +533,7 @@ namespace GLUtils
 				quint32 numOffsets = nif->get<quint32>( iChunk, "Num Vertices" ) / 3;
 				quint32 numIndices = nif->get<quint32>( iChunk, "Num Indices" );
 				quint32 numStrips = nif->get<quint32>( iChunk, "Num Strips" );
-				QVector<quint16> offsets = nif->getArray<quint16>( iChunk, "Vertices" );
+				QVector<UshortVector3> offsets = nif->getArray<UshortVector3>( iChunk, "Vertices" );
 				QVector<quint16> indices = nif->getArray<quint16>( iChunk, "Indices" );
 				QVector<quint16> strips = nif->getArray<quint16>( iChunk, "Strips" );
 
@@ -547,7 +547,7 @@ namespace GLUtils
 				}
 
 				for ( int n = 0; n < numOffsets; n++ ) {
-					vertices[ n ] = chunkOrigin + chunkTranslation + Vector4( offsets[ 3 * n ], offsets[ 3 * n + 1 ], offsets[ 3 * n + 2 ], 0.0f ) / 1000.0f;
+					vertices[n] = chunkOrigin + chunkTranslation + Vector4( offsets[n], 0.0f ) / 1000.0f;
 				}
 
 				glPolygonMode( GL_FRONT_AND_BACK, isSolid ? GL_FILL : GL_LINE );

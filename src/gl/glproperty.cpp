@@ -1109,7 +1109,7 @@ unsigned int BSShaderLightingProperty::getFlags2() const
 void BSShaderLightingProperty::setFlags1( const NifModel * nif, const QModelIndex & prop )
 {
 	flags1 = ShaderFlags::SF1( nif->get<unsigned int>( prop, "Shader Flags 1" ) );
-	if ( stream == 155 ) {
+	if ( stream >= 151 ) {
 		auto sf1 = nif->getArray<quint32>( prop, "SF1" );
 		auto sf2 = nif->getArray<quint32>( prop, "SF2" );
 		sf1.append( sf2 );
@@ -1126,7 +1126,7 @@ void BSShaderLightingProperty::setFlags1( const NifModel * nif, const QModelInde
 void BSShaderLightingProperty::setFlags2( const NifModel * nif, const QModelIndex & prop )
 {
 	flags2 = ShaderFlags::SF2( nif->get<unsigned int>( prop, "Shader Flags 2" ) );
-	if ( stream == 155 ) {
+	if ( stream >= 151 ) {
 		auto sf1 = nif->getArray<quint32>( prop, "SF1" );
 		auto sf2 = nif->getArray<quint32>( prop, "SF2" );
 		sf1.append( sf2 );
@@ -1214,7 +1214,7 @@ void BSLightingShaderProperty::updateParams( const NifModel * nif, const QModelI
 	hasVertexAlpha = hasSF1( ShaderFlags::SLSF1_Vertex_Alpha );
 	hasVertexColors = hasSF2( ShaderFlags::SLSF2_Vertex_Colors );
 
-	if ( stream == 155 ) {
+	if ( stream >= 151 ) {
 		shaderType = ShaderFlags::ShaderType::ST_EnvironmentMap;
 		hasVertexAlpha = true;
 		hasVertexColors = true;
@@ -1342,8 +1342,8 @@ void BSLightingShaderProperty::updateParams( const NifModel * nif, const QModelI
 		greyscaleColor = m->bGrayscaleToPaletteColor;
 		paletteScale = m->fGrayscaleToPaletteScale;
 
-		hasSpecularMap = m->bSpecularEnabled && (!m->textureList[2].isEmpty() 
-												  || (stream == 155 && !m->textureList[7].isEmpty()));
+		hasSpecularMap = m->bSpecularEnabled && ( !m->textureList[2].isEmpty() 
+												  || ( stream >= 151 && !m->textureList[7].isEmpty() ) );
 		hasGlowMap = m->bGlowmap;
 		hasEmittance = m->bEmitEnabled;
 		hasBacklight = m->bBackLighting;

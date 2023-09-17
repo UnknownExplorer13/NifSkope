@@ -711,7 +711,7 @@ QModelIndex NifModel::insertNiBlock( const QString & identifier, int at )
 
 		branch->prepareInsert( block->types.count() );
 
-		if ( getUserVersion2() == 155 && identifier.startsWith( "BSLighting" ) ) {
+		if ( getUserVersion2() >= 151 && identifier.startsWith( "BSLighting" ) ) {
 			for ( const NifData& data : block->types ) {
 				insertType( branch, data );
 			}
@@ -1473,6 +1473,7 @@ QVariant NifModel::data( const QModelIndex & idx, int role ) const
 						}
 					case NifValue::tFloat:
 					case NifValue::tHfloat:
+					case NifValue::tNormbyte:
 						{
 							return tr( "float: %1\nhex: 0x%2" )
 							       .arg( NumOrMinMax( item->value().toFloat(), 'g', 8 ) )
@@ -1494,10 +1495,10 @@ QVariant NifModel::data( const QModelIndex & idx, int role ) const
 						       .arg( item->value().toCount(), 8, 16, QChar( '0' ) );
 					case NifValue::tVector3:
 						return item->value().get<Vector3>().toHtml();
-					case NifValue::tHalfVector3:
-						return item->value().get<HalfVector3>().toHtml();
 					case NifValue::tUshortVector3:
 						return item->value().get<UshortVector3>().toHtml();
+					case NifValue::tHalfVector3:
+						return item->value().get<HalfVector3>().toHtml();
 					case NifValue::tByteVector3:
 						return item->value().get<ByteVector3>().toHtml();
 					case NifValue::tMatrix:
