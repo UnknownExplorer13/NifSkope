@@ -626,9 +626,7 @@ bool Renderer::setupProgram( Program * prog, Shape * mesh, const PropertyList & 
 	else if ( mesh->bsesp && mesh->bsesp->mat() )
 		mat = mesh->bsesp->mat();
 
-	QString default_n = ::default_n;
-	if ( mesh->nifVersion >= 151 )
-		default_n = ::default_ns;
+	QString default_n = (mesh->nifVersion >= 151) ? ::default_ns : ::default_n;
 
 	// texturing
 
