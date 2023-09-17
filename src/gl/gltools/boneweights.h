@@ -37,7 +37,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "vertexweight.h"
 
 //! A set of vertices weighted to a bone
-class BoneWeights final
+class BoneWeights
 {
 public:
 	BoneWeights() {}
@@ -51,6 +51,13 @@ public:
 	Vector3 tcenter;
 	int bone = 0;
 	QVector<VertexWeight> weights;
+};
+
+class BoneWeightsUNorm : public BoneWeights
+{
+public:
+	BoneWeightsUNorm() {}
+	BoneWeightsUNorm(QVector<quint32> unorms, int v);
 };
 
 #endif
