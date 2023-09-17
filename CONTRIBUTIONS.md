@@ -30,7 +30,7 @@ I barely know how to code so I'd like to thank these people for their work that 
 * Help docs submodule
 * More UV Editor shortcuts
 * More de-hardcoded icons
-* Skyrim parallax shader edits to bring it in-line with Candoran's edits
+* Skyrim parallax shader edits to bring it in-line with Candoran's and hexabit's edits
 
 # QA & Feature Suggesters
 
