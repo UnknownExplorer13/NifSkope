@@ -1,4 +1,4 @@
-#version 120
+#version 130
 
 uniform sampler2D BaseMap;
 uniform sampler2D NormalMap;
@@ -40,14 +40,14 @@ uniform float envReflection;
 
 uniform mat4 worldMatrix;
 
-varying vec3 LightDir;
-varying vec3 ViewDir;
+in vec3 LightDir;
+in vec3 ViewDir;
 
-varying vec4 A;
-varying vec4 C;
-varying vec4 D;
+in vec4 A;
+in vec4 C;
+in vec4 D;
 
-varying mat3 tbnMatrix;
+in mat3 tbnMatrix;
 
 
 vec3 tonemap(vec3 x)
@@ -94,8 +94,7 @@ void main( void )
 	float NdotNegL = max( dot(normal, -L), 0.0 );
 
 	vec3 reflected = reflect( -E, normal );
-	vec3 reflectedVS = reflected;
-	vec3 reflectedWS = vec3( worldMatrix * (gl_ModelViewMatrixInverse * vec4( reflectedVS, 0.0 )) );
+	vec3 reflectedWS = vec3( worldMatrix * (gl_ModelViewMatrixInverse * vec4( reflected, 0.0 )) );
 
 
 	vec4 color;

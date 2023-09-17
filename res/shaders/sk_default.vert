@@ -1,14 +1,14 @@
-#version 120
+#version 130
 
-varying vec3 LightDir;
-varying vec3 ViewDir;
+out vec3 LightDir;
+out vec3 ViewDir;
 
-varying mat3 tbnMatrix;
-varying vec3 v;
+out mat3 tbnMatrix;
+out vec3 v;
 
-varying vec4 A;
-varying vec4 C;
-varying vec4 D;
+out vec4 A;
+out vec4 C;
+out vec4 D;
 
 uniform bool isGPUSkinned;
 uniform mat4 boneTransforms[100];
@@ -47,7 +47,7 @@ void main( void )
 	tbnMatrix = mat3(b.x, b.y, b.z,
 					 t.x, t.y, t.z,
 					 n.x, n.y, n.z);
-	
+
 	ViewDir = -v.xyz;
 	LightDir = gl_LightSource[0].position.xyz;
 
