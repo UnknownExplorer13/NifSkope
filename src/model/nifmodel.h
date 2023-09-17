@@ -389,9 +389,6 @@ protected:
 	//! Parse the XML file using a NifXmlHandler
 	static QString parseXmlDescription( const QString & filename );
 
-	static QHash<QString, QString> arrayPseudonyms;
-	static void setupArrayPseudonyms();
-
 	// XML structures
 	static QList<quint32> supportedVersions;
 	static QHash<QString, NifBlockPtr> compounds;
