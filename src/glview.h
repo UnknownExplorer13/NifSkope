@@ -145,6 +145,8 @@ public:
 
 	void setDebugMode( DebugMode );
 
+	float scale() { return (scene->game == Game::STARFIELD) ? 1.0 / 32.0 : 1.0; };
+
 	QColor clearColor() const;
 
 
